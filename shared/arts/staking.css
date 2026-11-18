@@ -1,0 +1,61 @@
+/* Staking UI arts (shared/arts/staking.js). Every rule is scoped to its own art (or the list of staking arts that share it).
+   The shared panel, type, pill, chip, avatar, check, bar, highlight and tabs styles come from modules.css; these add only what
+   the staking arts have of their own, in the same blue, greys, radii and shadows. */
+.mc-ui:is([data-mc-ui=skTimeline],[data-mc-ui=skValidators],[data-mc-ui=skBabylon],[data-mc-ui=skRestake],[data-mc-ui=skAssets],[data-mc-ui=skRewards])::before{background:radial-gradient(closest-side at 60% 45%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=skCore]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+
+/* shared: dark-panel text, dividers, check rings, avatars; the blue-white status text */
+.mc-ui:is([data-mc-ui=skTimeline],[data-mc-ui=skValidators],[data-mc-ui=skBabylon],[data-mc-ui=skRestake],[data-mc-ui=skAssets],[data-mc-ui=skRewards]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=skTimeline],[data-mc-ui=skValidators],[data-mc-ui=skBabylon],[data-mc-ui=skRestake],[data-mc-ui=skAssets],[data-mc-ui=skRewards]) .sk-hrd{background:rgba(190,205,255,.12)}
+.mc-ui:is([data-mc-ui=skTimeline],[data-mc-ui=skValidators],[data-mc-ui=skBabylon],[data-mc-ui=skRestake]) .sk-ok{color:#9db6ff}
+.mc-ui:is([data-mc-ui=skTimeline],[data-mc-ui=skValidators],[data-mc-ui=skBabylon],[data-mc-ui=skRestake]) .u-p.dk .ck .rg{border-color:rgba(190,205,255,.3)}
+.mc-ui:is([data-mc-ui=skCore],[data-mc-ui=skRestake],[data-mc-ui=skAssets]) .chip{transition:background .3s,color .3s}
+.mc-ui:is([data-mc-ui=skCore],[data-mc-ui=skRestake],[data-mc-ui=skAssets]) .chip.on{background:#e4ecff;color:#1647DB}
+.mc-ui:is([data-mc-ui=skCore],[data-mc-ui=skAssets]) .sk-btn{background:#1647DB;border-radius:22px;box-shadow:0 8px 20px -6px rgba(22,71,219,.6)}
+.mc-ui:is([data-mc-ui=skCore],[data-mc-ui=skAssets]) .sk-btn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:13.5px;font-weight:600;line-height:1;white-space:nowrap}
+.mc-ui:is([data-mc-ui=skCore],[data-mc-ui=skAssets]) .sk-btn .l1{opacity:0}
+.mc-ui:is([data-mc-ui=skCore],[data-mc-ui=skAssets]) .sk-btn svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* skTimeline: the rail between steps, the transaction icons, the open step's title in blue */
+.mc-ui[data-mc-ui=skTimeline] .sk-rail{background:#e8ecf6;border-radius:1px;overflow:hidden}
+.mc-ui[data-mc-ui=skTimeline] .sk-rail i{position:absolute;left:0;top:0;width:100%;height:0;background:#1647DB}
+.mc-ui[data-mc-ui=skTimeline] .ut.a{color:#1647DB}
+.mc-ui[data-mc-ui=skTimeline] .sk-ic{border-radius:8px;background:rgba(255,255,255,.08);color:#9db6ff;display:flex;align-items:center;justify-content:center;transition:background .35s,color .35s}
+.mc-ui[data-mc-ui=skTimeline] .sk-ic.on{background:rgba(77,120,255,.3);color:#fff}
+.mc-ui[data-mc-ui=skTimeline] .sk-ic svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* skBabylon: Timechain blocks, the lock on the staked block, the proof-of-stake networks it secures */
+.mc-ui[data-mc-ui=skBabylon] .sk-blk{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=skBabylon] .sk-blk.on{background:#1647DB;box-shadow:0 0 0 1.5px #7ea2ff,0 0 18px rgba(77,120,255,.6)}
+.mc-ui[data-mc-ui=skBabylon] .sk-lk{width:22px;height:22px;border-radius:50%;background:#fff;color:#1647DB;display:flex;align-items:center;justify-content:center;opacity:0;z-index:2}
+.mc-ui[data-mc-ui=skBabylon] .sk-lk svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui[data-mc-ui=skBabylon] .sk-pos{width:16px;height:16px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(190,205,255,.35);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=skBabylon] .sk-pos.on{background:#4d78ff;box-shadow:0 0 12px rgba(77,120,255,.7)}
+
+/* skCore: inset condition rows (the paper card's rows, as cwSoftware / gmVoice) */
+.mc-ui[data-mc-ui=skCore] .sk-row{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=skCore] .sk-row.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui[data-mc-ui=skCore] .sk-row>*{position:absolute}
+
+/* skRestake: wallet tabs, AVS operator rows (no names: placeholder bars) */
+.mc-ui[data-mc-ui=skRestake] .sk-tabs{height:28px;display:flex;gap:4px}
+.mc-ui[data-mc-ui=skRestake] .sk-tabs span{position:static;display:flex;align-items:center;gap:6px;padding:0 11px;border-radius:14px;font-size:12px;font-weight:600;color:#6c7694;background:#eef1f9;white-space:nowrap;transition:background .3s,color .3s}
+.mc-ui[data-mc-ui=skRestake] .sk-tabs span.sel{background:#1647DB;color:#fff}
+.mc-ui[data-mc-ui=skRestake] .sk-tabs svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui[data-mc-ui=skRestake] .sk-hot{position:static;display:block;width:7px;height:7px;border-radius:50%;background:currentColor}
+.mc-ui[data-mc-ui=skRestake] .sk-op{width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,.1);transition:background .35s}
+.mc-ui[data-mc-ui=skRestake] .sk-op.on{background:#4d78ff}
+.mc-ui[data-mc-ui=skRestake] .sk-sk{height:7px;border-radius:4px;background:rgba(190,205,255,.18)}
+
+/* skAssets: the search field */
+.mc-ui[data-mc-ui=skAssets] .sk-search{border-radius:9px;background:#f3f5fb;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);display:flex;align-items:center;gap:8px;padding:0 10px;color:#6c7694;font-size:12.5px;font-weight:500}
+.mc-ui[data-mc-ui=skAssets] .sk-search svg{position:static;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.mc-ui[data-mc-ui=skAssets] .sk-search span{position:static}
+
+/* skRewards: status tags (live colours turned to the house blue), the live dot, the accrual line */
+.mc-ui[data-mc-ui=skRewards] .sk-st{height:22px;padding:0 9px;border-radius:11px;background:#e4ecff;color:#1647DB;font-size:11.5px;font-weight:600;line-height:22px;white-space:nowrap}
+.mc-ui[data-mc-ui=skRewards] .sk-st.rs{background:#eef1f9;color:#39425f}
+.mc-ui[data-mc-ui=skRewards] .sk-live{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#9db6ff;line-height:1}
+.mc-ui[data-mc-ui=skRewards] .sk-live i{position:static;width:7px;height:7px;border-radius:50%;background:#4d78ff;box-shadow:0 0 8px #4d78ff}
+.mc-ui[data-mc-ui=skRewards] .sk-spark{overflow:visible}
+.mc-ui[data-mc-ui=skRewards] .sk-spark path{fill:none;stroke:#7ea2ff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1}

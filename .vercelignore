@@ -1,0 +1,9 @@
+# Same exclusions as the manual deploy: only the pages and the code they load go live
+_*
+!shared/models/_kit.js
+!shared/models/_shieldgeo.js
+*.py
+*.md
+*.sh
+*.log
+handoff.txt

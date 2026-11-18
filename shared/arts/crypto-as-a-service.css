@@ -1,0 +1,27 @@
+/* Styles for the arts in crypto-as-a-service.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>].
+   The base kit (.u-p, .ut, .hr, .pill, .ck, .bar, .resp) comes from modules.css in both hosts (50/50 and 3x multicard).
+   Values follow ui-arts.css, defi.css and settlement.css: the same blue, greys, radii, shadows and connector glow. */
+
+/* the soft light behind each art: strong on the dark cards, faint on the paper card */
+.mc-ui[data-mc-ui=caasRevenue]::before{background:radial-gradient(closest-side at 60% 50%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=caasPolicy]::before{background:radial-gradient(closest-side at 55% 45%,rgba(22,71,219,.07),transparent)}
+
+/* shared: text and dividers on the dark panels */
+.mc-ui:is([data-mc-ui=caasRevenue],[data-mc-ui=caasPolicy]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=caasRevenue],[data-mc-ui=caasPolicy]) .caas-hrd{background:rgba(190,205,255,.12)}
+
+/* caasRevenue: the service switches (as dfPolicy's), the revenue lines drawing on the dark panel, the New tags */
+.mc-ui[data-mc-ui=caasRevenue] .caas-sw{width:38px;height:20px;border-radius:10px;background:#c9d0e2}
+.mc-ui[data-mc-ui=caasRevenue] .caas-sw i{position:absolute;inset:0;border-radius:10px;background:#1647DB;opacity:0}
+.mc-ui[data-mc-ui=caasRevenue] .caas-sw b{position:absolute;left:3.5px;top:3px;width:15px;height:15px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,20,.25)}
+.mc-ui[data-mc-ui=caasRevenue] .caas-ln{overflow:visible;filter:drop-shadow(0 0 4px rgba(77,120,255,.8))}
+.mc-ui[data-mc-ui=caasRevenue] .caas-ln polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui[data-mc-ui=caasRevenue] .caas-ln .bs{stroke:rgba(190,205,255,.14);stroke-width:2}
+.mc-ui[data-mc-ui=caasRevenue] .caas-ln .pg{stroke:#7ea2ff;stroke-width:2.4;stroke-dasharray:1 1;stroke-dashoffset:1}
+.mc-ui[data-mc-ui=caasRevenue] .caas-ok{color:#9db6ff;opacity:0}
+
+/* caasPolicy: the custody chip on the dark panel (Held, then Released) */
+.mc-ui[data-mc-ui=caasPolicy] .caas-lk{height:24px;width:70px;padding:0 10px;border-radius:12px;background:rgba(255,255,255,.1);color:rgba(205,218,255,.8);font-size:12px;font-weight:600;line-height:1;display:flex;align-items:center;gap:5px;white-space:nowrap;overflow:hidden;transition:background .35s,color .35s}
+.mc-ui[data-mc-ui=caasPolicy] .caas-lk.on{background:rgba(77,120,255,.25);color:#dfe8ff}
+.mc-ui[data-mc-ui=caasPolicy] .caas-lk svg{position:static;flex:none;width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui[data-mc-ui=caasPolicy] .caas-lk em{position:absolute;left:27px;top:6px;font-style:normal}

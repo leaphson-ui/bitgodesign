@@ -1,0 +1,12 @@
+/* Financing UI arts (shared/arts/financing.js). Every rule is scoped to its own art. The shared panel, type, chip, tabs,
+   highlight and check styles come from modules.css; these add only what each art has of its own. */
+.mc-ui[data-mc-ui=fiPortfolio]::before{background:radial-gradient(closest-side at 50% 50%,rgba(22,71,219,.28),transparent)}
+.mc-ui[data-mc-ui=fiPortfolio] .chip{transition:background .3s,color .3s}
+.mc-ui[data-mc-ui=fiPortfolio] .chip.on{background:#e4ecff;color:#1647DB}
+.mc-ui[data-mc-ui=fiPortfolio] .ut .tk{display:inline-block;vertical-align:-1px;margin-right:2px}
+.mc-ui[data-mc-ui=fiEarn]::before{background:radial-gradient(closest-side at 50% 50%,rgba(22,71,219,.28),transparent)}
+.mc-ui[data-mc-ui=fiEarn] .chip.on{background:#e4ecff;color:#1647DB}
+.mc-ui[data-mc-ui=fiLoan]::before{background:radial-gradient(closest-side at 45% 40%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=fiLoan] .fl-hrd{background:rgba(255,255,255,.1)}
+.mc-ui[data-mc-ui=fiLoan] .fl-ok{color:#9db6ff}
+.mc-ui[data-mc-ui=fiLoan] .fl-tok{border-radius:7px;background:rgba(77,120,255,.22);color:#cfdcff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}

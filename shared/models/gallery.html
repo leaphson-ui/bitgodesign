@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo 3D models</title>
+<link rel="icon" href="data:,">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<style>
+  :root { --bg: #03071a; --fg: #e8eeff; --dim: #8fa3d9; --line: #14245e; --accent: #1647db; }
+  :root[data-theme="light"] { --bg: #f4f7ff; --fg: #06103a; --dim: #4a5c94; --line: #cfd9f5; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.4 system-ui, sans-serif; }
+  #gl { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
+  header { position: relative; z-index: 2; display: flex; gap: 12px; align-items: center; padding: 18px 28px; }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; letter-spacing: .04em; }
+  header .sp { flex: 1; }
+  button { background: transparent; color: var(--fg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font: inherit; cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  #grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 14px; padding: 0 28px 40px; }
+  .tile { border: 1px solid var(--line); border-radius: 14px; display: flex; flex-direction: column; min-height: 480px; }
+  .tile .view { flex: 1; min-height: 340px; }
+  .tile .meta { padding: 10px 16px 14px; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 82%, transparent); border-radius: 0 0 14px 14px; }
+  .tile h2 { margin: 0 0 2px; font-size: 14px; font-weight: 600; }
+  .tile p { margin: 0 0 8px; color: var(--dim); font-size: 12.5px; }
+  .tile .tri { color: var(--dim); font-size: 11px; font-variant-numeric: tabular-nums; float: right; }
+  .row { display: flex; gap: 10px; align-items: center; font-size: 12px; color: var(--dim); }
+  .row label { min-width: 120px; } .row input { flex: 1; accent-color: var(--accent); }
+  body.only #grid { grid-template-columns: 1fr; } body.only .tile { min-height: calc(100vh - 90px); }
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<header>
+  <h1>BitGo 3D models</h1><span class="sp"></span>
+  <button id="orbit">Orbit: on</button>
+  <button id="theme">Dark</button>
+</header>
+<div id="grid"></div>
+<script type="module">
+import * as THREE from 'three';
+import { makeEnv, setupRenderer } from './materials.js';
+import { loadModels } from './index.js';
+import { triCount } from './_kit.js';
+
+const q = new URLSearchParams(location.search);
+const only = q.get('only'), still = q.has('still'), ZOOM = parseFloat(q.get('zoom') || '1');
+let light = q.get('light') === '1';
+let orbitOn = !still;
+const sv = q.has('s') ? parseFloat(q.get('s')) : null;
+const BG = { dark: 0x03071a, light: 0xf4f7ff };
+if (only && !only.includes(',')) document.body.classList.add('only');
+
+const canvas = document.getElementById('gl');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+setupRenderer(renderer);
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5));
+const envs = { dark: makeEnv(renderer, 'dark'), light: makeEnv(renderer, 'light') };
+
+/* a faint curtain of blue strips behind the models, so glass has something to refract (the real pages have the light curtain) */
+function backdrop(isLight) {
+  const c = document.createElement('canvas'); c.width = 2048; c.height = 512; const g = c.getContext('2d');
+  g.fillStyle = isLight ? '#eef3ff' : '#03071a'; g.fillRect(0, 0, c.width, c.height);
+  let s = 11; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let x = 0; x < c.width;) {
+    const w = 6 + rnd() * 26, k = rnd();
+    const gr = g.createLinearGradient(x, 0, x + w, 0);
+    const col = isLight ? [22, 71, 219] : (k > 0.7 ? [140, 175, 255] : [30, 80, 230]);
+    const a = (isLight ? 0.10 : 0.26) * (0.3 + rnd());
+    gr.addColorStop(0, `rgba(${col},0)`); gr.addColorStop(0.5, `rgba(${col},${a})`); gr.addColorStop(1, `rgba(${col},0)`);
+    g.fillStyle = gr; g.fillRect(x, 0, w, c.height); x += w * (0.7 + rnd() * 1.4);
+  }
+  const t = new THREE.CanvasTexture(c); t.mapping = THREE.EquirectangularReflectionMapping; t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+const backs = { dark: backdrop(false), light: backdrop(true) };
+
+const grid = document.getElementById('grid');
+const tiles = [];
+const loaded = await loadModels(only ? only.split(',') : undefined);   // models whose import fails are skipped
+window.__tris = {};
+
+function build(t) {
+  if (t.inst) { t.scene.remove(t.inst.object); t.inst.dispose(); }
+  t.inst = t.mod.create({ light, quality: 'high' });
+  t.scene.add(t.inst.object);
+  t.tris = triCount(t.inst.object);
+  t.triEl.textContent = t.tris.toLocaleString() + ' tris';
+  window.__tris[t.name] = t.tris;
+}
+
+for (const { name, mod } of loaded) {
+  const meta = mod.meta || { name, title: name, means: '', states: {} };
+  const el = document.createElement('div'); el.className = 'tile';
+  el.innerHTML = '<div class="view"></div><div class="meta"><span class="tri"></span><h2></h2><p></p><div class="sliders"></div></div>';
+  el.querySelector('h2').textContent = meta.title; el.querySelector('p').textContent = meta.means;
+  const t = { name, mod, meta, el, view: el.querySelector('.view'), triEl: el.querySelector('.tri'), state: {}, scene: new THREE.Scene(), inst: null, inputs: [] };
+  t.cam = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
+  const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-3, 4, 6); t.scene.add(key);
+  const kick = new THREE.PointLight(0x4d78ff, 90, 20, 2); kick.position.set(4, -2, 3); t.scene.add(kick);
+  for (const [k, desc] of Object.entries(meta.states || {})) {
+    t.state[k] = sv != null ? sv : 0;
+    const row = document.createElement('div'); row.className = 'row';
+    row.innerHTML = '<label></label><input type="range" min="0" max="1" step="0.01"><span></span>';
+    row.querySelector('label').textContent = k; row.querySelector('label').title = desc;
+    const inp = row.querySelector('input'), out = row.querySelector('span');
+    inp.value = t.state[k]; out.textContent = t.state[k].toFixed(2);
+    inp.addEventListener('input', () => { t.state[k] = parseFloat(inp.value); out.textContent = t.state[k].toFixed(2); });
+    el.querySelector('.sliders').appendChild(row); t.inputs.push([k, inp, out]);
+  }
+  grid.appendChild(el); tiles.push(t);
+  build(t);
+}
+window.__tiles = tiles;
+window.__setState = (k, v) => tiles.forEach(t => { if (k in t.state) { t.state[k] = v; t.inputs.forEach(([kk, inp, out]) => { if (kk === k) { inp.value = v; out.textContent = (+v).toFixed(2); } }); } });
+
+function setTheme() {
+  document.documentElement.dataset.theme = light ? 'light' : 'dark';
+  document.getElementById('theme').textContent = light ? 'Light' : 'Dark';
+  tiles.forEach(t => { t.scene.background = backs[light ? 'light' : 'dark']; t.scene.backgroundBlurriness = 0.06; t.scene.environment = envs[light ? 'light' : 'dark']; });
+}
+function setLight(v) { light = v; setTheme(); tiles.forEach(build); }
+window.__setLight = setLight;
+document.getElementById('theme').onclick = () => setLight(!light);
+document.getElementById('orbit').onclick = e => { orbitOn = !orbitOn; e.target.textContent = 'Orbit: ' + (orbitOn ? 'on' : 'off'); };
+setTheme();
+
+const clock = new THREE.Clock(); let T = 0;
+function frame() {
+  requestAnimationFrame(frame);
+  T += Math.min(clock.getDelta(), 0.1);
+  const w = innerWidth, h = innerHeight, pr = renderer.getPixelRatio();
+  if (canvas.width !== Math.round(w * pr) || canvas.height !== Math.round(h * pr)) renderer.setSize(w, h, false);
+  renderer.setScissorTest(false); renderer.setClearColor(light ? BG.light : BG.dark, 1); renderer.clear(); renderer.setScissorTest(true);
+  tiles.forEach((t, i) => {
+    const r = t.view.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > h || r.right < 0 || r.left > w || r.width < 4) return;
+    t.inst.update(window.__T != null ? window.__T : T, t.state);
+    const yaw = still ? (window.__yaw != null ? window.__yaw : 0.42) : (orbitOn ? Math.sin(T * 0.22 + i * 0.7) * 0.95 : 0.3);
+    const pitch = still ? (window.__pitch != null ? window.__pitch : 0.27) : 0.27 + Math.sin(T * 0.17) * 0.05;
+    const D = (t.meta.distance || 4.15) / ZOOM * (r.width / r.height < 0.9 ? 1.25 : 1);
+    t.cam.position.set(Math.sin(yaw) * Math.cos(pitch) * D, Math.sin(pitch) * D, Math.cos(yaw) * Math.cos(pitch) * D);
+    t.cam.lookAt(0, 0, 0); t.cam.aspect = r.width / r.height; t.cam.updateProjectionMatrix();
+    const y = h - r.bottom;
+    renderer.setViewport(r.left, y, r.width, r.height); renderer.setScissor(r.left, y, r.width, r.height);
+    renderer.render(t.scene, t.cam);
+  });
+}
+frame();
+</script>
+</body>
+</html>

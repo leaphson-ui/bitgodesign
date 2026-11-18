@@ -1,0 +1,3 @@
+/* Shared 2D scenes (scenes.js): sizing only. A scene canvas fills the box its module gives it; the module sets the box.
+   Scenes draw on a transparent canvas, so the card or page ground shows through. */
+canvas[data-scene]{display:block;width:100%;height:100%}

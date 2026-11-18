@@ -1,0 +1,137 @@
+/* Self-Custody: the calmer product template. One black ground for the whole page; blue "curtain" sections are a
+   blurred light-band layer that feathers into the black at top and bottom, so no section edge ever shows. */
+body.calm{background:#02030a}
+.calm main section{background:transparent}
+.calm .trust{background:transparent}
+
+/* the curtain, drawn in CSS: soft vertical light bands over deep blue, feathered into black */
+.curtain{position:relative;isolation:isolate}
+.curtain::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(77,120,255,0) 0 18px,rgba(120,155,255,.28) 18px 21px,rgba(77,120,255,0) 21px 44px,rgba(160,190,255,.12) 44px 46px,rgba(77,120,255,0) 46px 70px),
+    radial-gradient(ellipse 70% 60% at 70% 45%,#1647db 0,#0d2fa8 40%,#06155a 70%,#02030a 100%);
+  filter:blur(5px);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%)}
+
+/* hero: copy left, the posed key right */
+.calm .hero{height:max(92vh,720px);min-height:720px;display:flex;align-items:center;overflow:hidden}
+.calm .hero::before{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 72%,transparent 100%)}
+#hero3d{position:absolute;right:0;top:0;width:58%;height:100%;z-index:0}
+.calm .hero-copy{position:relative;z-index:1;padding:0}
+.calm .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(44px,5.4vw,104px);line-height:.98;letter-spacing:-.03em;max-width:9em}
+.calm .hero-row{margin-top:clamp(26px,3.4vh,44px)}
+
+/* WalletConnect split, and the two rows further down */
+.split,.rows{padding:clamp(80px,9vw,160px) 0}
+.split-in,.row2{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,120px);align-items:center}
+.row2+.row2{margin-top:clamp(80px,9vw,160px)}
+.row2.rev .tile{order:-1}
+.split-copy .btn,.row2-copy .btn{margin-top:clamp(26px,3vw,40px)}
+.row2-copy .lead{margin-top:clamp(18px,2vw,26px);max-width:40ch}
+.tile{position:relative;aspect-ratio:4/3;border-radius:clamp(24px,2.6vw,44px);display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(ellipse closest-side at 50% 50%,rgba(22,71,219,.42),rgba(22,71,219,0)),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.12)}
+.tile .ico2{width:clamp(96px,10vw,168px);height:clamp(96px,10vw,168px);filter:drop-shadow(0 20px 40px rgba(22,71,219,.55))}
+
+/* why self-custody */
+.why{padding:clamp(80px,9vw,160px) 0}
+.why-head{max-width:880px;margin-bottom:clamp(44px,5vw,80px)}
+.why-head .lead{margin-top:clamp(18px,2vw,26px);max-width:48ch}
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,28px)}
+.card{border-radius:clamp(22px,2.4vw,40px);padding:clamp(26px,2.8vw,48px);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.card .ico2{width:56px;height:56px}
+.card h3{margin-top:clamp(28px,3vw,48px);font-family:var(--display);font-weight:500;font-size:clamp(22px,1.9vw,32px);letter-spacing:-.02em;line-height:1.1}
+.card p{margin-top:14px;color:var(--tx2);font-size:clamp(15px,1.05vw,17px);line-height:1.6}
+
+/* key management: tabs left, the three keys right */
+.kman{padding:clamp(80px,9vw,160px) 0}
+.km{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,100px);align-items:center}
+.tabs{display:inline-flex;gap:6px;padding:6px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.tabs button{height:52px;padding:0 24px;border-radius:999px;font-family:var(--display);font-size:clamp(17px,1.3vw,20px);font-weight:500;color:var(--tx2);transition:background .4s,color .3s}
+.tabs button[aria-selected="true"]{background:var(--blue);color:#fff}
+.panes{position:relative;margin-top:clamp(28px,3vw,44px);min-height:clamp(220px,20vw,280px)}
+.pane{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .7s var(--ease);pointer-events:none}
+.pane.on{opacity:1;transform:none;pointer-events:auto}
+.pane p{font-size:clamp(17px,1.35vw,22px);line-height:1.5;color:var(--tx2);max-width:40ch}
+.pane p+p{margin-top:14px}
+.pane .btn{margin-top:clamp(24px,2.6vw,36px)}
+.km-art{aspect-ratio:1/1;width:100%}
+#keys3d{width:100%;height:100%}
+
+/* guide banner over the curtain */
+
+
+@media (max-width:900px){
+  #hero3d{width:100%;height:58%;opacity:.9}
+  .calm .hero{align-items:flex-end;padding-bottom:12vh}
+  .split-in,.row2,.km,.cards3{grid-template-columns:1fr}
+  .row2.rev .tile{order:0}
+  .tabs button{padding:0 16px;height:46px}
+}
+
+/* tighter rhythm: less empty space between sections */
+.split,.rows,.why,.kman{padding:clamp(48px,5vw,96px) 0}
+.row2+.row2{margin-top:clamp(48px,5vw,96px)}
+.why-head{margin-bottom:clamp(32px,3.5vw,56px)}
+
+/* ---- homepage world: the fixed curtain shows behind every section; objects sit in slots below the nav ---- */
+body.calm{background:var(--ink)}
+.gl .curtain::before{display:none}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.calm main{position:relative;z-index:1}
+h1,h2,h3,.big{letter-spacing:-.022em}
+.slot{position:relative}
+.hero-slot{position:absolute;right:var(--pad);top:132px;bottom:72px;width:min(44%,760px)}
+.calm .hero::before{display:block;background:linear-gradient(90deg,rgba(3,7,26,.85),rgba(3,7,26,.4) 45%,rgba(3,7,26,0) 70%)}
+.tile-slot{aspect-ratio:4/3;width:100%}
+.km-art.slot{aspect-ratio:1/1}
+.why .card{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.calm .why,.calm .rows,.calm .split,.calm .kman{position:relative}
+.calm .why::before,.calm .rows::before,.calm .split::before,.calm .kman::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse closest-side at 30% 50%,rgba(3,7,26,.7),rgba(3,7,26,0))}
+@media (max-width:900px){.hero-slot{left:0;right:0;width:auto;top:96px;bottom:46%}}
+
+/* footer stays solid black and fades in from the scene above; the section shades below are soft radial pools only */
+.calm .why::before,.calm .rows::before,.calm .split::before,.calm .kman::before{top:0;bottom:0;left:0;right:0;height:auto}
+
+/* section 1, the hero: the homepage composition. Copy bottom-left, one large glass key on the right lit by the curtain */
+.calm .hero{height:max(100vh,760px);min-height:760px;align-items:flex-end}
+.calm .hero-copy{padding-bottom:clamp(40px,7vh,96px)}
+.calm .hero h1{font-size:clamp(46px,5.8vw,112px);line-height:.97;max-width:8.4em}
+.hero-slot{right:2%;top:104px;bottom:40px;width:min(52%,900px)}
+h1,h2,h3,.big{letter-spacing:-.012em}
+.split-in,.row2{grid-template-columns:1fr}
+.split-copy,.row2-copy{max-width:760px}
+.km{grid-template-columns:1fr}
+@media (max-width:900px){.hero-slot{left:0;right:0;width:auto;top:90px;bottom:48%}}
+
+.calm .hero-copy{padding-left:var(--pad);padding-right:var(--pad)}
+
+/* hero alignment: the key and the copy share one container, so the key's right edge and the copy's left edge sit on
+   the same page margins at every width. The text shade belongs to the copy, not to the section, so no dark band is
+   left behind on wide screens. */
+.calm .hero::before{display:none}
+.hero-wrap{position:relative;height:100%;display:flex;align-items:flex-end}
+.calm .hero-copy{position:relative;padding:0 0 clamp(40px,7vh,96px)}
+.calm .hero-copy::before{content:"";position:absolute;inset:-30% -25%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse closest-side,rgba(3,7,26,.5),rgba(3,7,26,0))}
+.hero-slot{position:absolute;right:var(--pad);left:auto;top:104px;bottom:40px;width:min(48%,860px)}
+@media (max-width:900px){.hero-slot{left:var(--pad);right:var(--pad);width:auto;top:90px;bottom:50%}}
+
+/* the nav sits on the same margins as the page content at every width */
+.nav{padding-inline:max(var(--pad),calc((100vw - var(--max)) / 2 + var(--pad)))}
+
+/* full width with generous side padding: no locked centre column, nav and content share the same fluid margins */
+.nav{padding-inline:var(--pad)}
+
+/* nav call to action: white, like the hero button */
+
+/* the key's slot is the open space to the right of the copy, from the copy's edge to the right margin */
+.hero-slot{width:auto;left:min(58%,calc(var(--pad) + 900px))}
+@media (max-width:900px){.hero-slot{left:var(--pad)}}
+
+/* no shade boxes at all on this page: a box that gets clipped (the hero clips its overflow) always leaves an edge.
+   Text keeps its contrast with a soft text-shadow instead, which cannot leave an edge anywhere. */
+.calm .hero{overflow:visible}
+.calm .hero-copy::before,.calm .why::before,.calm .rows::before,.calm .split::before,.calm .kman::before{content:none;display:none}
+
+
+/* wrappers around pairs of 50/50s add no space of their own: each module carries --sec-pad */
+.kman,.rows{padding:0!important}

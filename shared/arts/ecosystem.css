@@ -1,0 +1,34 @@
+/* Ecosystem UI arts (shared/arts/ecosystem.js). Every rule is scoped to its own art (or the list of ecosystem arts that share it).
+   The shared panel, type, pill, check, bar and response styles come from modules.css; these add only what the ecosystem arts have
+   of their own, in the same blue, greys, radii and shadows as ui-arts.css and staking.css. */
+
+/* the soft light behind each art, by its card's tone: strong on the first (ink) card, faint on the second (paper) card */
+.mc-ui[data-mc-ui=ecVesting]::before{background:radial-gradient(closest-side at 62% 38%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=ecListings]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+
+/* shared: dark-panel text, dividers, the blue-white status text, check rings on the dark panel */
+.mc-ui:is([data-mc-ui=ecVesting],[data-mc-ui=ecListings]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=ecVesting],[data-mc-ui=ecListings]) .ec-hrd{background:rgba(190,205,255,.12)}
+.mc-ui:is([data-mc-ui=ecVesting],[data-mc-ui=ecListings]) .ec-ok{color:#9db6ff}
+.mc-ui:is([data-mc-ui=ecVesting],[data-mc-ui=ecListings]) .u-p.dk .ck .rg{border-color:rgba(190,205,255,.3)}
+
+/* ecVesting: the schedule chart (base line, the planned steps dashed, the vested line and its area, the moving head) and the
+   cold storage chip on the dark panel */
+.mc-ui[data-mc-ui=ecVesting] .ecv-ch{overflow:visible}
+.mc-ui[data-mc-ui=ecVesting] .ecv-ch path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui[data-mc-ui=ecVesting] .ecv-ch .ecv-bs{stroke:rgba(20,40,110,.14);stroke-width:1.2}
+.mc-ui[data-mc-ui=ecVesting] .ecv-ch .ecv-pl{stroke:rgba(22,71,219,.35);stroke-width:1.6;stroke-dasharray:4 5}
+.mc-ui[data-mc-ui=ecVesting] .ecv-ch .ecv-ar{fill:rgba(22,71,219,.1);stroke:none}
+.mc-ui[data-mc-ui=ecVesting] .ecv-ch .ecv-ln{stroke:#1647DB;stroke-width:3}
+.mc-ui[data-mc-ui=ecVesting] .ecv-ch .ecv-hd{fill:#1647DB;stroke:#fff;stroke-width:2.5}
+.mc-ui[data-mc-ui=ecVesting] .ec-ch{height:24px;padding:0 10px;border-radius:12px;background:rgba(255,255,255,.12);color:#dfe8ff;font-size:12px;font-weight:600;line-height:1;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.mc-ui[data-mc-ui=ecVesting] .ec-ch svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ecListings: the asset's token mark, the exchange avatars and the listing switches on the dark panel */
+.mc-ui[data-mc-ui=ecListings] .ecl-tk{border-radius:50%;background:linear-gradient(145deg,#4d78ff,#1647DB);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -6px rgba(22,71,219,.7)}
+.mc-ui[data-mc-ui=ecListings] .ecl-av{border-radius:50%;background:rgba(255,255,255,.1);color:#dfe8ff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.mc-ui[data-mc-ui=ecListings] .ecl-av.on{background:rgba(77,120,255,.35);color:#fff}
+.mc-ui[data-mc-ui=ecListings] .ecl-sw{border-radius:10px;background:rgba(255,255,255,.16)}
+.mc-ui[data-mc-ui=ecListings] .ecl-sw>*{position:absolute}
+.mc-ui[data-mc-ui=ecListings] .ecl-sw i{inset:0;border-radius:10px;background:#4d78ff;opacity:0}
+.mc-ui[data-mc-ui=ecListings] .ecl-sw b{left:3.5px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff}

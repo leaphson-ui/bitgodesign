@@ -1,0 +1,11 @@
+/* Off-Exchange Settlement UI arts (shared/arts/go-network-oes.js). Every rule is scoped to its own art. The shared panel,
+   type, pill, check, highlight, radio and response styles come from modules.css; these add only what each art has of its own. */
+.mc-ui[data-mc-ui=oesCustody]::before{background:radial-gradient(closest-side at 62% 38%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=oesCustody] .oes-hrd{background:rgba(190,205,255,.12)}
+.mc-ui[data-mc-ui=oesCustody] .oes-bar{border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.mc-ui[data-mc-ui=oesCustody] .oes-bar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:#4d78ff}
+.mc-ui[data-mc-ui=oesAllocate]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+.mc-ui[data-mc-ui=oesAllocate] .oes-hrd{background:rgba(190,205,255,.12)}
+.mc-ui[data-mc-ui=oesAllocate] .oes-ok{color:#9db6ff}
+.mc-ui[data-mc-ui=oesAllocate] .oes-ok .tk{stroke:#9db6ff;display:inline-block;vertical-align:-1px}
+.mc-ui[data-mc-ui=oesAllocate] .oes-dot{display:inline-block;width:6px;height:6px;margin-right:7px;border-radius:50%;background:#4d78ff;vertical-align:1px}

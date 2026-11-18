@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo | Digital asset infrastructure</title>
+<meta name="description" content="The digital asset infrastructure company. Custody, trading, settlement, staking, stablecoins and the platform underneath.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+</head>
+<body>
+<canvas id="cloud" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div id="app"></div>
+<script src="../shared/content.js"></script>
+<script src="render.js"></script>
+<script src="ui.js"></script>
+<script src="stills.js"></script>
+<script>
+// fine film grain, generated here, laid over the whole page
+(function () {
+  try {
+    var c = document.createElement('canvas'); c.width = c.height = 220; var x = c.getContext('2d'), d = x.createImageData(220, 220);
+    for (var i = 0; i < d.data.length; i += 4) { var v = 128 + (Math.random() - .5) * 170; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+    x.putImageData(d, 0, 0);
+    document.querySelector('.grain').style.backgroundImage = 'url(' + c.toDataURL('image/png') + ')';
+  } catch (e) {}
+})();
+</script>
+<script type="module" src="cloud.js"></script>
+</body>
+</html>

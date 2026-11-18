@@ -1,0 +1,715 @@
+/* BitGo design system: page modules. Each module is used the same way on every page.
+   Spacing and alignment follow the approved Self-Custody hero: full width, fluid side padding (--pad), copy on
+   the page margin, 3D centred in its own space, no shade boxes (text-shadow only). */
+
+/* ---------- 50/50: copy half, visual half ---------- */
+.m-split{position:relative;padding:clamp(72px,8vw,140px) 0}
+.m-split .m-in{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:center;min-height:min(72vh,720px)}
+.m-split.left .m-copy{order:2}
+.m-split .m-copy{max-width:640px}
+.m-split .m-copy .eyebrow{margin-bottom:clamp(16px,1.8vw,24px)}
+.m-split .m-copy h2{font-family:var(--display);font-weight:500;font-size:clamp(34px,3.6vw,68px);line-height:1;letter-spacing:-.012em;text-shadow:0 2px 28px rgba(3,7,26,.38)}
+.m-split .m-copy .lead{margin-top:clamp(16px,1.6vw,22px);max-width:44ch}
+.m-split .m-copy .btn{margin-top:clamp(24px,2.6vw,36px)}
+.m-split .m-vis{position:relative;height:min(64vh,640px);min-height:340px}
+.m-split .m-vis .slot{position:absolute;inset:0}
+@media (max-width:900px){
+  .m-split .m-in{grid-template-columns:1fr;min-height:0}
+  .m-split.left .m-copy{order:0}
+  .m-split .m-vis{height:52vh}
+}
+
+/* 50/50 refinement: copy uses its half (wider measure, larger heading), less empty space above and below,
+   the visual sized to the copy so the two halves read as one composition */
+.m-split{padding:clamp(40px,4vw,80px) 0}
+.m-split .m-in{min-height:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3vw,64px)}
+.m-split .m-copy{max-width:min(100%,820px)}
+.m-split .m-copy h2{font-size:clamp(36px,3.5vw,67px);max-width:none;text-wrap:balance}   /* the copy column sets the measure; the size stops growing where the column does (1920), so line counts hold on wider screens */
+.m-split .m-vis{height:clamp(320px,34vw,620px)}
+
+/* the visual sits next to the copy, not out at the far edge: it takes up to 820px and hugs the gap */
+.m-split .m-vis{width:100%;max-width:820px;justify-self:start}
+.m-split.left .m-vis{justify-self:end}
+
+/* copy and visual sit together as one group on the left margin (not split to the two far edges of the screen) */
+.m-split .m-in{grid-template-columns:minmax(0,740px) minmax(0,820px);justify-content:start}
+.m-split.left .m-in{grid-template-columns:minmax(0,820px) minmax(0,740px)}
+.m-split .m-vis{max-width:none}
+@media (max-width:900px){.m-split .m-in,.m-split.left .m-in{grid-template-columns:1fr}}
+
+/* the copy + visual group is centred on the page */
+.m-split .m-in{justify-content:center}
+
+/* ---------- 3x multicard: the homepage Build module ("Architect the new economy"), the same on every page ---------- */
+.m-multi{position:relative;padding:clamp(96px,11vw,200px) 0 clamp(80px,10vw,180px);color:#fff}
+.m-multi .mc-head{display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 auto clamp(56px,7vw,120px);max-width:1000px}
+.m-multi .mc-head h2.big{max-width:18ch}
+.m-multi .mc-head .lead{margin-top:clamp(18px,2vw,28px);max-width:48ch}
+.bcards{position:relative}
+.bcard{position:sticky;top:calc(92px + var(--k)*30px);margin-bottom:clamp(40px,6vh,80px);border-radius:clamp(24px,3vw,44px);display:grid;grid-template-columns:1fr 1.1fr;min-height:min(72vh,680px);overflow:hidden;box-shadow:0 -30px 80px -30px rgba(0,10,80,.55)}
+/* card surfaces, named: tone 'ink' (near-black), 'paper' (light), 'deep' (dark navy). Modules.multicard runs ink, paper, deep by position unless a card names its tone. */
+.bcard.tone-ink{background:var(--ink)}
+.bcard.tone-paper{background:var(--paper);color:var(--ink)}
+.bcard.tone-deep{background:var(--ink3)}
+.bcard .bt{padding:clamp(28px,4vw,76px);display:flex;flex-direction:column;justify-content:space-between;gap:36px}
+.bcard h3{font-family:var(--display);font-weight:500;font-size:clamp(34px,3.8vw,68px);letter-spacing:-.028em;line-height:.96}
+.bcard p{font-size:clamp(19px,1.7vw,28px);line-height:1.3;max-width:30ch;margin-top:22px;opacity:.82}
+.bcard .btn{align-self:flex-start}
+.bcard.tone-paper .btn{background:var(--blue)}
+.bcard canvas{width:100%;height:100%;min-height:360px}
+.bcard.rtl .bt{order:2}
+@media (max-width:900px){
+  .bcard{grid-template-columns:1fr;min-height:0}
+  .bcard canvas{min-height:300px;height:300px}
+  .bcard.rtl .bt{order:0}
+  .bcard .bt{padding:28px 24px;gap:24px}
+}
+.m-multi .mc-head h2{margin-bottom:0}
+.m-multi .wrap{max-width:1760px;padding-inline:clamp(20px,4vw,72px)}
+.m-multi .mc-head{max-width:1500px}.m-multi .mc-head h2.big{max-width:30ch;text-wrap:balance}
+
+/* Self-Custody card imagery: HTML/CSS product-UI fragments (see UI in modules.js). Design-size stage, scaled by transform. */
+.m-multi .mc-ui{position:relative;width:100%;height:100%;min-height:360px;overflow:hidden;font-family:inherit;color:#0b1230}
+.m-multi .mc-ui *{box-sizing:border-box;margin:0;padding:0}
+@media (max-width:900px){.m-multi .mc-ui{min-height:300px;height:300px}}
+.m-multi .mc-ui::before{content:"";position:absolute;inset:0;pointer-events:none}
+.m-multi .mc-ui[data-mc-ui=scSecurity]::before{background:radial-gradient(closest-side at 62% 35%,rgba(22,71,219,.32),transparent)}
+.m-multi .mc-ui[data-mc-ui=scCompliance]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+.m-multi .mc-ui[data-mc-ui=scConfig]::before{background:radial-gradient(closest-side at 35% 30%,rgba(22,71,219,.3),transparent)}
+.m-multi .mc-ui .ui-stage{position:absolute;left:50%;top:50%;transform-origin:center}
+.m-multi .mc-ui .ui-stage>*,.m-multi .mc-ui .u-p>*,.m-multi .mc-ui .wr>*{position:absolute}
+.m-multi .mc-ui .u-p{background:#fff;border-radius:16px;box-shadow:0 0 0 1px rgba(20,40,110,.09),0 20px 40px -8px rgba(20,45,130,.3),0 2px 6px rgba(20,45,130,.06)}
+.m-multi .mc-ui .u-p.dk{background:#050b2b;box-shadow:0 0 0 1px rgba(255,255,255,.13),0 18px 36px rgba(0,0,10,.5)}
+.m-multi .mc-ui .ut{line-height:1.2;white-space:nowrap;font-weight:500;pointer-events:none}
+.m-multi .mc-ui .m{color:#6c7694}.m-multi .mc-ui .k{color:#0b1230}.m-multi .mc-ui .a{color:#1647DB}.m-multi .mc-ui .nm{color:#39425f}.m-multi .mc-ui .dm{color:rgba(190,205,255,.6)}
+.m-multi .mc-ui .mono,.m-multi .mc-ui .cl{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.m-multi .mc-ui .hr{background:rgba(20,40,110,.08)}
+.m-multi .mc-ui .pill{border-radius:13px;min-width:0}
+.m-multi .mc-ui .pill i{position:absolute;inset:0;border-radius:13px}
+.m-multi .mc-ui .pill .b0{background:#eef1f9}.m-multi .mc-ui .pill .b1{background:#e4ecff;opacity:0}
+.m-multi .mc-ui .pill span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;font-weight:600;line-height:1}
+.m-multi .mc-ui .pill .l1{opacity:0}
+.m-multi .mc-ui .tk{width:12px;height:12px;fill:none;stroke:#1647DB;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.m-multi .mc-ui .av{border-radius:50%;background:#eef1f9;color:#6c7694;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.m-multi .mc-ui .av.on{background:#e4ecff;color:#1647DB}
+.m-multi .mc-ui .ck{display:block}
+.m-multi .mc-ui .ck>*{position:absolute;inset:0;width:100%;height:100%}
+.m-multi .mc-ui .ck .rg{border:1.4px solid rgba(20,40,110,.2);border-radius:50%}
+.m-multi .mc-ui .ck .fl{opacity:0}.m-multi .mc-ui .ck .fl circle{fill:#1647DB}.m-multi .mc-ui .ck .fl path{fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.m-multi .mc-ui .ck .sp{opacity:0}.m-multi .mc-ui .ck .sp circle{fill:none;stroke:#1647DB;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:21 48}
+.m-multi .mc-ui .bar{background:#e8ecf6;border-radius:3px;overflow:hidden}.m-multi .mc-ui .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#1647DB;border-radius:3px}
+/* compliance */
+.m-multi .mc-ui .map circle{fill:rgba(22,50,140,.3)}
+.m-multi .mc-ui .hl{background:#eef3ff;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(22,71,219,.35)}
+.m-multi .mc-ui .chip{background:#eef1f9;color:#6c7694;border-radius:7px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.m-multi .mc-ui .chip.on{background:#fff;color:#1647DB}
+.m-multi .mc-ui .ut.sel{font-weight:600;color:#0b1230}
+.m-multi .mc-ui .rad{border-radius:50%;box-shadow:inset 0 0 0 1.4px rgba(20,40,110,.22);display:block}
+.m-multi .mc-ui .rad i{position:absolute;inset:0;border-radius:50%;background:#1647DB;opacity:0}
+.m-multi .mc-ui .rad i::after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;border-radius:50%;background:#fff}
+/* config */
+.m-multi .mc-ui .wd{top:20px;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
+.m-multi .mc-ui .cl{left:22px;height:16px;line-height:16px;font-size:13px;font-weight:500;white-space:pre;color:#e6edff}
+.m-multi .mc-ui .cl span,.m-multi .mc-ui .cl i{position:static;display:inline}
+.m-multi .mc-ui .cl .kw{color:#7ea2ff}.m-multi .mc-ui .cl .st{color:#e6edff}.m-multi .mc-ui .cl .pn{color:#8d9bc8}.m-multi .mc-ui .cl .ky{color:#9db6ff}
+.m-multi .mc-ui .cl .cr{display:inline-block;width:7px;height:16px;background:#7ea2ff;vertical-align:top;margin-left:1px}
+.m-multi .mc-ui .resp{width:118px;border-radius:11px;background:rgba(77,120,255,.22);opacity:0}
+.m-multi .mc-ui .resp .ck{top:4px}
+.m-multi .mc-ui .resp span{position:absolute;left:28px;top:0;line-height:22px;font-size:12px;font-weight:600;color:#cfdcff;white-space:nowrap}
+.m-multi .mc-ui .tabs{right:24px;top:18px;height:24px;display:flex;gap:2px}
+.m-multi .mc-ui .tabs span{position:static;padding:0 12px;line-height:24px;font-size:12px;font-weight:500;color:#6c7694;border-radius:12px}
+.m-multi .mc-ui .tabs .sel{background:#eef1f9;color:#0b1230;font-weight:600}
+.m-multi .mc-ui .wl{left:0;top:54px;width:410px;height:196px;overflow:hidden;border-radius:0 0 16px 16px}
+.m-multi .mc-ui .wr{position:absolute;left:0;top:0;will-change:auto}
+.m-multi .mc-ui .wr>i.fl{inset:0;background:rgba(22,71,219,.07);opacity:0}
+.m-multi .mc-ui .ic{left:24px;top:4px;width:32px;height:32px;border-radius:9px;background:#eceff6;color:#5a6685}
+.m-multi .mc-ui .ic.hot{background:#e4ecff;color:#1647DB}
+.m-multi .mc-ui .ic b{position:absolute;left:7px;top:9px;width:18px;height:14px;border:1.6px solid currentColor;border-radius:3.5px}
+.m-multi .mc-ui .ic b::after{content:"";position:absolute;right:3px;top:3.5px;width:3px;height:3px;border-radius:50%;background:currentColor}
+.m-multi .mc-ui .tg{left:248px;top:10px;width:52px;height:22px}
+.m-multi .mc-ui .tg span{position:absolute;inset:0;border-radius:11px;font-size:12px;font-weight:600;line-height:22px;text-align:center}
+.m-multi .mc-ui .tg .th{background:#e4ecff;color:#1647DB}.m-multi .mc-ui .tg .tc{background:#e9edf7;color:#4a5575}
+.m-multi .mc-ui .sw{left:336px;top:11px;width:38px;height:20px;border-radius:10px;background:#c9d0e2}
+.m-multi .mc-ui .sw i{inset:0;border-radius:10px;background:#1647DB}
+.m-multi .mc-ui .sw b{left:3.5px;top:3px;width:15px;height:15px;border-radius:50%;background:#fff}
+.m-multi .mc-ui .rl{left:24px;top:42px;width:362px;height:1px;background:rgba(20,40,110,.06)}
+.m-multi .mc-ui .sw>*{position:absolute}
+
+/* The same UI fragments inside the 50/50 split (Key Management diagrams). */
+.m-split .mc-ui{position:relative;width:100%;height:100%;min-height:360px;overflow:hidden;font-family:inherit;color:#0b1230}
+.m-split .mc-ui *{box-sizing:border-box;margin:0;padding:0}
+@media (max-width:900px){.m-split .mc-ui{min-height:300px;height:300px}}
+.m-split .mc-ui::before{content:"";position:absolute;inset:0;pointer-events:none}
+.m-split .mc-ui[data-mc-ui=scSecurity]::before{background:radial-gradient(closest-side at 62% 35%,rgba(22,71,219,.32),transparent)}
+.m-split .mc-ui[data-mc-ui=scCompliance]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+.m-split .mc-ui[data-mc-ui=scConfig]::before{background:radial-gradient(closest-side at 35% 30%,rgba(22,71,219,.3),transparent)}
+.m-split .mc-ui .ui-stage{position:absolute;left:50%;top:50%;transform-origin:center}
+.m-split .mc-ui .ui-stage>*,.m-split .mc-ui .u-p>*,.m-split .mc-ui .wr>*{position:absolute}
+.m-split .mc-ui .u-p{background:#fff;border-radius:16px;box-shadow:0 0 0 1px rgba(20,40,110,.09),0 20px 40px -8px rgba(20,45,130,.3),0 2px 6px rgba(20,45,130,.06)}
+.m-split .mc-ui .u-p.dk{background:#050b2b;box-shadow:0 0 0 1px rgba(255,255,255,.13),0 18px 36px rgba(0,0,10,.5)}
+.m-split .mc-ui .ut{line-height:1.2;white-space:nowrap;font-weight:500;pointer-events:none}
+.m-split .mc-ui .m{color:#6c7694}.m-split .mc-ui .k{color:#0b1230}.m-split .mc-ui .a{color:#1647DB}.m-split .mc-ui .nm{color:#39425f}.m-split .mc-ui .dm{color:rgba(190,205,255,.6)}
+.m-split .mc-ui .mono,.m-split .mc-ui .cl{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.m-split .mc-ui .hr{background:rgba(20,40,110,.08)}
+.m-split .mc-ui .pill{border-radius:13px;min-width:0}
+.m-split .mc-ui .pill i{position:absolute;inset:0;border-radius:13px}
+.m-split .mc-ui .pill .b0{background:#eef1f9}.m-split .mc-ui .pill .b1{background:#e4ecff;opacity:0}
+.m-split .mc-ui .pill span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;font-weight:600;line-height:1}
+.m-split .mc-ui .pill .l1{opacity:0}
+.m-split .mc-ui .tk{width:12px;height:12px;fill:none;stroke:#1647DB;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.m-split .mc-ui .av{border-radius:50%;background:#eef1f9;color:#6c7694;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.m-split .mc-ui .av.on{background:#e4ecff;color:#1647DB}
+.m-split .mc-ui .ck{display:block}
+.m-split .mc-ui .ck>*{position:absolute;inset:0;width:100%;height:100%}
+.m-split .mc-ui .ck .rg{border:1.4px solid rgba(20,40,110,.2);border-radius:50%}
+.m-split .mc-ui .ck .fl{opacity:0}.m-split .mc-ui .ck .fl circle{fill:#1647DB}.m-split .mc-ui .ck .fl path{fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.m-split .mc-ui .ck .sp{opacity:0}.m-split .mc-ui .ck .sp circle{fill:none;stroke:#1647DB;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:21 48}
+.m-split .mc-ui .bar{background:#e8ecf6;border-radius:3px;overflow:hidden}.m-split .mc-ui .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#1647DB;border-radius:3px}
+/* compliance */
+.m-split .mc-ui .map circle{fill:rgba(22,50,140,.3)}
+.m-split .mc-ui .hl{background:#eef3ff;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(22,71,219,.35)}
+.m-split .mc-ui .chip{background:#eef1f9;color:#6c7694;border-radius:7px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.m-split .mc-ui .chip.on{background:#fff;color:#1647DB}
+.m-split .mc-ui .ut.sel{font-weight:600;color:#0b1230}
+.m-split .mc-ui .rad{border-radius:50%;box-shadow:inset 0 0 0 1.4px rgba(20,40,110,.22);display:block}
+.m-split .mc-ui .rad i{position:absolute;inset:0;border-radius:50%;background:#1647DB;opacity:0}
+.m-split .mc-ui .rad i::after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;border-radius:50%;background:#fff}
+/* config */
+.m-split .mc-ui .wd{top:20px;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
+.m-split .mc-ui .cl{left:22px;height:16px;line-height:16px;font-size:13px;font-weight:500;white-space:pre;color:#e6edff}
+.m-split .mc-ui .cl span,.m-split .mc-ui .cl i{position:static;display:inline}
+.m-split .mc-ui .cl .kw{color:#7ea2ff}.m-split .mc-ui .cl .st{color:#e6edff}.m-split .mc-ui .cl .pn{color:#8d9bc8}.m-split .mc-ui .cl .ky{color:#9db6ff}
+.m-split .mc-ui .cl .cr{display:inline-block;width:7px;height:16px;background:#7ea2ff;vertical-align:top;margin-left:1px}
+.m-split .mc-ui .resp{width:118px;border-radius:11px;background:rgba(77,120,255,.22);opacity:0}
+.m-split .mc-ui .resp .ck{top:4px}
+.m-split .mc-ui .resp span{position:absolute;left:28px;top:0;line-height:22px;font-size:12px;font-weight:600;color:#cfdcff;white-space:nowrap}
+.m-split .mc-ui .tabs{right:24px;top:18px;height:24px;display:flex;gap:2px}
+.m-split .mc-ui .tabs span{position:static;padding:0 12px;line-height:24px;font-size:12px;font-weight:500;color:#6c7694;border-radius:12px}
+.m-split .mc-ui .tabs .sel{background:#eef1f9;color:#0b1230;font-weight:600}
+.m-split .mc-ui .wl{left:0;top:54px;width:410px;height:196px;overflow:hidden;border-radius:0 0 16px 16px}
+.m-split .mc-ui .wr{position:absolute;left:0;top:0;will-change:auto}
+.m-split .mc-ui .wr>i.fl{inset:0;background:rgba(22,71,219,.07);opacity:0}
+.m-split .mc-ui .ic{left:24px;top:4px;width:32px;height:32px;border-radius:9px;background:#eceff6;color:#5a6685}
+.m-split .mc-ui .ic.hot{background:#e4ecff;color:#1647DB}
+.m-split .mc-ui .ic b{position:absolute;left:7px;top:9px;width:18px;height:14px;border:1.6px solid currentColor;border-radius:3.5px}
+.m-split .mc-ui .ic b::after{content:"";position:absolute;right:3px;top:3.5px;width:3px;height:3px;border-radius:50%;background:currentColor}
+.m-split .mc-ui .tg{left:248px;top:10px;width:52px;height:22px}
+.m-split .mc-ui .tg span{position:absolute;inset:0;border-radius:11px;font-size:12px;font-weight:600;line-height:22px;text-align:center}
+.m-split .mc-ui .tg .th{background:#e4ecff;color:#1647DB}.m-split .mc-ui .tg .tc{background:#e9edf7;color:#4a5575}
+.m-split .mc-ui .sw{left:336px;top:11px;width:38px;height:20px;border-radius:10px;background:#c9d0e2}
+.m-split .mc-ui .sw i{inset:0;border-radius:10px;background:#1647DB}
+.m-split .mc-ui .sw b{left:3.5px;top:3px;width:15px;height:15px;border-radius:50%;background:#fff}
+.m-split .mc-ui .rl{left:24px;top:42px;width:362px;height:1px;background:rgba(20,40,110,.06)}
+.m-split .mc-ui .sw>*{position:absolute}
+
+/* key diagrams */
+.m-split .mc-ui[data-mc-ui^=sc]{min-height:0}
+.m-split .mc-ui .dm2{color:rgba(205,218,255,.82)}.m-split .mc-ui .a2{color:#7ea2ff;opacity:0}
+.m-split .mc-ui .kl{left:0;top:0;overflow:visible}
+.m-split .mc-ui .kl path{fill:none;stroke-linecap:round}
+.m-split .mc-ui .kl{filter:drop-shadow(0 0 5px rgba(77,120,255,.95)) drop-shadow(0 0 14px rgba(77,120,255,.55))}
+.m-split .mc-ui .kl .bs{stroke:rgba(205,218,255,.6);stroke-width:2.5}.m-split .mc-ui .kl .bs.ds{stroke-dasharray:5 7}
+.m-split .mc-ui .kl .pg{stroke:#a9c1ff;stroke-width:3.5;stroke-dasharray:1 1;stroke-dashoffset:1}
+.m-split .mc-ui .u-p.yours{background:var(--ink,#03071a);box-shadow:0 20px 40px -8px rgba(0,0,20,.45)}
+.m-split .mc-ui .kc{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.m-split .mc-ui .yours .kc{background:#fff}
+.m-split .mc-ui .kc.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.m-split .mc-ui .ki{border-radius:9px;display:flex;align-items:center;justify-content:center;color:#1647DB;background:#e4ecff}
+.m-split .mc-ui .ki.bg{background:#0b1230;color:#fff}.m-split .mc-ui .ki.gt{background:#e8ecf6;color:#39425f}.m-split .mc-ui .ki.bc{background:#e4ecff;color:#1647DB}
+.m-split .mc-ui .ki svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.m-split .mc-ui .ki .lk{position:absolute;right:-5px;bottom:-5px;width:16px;height:16px;border-radius:50%;background:#0b1230;color:#fff;display:flex;align-items:center;justify-content:center}
+.m-split .mc-ui .ki .lk svg{width:10px;height:10px;stroke-width:2.2}
+.m-split .mc-ui .bdg{position:absolute;right:16px;top:14px;height:24px;padding:0 10px;border-radius:12px;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:1}
+.m-split .mc-ui .bdg.hot{background:#e4ecff;color:#1647DB}.m-split .mc-ui .bdg.hot i{position:static;width:7px;height:7px;border-radius:50%;background:#1647DB}
+.m-split .mc-ui .bdg.cd{background:rgba(255,255,255,.12);color:#dfe8ff}.m-split .mc-ui .bdg.cd svg{position:static;width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.m-split .mc-ui .nlk{color:#9db6ff}.m-split .mc-ui .nlk svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.m-split .mc-ui .lg{border-radius:50%}.m-split .mc-ui .lg.you{background:#4d78ff}.m-split .mc-ui .lg.bg{background:#fff}
+.m-split .mc-ui .mv{left:0;top:0;height:26px;padding:0 12px;border-radius:13px;background:#fff;box-shadow:0 0 0 1.5px #1647DB,0 6px 14px rgba(0,0,10,.35);opacity:0;display:flex;align-items:center;white-space:nowrap;z-index:3}
+.m-split .mc-ui .mv span{position:static;font-size:12px;font-weight:600;color:#1647DB;line-height:1}
+.m-split .mc-ui .kc>*{position:absolute}
+
+/* ---------- CTA banner, mid-page: one glass panel, a title of one or two lines (an optional italic serif phrase at the
+   end), and one white button. First used for the Self-Custody guide link. Modules.banner ---------- */
+.m-banner{position:relative;padding:clamp(56px,6vw,110px) 0}
+.m-banner .mb-panel{position:relative;min-height:clamp(380px,40vw,620px);border-radius:clamp(28px,3.4vw,56px);padding:clamp(32px,5vw,96px);display:flex;flex-direction:column;justify-content:space-between;gap:40px;overflow:hidden;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04) 45%,rgba(77,120,255,.1));backdrop-filter:blur(26px) saturate(1.4);-webkit-backdrop-filter:blur(26px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 1px 0 rgba(255,255,255,.35),0 50px 120px -50px rgba(0,0,0,.8)}
+.m-banner .mb-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.12) 45%,rgba(255,255,255,0) 58%);pointer-events:none}
+.m-banner .mb-panel h2{position:relative;font-family:var(--display);font-weight:500;font-size:clamp(38px,4.8vw,92px);line-height:1;letter-spacing:-.03em}
+.m-banner .mb-panel h2 span{display:block}
+.m-banner .mb-panel h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:#fff}
+.m-banner .mb-panel .btn{position:relative;align-self:flex-start}
+
+/* API Access and In-app diagrams (Self-Custody rows) */
+.m-split .mc-ui .wl2{overflow:hidden}
+.m-split .mc-ui .wt{color:#fff}
+.m-split .mc-ui .cbtn{background:#1647DB;border-radius:22px;box-shadow:0 8px 20px -6px rgba(22,71,219,.6)}
+.m-split .mc-ui .cbtn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:13.5px;font-weight:600;line-height:1}
+.m-split .mc-ui .cbtn svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Logo strip (the handoff's "logo cloud"): title over two counter-scrolling rows of client logos, all solid
+   white. Approved on Self-Custody. Modules.logos ---------- */
+.m-logos{position:relative;padding:clamp(56px,6vw,110px) 0 clamp(24px,3vw,56px);overflow:hidden;background:transparent}
+.m-logos>.wrap>h2{font-family:var(--display);font-weight:500;font-size:clamp(30px,3.4vw,60px);letter-spacing:-.028em;line-height:1.05;margin-bottom:clamp(44px,5vw,90px)}
+.m-logos .mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.m-logos .mq+.mq{margin-top:clamp(36px,4vw,64px)}
+.m-logos .mq-t{display:flex;width:max-content;gap:clamp(64px,7vw,128px);padding-right:clamp(64px,7vw,128px);animation:m-mq 60s linear infinite}
+.m-logos .mq.rev .mq-t{animation-direction:reverse;animation-duration:72s}
+.m-logos .mq-t img{height:clamp(28px,2.6vw,44px);width:auto;max-width:200px;object-fit:contain;opacity:1;filter:brightness(0) invert(1)}
+@keyframes m-mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.m-logos .mq-t{animation:none}}
+
+/* 50/50 list: items under the heading in the copy column (Support on the homepage) */
+.m-split .m-list{margin-top:clamp(24px,2.6vw,36px);display:grid;gap:clamp(12px,1.2vw,18px)}
+.m-split .m-list li{max-width:none;display:flex;align-items:center;gap:16px}
+.m-split .m-list li::before{content:"";flex:none;width:clamp(20px,2vw,32px);height:2px;background:linear-gradient(90deg,var(--blue-hi),transparent)}
+
+/* every module: the same padding above and below (--sec-pad, base.css) */
+.m-split,.m-multi,.m-logos,.m-banner{padding-block:var(--sec-pad)}
+.bcards .bcard:last-child{margin-bottom:0}   /* the module padding alone sets the gap below the cards */
+.m-split .m-vis:empty{height:auto;min-height:0}   /* no visual (the page 3D sits there): the copy alone sets the height */
+
+/* Go Network card */
+.m-multi .mc-ui .ep{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.m-multi .mc-ui .ep.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.m-multi .mc-ui .ep>*{position:absolute}
+.m-multi .mc-ui .gn-ar{fill:none;stroke:#1647DB;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.m-multi .mc-ui .wt{color:#fff}
+.m-multi .mc-ui .gn-clip{overflow:hidden}
+.m-multi .mc-ui .gn-ok{height:20px;padding:0 9px;border-radius:10px;background:rgba(77,120,255,.22);color:#cfdcff;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:5px;line-height:1}
+.m-multi .mc-ui .gn-ok .tk{stroke:#9db6ff}
+
+/* ---------- hero (the client's "Primary hero"): the approved Self-Custody hero. Copy bottom-left on the page margin,
+   the 3D object centred in the space to its right, never under the nav. No shade box: text gets the shared text-shadow.
+   Modules.hero(el, { eyebrow, title | words + rest, lead, cta, model, fit, align }) ---------- */
+.m-hero{position:relative;height:max(100vh,760px);min-height:760px;display:flex;align-items:flex-end;overflow:visible}
+.m-hero .mh-wrap{position:relative;height:100%;display:flex;align-items:flex-end}
+.m-hero .mh-copy{position:relative;z-index:1;padding:0 0 clamp(40px,7vh,96px)}
+.m-hero h1{font-family:var(--display);font-weight:500;font-size:clamp(46px,5.8vw,112px);line-height:.97;letter-spacing:-.03em;max-width:8.4em}
+.m-hero .mh-lead{margin-top:clamp(18px,2.2vh,28px);max-width:34ch}
+.m-hero .mh-row{display:flex;align-items:center;gap:clamp(20px,3vw,48px);margin-top:clamp(26px,3.4vh,44px);flex-wrap:wrap}
+.m-hero .mh-slot{position:absolute;top:104px;bottom:40px;right:var(--pad);left:min(58%,calc(var(--pad) + 900px))}
+/* rotating first word (Qualified Custody's live hero): each letter rises in, the old word lifts out */
+.m-hero .rot{display:grid;height:1.1em;overflow:hidden;margin-bottom:-.04em;padding-bottom:.06em}
+.m-hero .rot .rw{grid-area:1/1;display:flex;pointer-events:none}
+.m-hero .rot .ch{display:inline-block;transform:translateY(115%);opacity:0}
+.m-hero .rot .rw.on .ch{transform:none;opacity:1;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .3s;transition-delay:calc(.34s + var(--i)*.035s)}
+.m-hero .rot .rw.out .ch{transform:translateY(-115%);opacity:0;transition:transform .45s cubic-bezier(.5,0,.8,.4),opacity .2s .15s;transition-delay:calc(var(--i)*.02s),calc(.12s + var(--i)*.02s)}
+.m-hero h1 .rest{display:block}
+@media (max-width:900px){.m-hero{padding-bottom:12vh}.m-hero .mh-slot{left:var(--pad);right:var(--pad);top:90px;bottom:50%}}
+@media (prefers-reduced-motion:reduce){.m-hero .rot .ch{transition:none!important}}
+
+/* ---------- Headline on its own (same as the 3x multicard head) ---------- */
+.m-headline{display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 auto clamp(56px,7vw,120px);max-width:1500px}
+.m-headline h2.big{max-width:30ch;text-wrap:balance;margin-bottom:0}
+.m-headline .lead{margin-top:clamp(18px,2vw,28px);max-width:48ch;color:rgba(255,255,255,.9)}
+/* the page's own canvas inside a 50/50 visual (Qualified Custody's globe and wallet) */
+.m-split .m-vis > canvas{display:block;width:100%;height:100%}
+/* ---------- FAQ and The Latest, as approved on Self-Custody: no ground of their own (the curtain shows), shared
+   section spacing, glass rows. Modules.faq adds .m-faq, Modules.latest adds .m-latest. ---------- */
+.m-faq,.m-latest{position:relative;background:transparent;border-radius:0;padding-block:var(--sec-pad)}
+.m-faq{z-index:2}
+.m-faq::before,.m-faq::after,.m-latest::before,.m-latest::after{content:none;display:none}
+
+/* FAQ: the heading sticks beside one column of disclosures */
+.m-faq .faq-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(32px,6vw,140px);align-items:start}
+.m-faq .faq-side{position:sticky;top:120px}
+.m-faq .faq-list{border-top:1px solid rgba(255,255,255,.12)}
+.m-faq .faq-list details{border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.m-faq .faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:28px;padding:clamp(22px,2.2vw,34px) 0}
+.m-faq .faq-list summary::-webkit-details-marker{display:none}
+.m-faq .faq-list h3{font-family:var(--display);font-weight:500;font-size:clamp(19px,1.6vw,27px);line-height:1.22;letter-spacing:-.018em;color:var(--tx2);transition:color .35s}
+.m-faq .faq-list summary:hover h3,.m-faq .faq-list details[open] h3{color:#fff}
+.m-faq .pm{flex:none;position:relative;width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);transition:background .4s,transform .6s var(--ease)}
+.m-faq .pm::before,.m-faq .pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:currentColor;transform:translate(-50%,-50%)}
+.m-faq .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .5s var(--ease)}
+.m-faq details[open] .pm{background:var(--blue);box-shadow:none;transform:rotate(180deg)}
+.m-faq details[open] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.m-faq .ans p{padding:0 clamp(0px,4vw,72px) clamp(26px,2.6vw,40px) 0;color:var(--tx2);font-size:clamp(17px,1.25vw,20px);font-weight:450;max-width:62ch}
+.m-faq details[open] .ans{animation:m-ans .6s var(--ease)}
+@keyframes m-ans{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media (max-width:900px){.m-faq .faq-grid{grid-template-columns:1fr}.m-faq .faq-side{position:static}}
+
+/* The Latest: a heading with an All News button, then ruled rows */
+.m-latest .lat-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(40px,5vw,90px);gap:30px;flex-wrap:wrap}
+.m-latest .post{display:flex;align-items:center;justify-content:space-between;gap:36px;padding:clamp(26px,3vw,46px) 0;border-top:1px solid rgba(255,255,255,.12);transition:padding .7s var(--ease),color .4s;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.m-latest .post:last-child{border-bottom:1px solid rgba(255,255,255,.12)}
+.m-latest .post h3{font-family:var(--display);font-weight:500;font-size:clamp(22px,2.7vw,50px);line-height:1.08;letter-spacing:-.028em;max-width:28em;color:var(--tx2);transition:color .4s}
+.m-latest .post .go{flex:none;width:56px;height:56px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);display:grid;place-items:center;transition:background .4s,transform .6s var(--ease)}
+.m-latest .post:hover{padding-left:clamp(10px,2vw,36px)}
+.m-latest .post:hover h3{color:#fff}
+.m-latest .post:hover .go{background:var(--blue);transform:rotate(-45deg);box-shadow:none}
+/* hover: 'boxes' (homepage): stronger rules, side padding, a grid of glass boxes fills the row on hover, a white arrow */
+.m-latest.boxes .post{position:relative;overflow:hidden;isolation:isolate;padding:clamp(26px,3vw,46px) clamp(20px,2.6vw,48px);border-top:1px solid rgba(255,255,255,.28);transition:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.m-latest.boxes .post:last-child{border-bottom:1px solid rgba(255,255,255,.28)}
+.m-latest.boxes .post:hover{padding-left:clamp(20px,2.6vw,48px)}
+.m-latest.boxes .post:hover .go{background:#fff;color:var(--blue)}
+.m-latest.boxes .hov-boxes{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:repeat(16,1fr);grid-auto-rows:1fr}
+.m-latest.boxes .hov-boxes i{background:rgba(255,255,255,.26);opacity:0;transform:scale(.4);transition:opacity .35s,transform .45s var(--ease)}
+.m-latest.boxes .post:hover .hov-boxes i,.m-latest.boxes .post:focus-within .hov-boxes i{opacity:1;transform:none;transition-delay:var(--d)}
+
+/* ---------- Statement (Modules.statement): giant lines on the open scene, each lighting up as it reaches the middle of the screen.
+   Credentials on Qualified Custody and the homepage. ---------- */
+.m-statement{position:relative;padding-block:var(--sec-pad)}
+.m-statement .stmt{font-family:var(--display);font-weight:500;font-size:clamp(46px,6.1vw,128px);line-height:1;letter-spacing:-.028em}
+.m-statement .stmt span{display:block;color:rgba(243,246,255,var(--o,.9));transition:color .2s}
+.m-statement .stmt span+span{margin-top:.12em}
+.m-statement .stmt span b{font-weight:500;color:var(--blue-hi)}
+@media (max-width:900px){.m-statement .stmt{font-size:clamp(42px,12.4vw,64px)}}
+
+/* ---------- Closing CTA (Modules.banner with panel:false): no panel, the title and one white button on the open scene ---------- */
+.m-banner.mb-open .mb-in{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(28px,3vw,44px)}
+.m-banner.mb-open h2{font-family:var(--display);font-weight:500;font-size:clamp(40px,5vw,96px);line-height:1;letter-spacing:-.03em}
+.m-banner.mb-open h2 span{display:block}
+.m-banner.mb-open h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:#fff}
+/* scene:true: a 3D object stands on the right half, so the title keeps clear of it */
+.m-banner.mb-scene .mb-in{gap:clamp(32px,4vw,64px)}
+.m-banner.mb-scene h2{font-size:clamp(38px,4.8vw,92px);max-width:min(11em,52%)}   /* the panel's heading size: it keeps "Digital Asset Strategy" on one line beside the object */
+@media (max-width:900px){.m-banner.mb-scene{min-height:90vh;display:flex;flex-direction:column;justify-content:flex-end}.m-banner.mb-scene h2{max-width:100%}}
+
+/* ---------- Hero, decode rotation (Modules.hero, rotate:{style:'decode'}): the homepage's hero. A larger heading, the rotating word
+   drawn in by a band of dots (decodeWord in modules.js), and the section clips its overflow. ---------- */
+.m-hero.mh-decode{overflow:hidden}
+.m-hero.mh-decode .mh-copy{z-index:2;padding-bottom:clamp(36px,6vh,84px)}
+.m-hero.mh-decode h1{font-size:clamp(46px,6.1vw,128px);line-height:.96;letter-spacing:-.028em;max-width:7.8em}
+.m-hero.mh-decode .mh-lead{margin-top:clamp(18px,2.4vh,30px);max-width:36ch}
+.m-hero.mh-decode .mh-row{margin-top:clamp(22px,3.4vh,42px)}
+.m-hero.mh-decode .words-wrapper{display:block;position:relative;height:1.1em;width:max-content;overflow-x:visible;overflow-y:clip;margin-bottom:-.04em;padding-bottom:.06em;color:#fff}
+.m-hero.mh-decode .words{display:block;position:relative;height:100%}
+.m-hero.mh-decode .words>span{position:absolute;left:0;top:0;white-space:nowrap;opacity:0}
+.m-hero.mh-decode .words>span.current{opacity:1}
+.m-hero.mh-decode h1 .rest{display:block;color:#fff}
+@media (max-width:900px){.m-hero.mh-decode{padding-bottom:0}.m-hero.mh-decode h1{font-size:clamp(42px,12.4vw,64px)}}
+
+/* ---------- Pinned list (Modules.pinned): a sticky 50/50. The visual holds one side while a list of items on the other lights up
+   one at a time as you scroll. mp-swap = Core Services (cross-fading explainers in a pinned panel), mp-scroll = Own (items scroll
+   past the pinned visual). side:'right' (.right) mirrors it. The homepage's gl.js reads .core-vis / .core-sticky (swap) and
+   .own-vis / .own-stack (scroll), so those stay as extra classes on the same elements. ---------- */
+.m-pin{position:relative}
+
+/* swap: a full-screen opener, then the pinned track */
+.mp-swap .mp-head{min-height:100vh;padding:var(--sec-pad) 0;display:flex;align-items:center;position:relative}   /* a full-screen chapter opener: its title sits centred in the screen, the shield splits around it */
+.mp-swap .mp-head h2{position:relative;font-family:var(--display);font-weight:500;font-size:clamp(38px,4.6vw,88px);line-height:.98;letter-spacing:-.028em}
+.mp-swap .mp-head h2 span{display:block}
+.mp-swap .mp-head h2 span+span{color:var(--blue-hi)}
+.mp-swap .mp-head h2 .acc{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.01em;color:#fff}
+.mp-swap .mp-track{position:relative}
+.mp-swap .mp-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.mp-swap .mp-sticky .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,820px) minmax(0,740px);justify-content:center;align-items:center;gap:clamp(24px,3vw,64px)}   /* the 50/50 grid, mirrored: visual left, text right */
+.mp-swap .mp-vis{height:min(70vh,640px)}
+.mp-swap .mp-panel{position:relative;display:flex;flex-direction:column}   /* explainer on top, the list of services below */
+.mp-swap .mp-list{order:2;display:flex;flex-direction:column;gap:6px;margin-top:clamp(28px,5vh,56px)}
+.mp-swap .mp-list button{text-align:left;font-family:var(--display);font-size:clamp(20px,1.7vw,30px);font-weight:500;letter-spacing:-.02em;color:var(--tx3);transition:color .5s,transform .6s var(--ease);padding:4px 0}
+.mp-swap .mp-list button.on{color:#fff}   /* no indent: every item keeps the same left edge */
+.mp-swap .mp-body{position:relative;min-height:clamp(240px,34vh,340px)}
+.mp-swap .mp-item{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .8s var(--ease);pointer-events:none}
+.mp-swap .mp-item.on{opacity:1;transform:none;pointer-events:auto}
+.mp-swap .mp-item h3{font-family:var(--display);font-weight:500;font-size:clamp(28px,3vw,52px);letter-spacing:-.028em;line-height:1.02}
+.mp-swap .mp-short{margin-top:14px;font-size:clamp(18px,1.5vw,24px);color:#fff}
+.mp-swap .mp-long{margin-top:16px;color:var(--tx2);font-size:clamp(17px,1.25vw,20px);font-weight:450;max-width:52ch}
+.mp-swap .mp-item .btn{margin-top:26px}
+
+/* scroll: a centred headline over the items, the visual pinned beside them */
+.mp-scroll{padding:var(--sec-pad) 0;z-index:1}
+.mp-scroll .mp-title{text-align:center;margin-inline:auto;text-wrap:balance}   /* centered section headline over the 50/50 */
+.mp-scroll .mp-grid{display:grid;grid-template-columns:minmax(0,820px) minmax(0,740px);justify-content:center;gap:clamp(24px,3vw,64px)}   /* the 50/50 grid, mirrored: visual left, text right */
+.mp-scroll .mp-items{padding:8vh 0 30vh}
+.mp-scroll .mp-vis{position:sticky;top:0;height:100vh;padding-top:84px;order:-1;display:flex;align-items:center;justify-content:center}
+.mp-scroll .mp-stack{width:min(100%,760px,80vh);aspect-ratio:1/1}   /* as large as the other section shields */
+.mp-scroll .mp-stack canvas{display:none}   /* the shield here is drawn by the page's main scene */
+.mp-scroll .mp-item{min-height:58vh;display:flex;flex-direction:column;justify-content:center;opacity:.22;transition:opacity .6s var(--ease)}
+.mp-scroll .mp-item.on{opacity:1}
+.mp-scroll .mp-item h3{font-family:var(--display);font-weight:500;font-size:clamp(28px,2.6vw,48px);letter-spacing:-.028em;line-height:.98;color:var(--tx)}
+.mp-scroll .mp-item p{margin-top:22px;font-size:clamp(18px,1.5vw,24px);font-weight:450;line-height:1.35;color:var(--tx2);max-width:30ch}
+.mp-scroll .mp-item .btn{margin-top:26px;align-self:flex-start}
+
+/* side:'right' mirrors the pair (desktop only; phones stack) */
+@media (min-width:901px){
+  .m-pin.right.mp-swap .mp-sticky .wrap,.m-pin.right.mp-scroll .mp-grid{grid-template-columns:minmax(0,740px) minmax(0,820px)}
+  .m-pin.right.mp-swap .mp-vis{order:1}
+  .m-pin.right.mp-scroll .mp-vis{order:1}
+}
+@media (max-width:900px){
+  .mp-swap .mp-head{align-items:flex-end;padding-bottom:12vh}
+  .mp-swap .mp-sticky{align-items:flex-end;padding-bottom:30px}
+  .mp-swap .mp-sticky .wrap{justify-content:flex-start;grid-template-columns:1fr}
+  .mp-swap .mp-panel{width:100%}
+  .mp-swap .mp-list,.mp-swap .mp-vis{display:none}
+  .mp-scroll .mp-grid{grid-template-columns:1fr}
+  .mp-scroll .mp-vis{position:relative;height:auto;padding-top:0;order:0}
+  .mp-scroll .mp-stack{width:min(46vw,200px);margin-inline:auto}
+  .mp-scroll .mp-items{padding:6vh 0}
+  .mp-scroll .mp-item{min-height:44vh}
+}
+
+/* ---------- Logo card lockup (Modules.lockup): headline, ruled client rows that fill with glass boxes on hover, a strip of plain logos ---------- */
+.m-lockup{position:relative;z-index:2;padding-block:var(--sec-pad)}
+.m-lockup .ml-top{display:flex;justify-content:center;text-align:center;gap:40px;flex-wrap:wrap;margin-bottom:clamp(56px,7vw,120px)}   /* centered section headline, like "Architect the new economy" */
+.m-lockup .ml-top>div{display:flex;flex-direction:column;align-items:center}
+.m-lockup .ml-top .lead{margin-top:28px;max-width:none}
+@media (min-width:901px){.m-lockup .ml-top .lead{white-space:nowrap}}
+.m-lockup .ml-top .btn{margin-top:clamp(28px,3vw,44px)}
+.m-lockup .ml-rows{border-top:1px solid rgba(255,255,255,.28)}
+.m-lockup .ml-row{position:relative;display:grid;grid-template-columns:minmax(150px,280px) 1fr 64px;align-items:center;gap:clamp(20px,4vw,72px);padding:clamp(22px,2.2vw,36px) clamp(20px,2.6vw,48px);border-bottom:1px solid rgba(255,255,255,.12);overflow:hidden;isolation:isolate}
+/* hover: the row fills with glass boxes that pop in at random (the same boxes as The Latest) */
+.m-lockup .hov-boxes{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:repeat(16,1fr);grid-auto-rows:1fr}
+.m-lockup .hov-boxes i{background:rgba(255,255,255,.26);opacity:0;transform:scale(.4);transition:opacity .35s,transform .45s var(--ease)}
+.m-lockup .ml-row:hover .hov-boxes i,.m-lockup .ml-row:focus-within .hov-boxes i{opacity:1;transform:none;transition-delay:var(--d)}
+.m-lockup .ml-row img{height:clamp(30px,3vw,50px);width:auto;max-width:100%;object-fit:contain;object-position:left}
+.m-lockup .ml-row p{font-family:var(--display);font-size:clamp(20px,2.1vw,38px);line-height:1.15;letter-spacing:-.025em;color:#fff;max-width:none}   /* one line whenever it fits */
+.m-lockup .ml-go{width:56px;height:56px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);display:grid;place-items:center;transition:transform .6s var(--ease),background .4s,color .4s}
+.m-lockup .ml-row:hover .ml-go{background:#fff;color:var(--blue);transform:rotate(-45deg)}
+.m-lockup .ml-logos{display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,96px) clamp(40px,7vw,140px);align-items:center;margin-top:clamp(56px,7vw,110px)}
+.m-lockup .ml-logos img{height:clamp(26px,2.4vw,40px);width:auto;max-width:200px;object-fit:contain;opacity:.9}
+@media (max-width:900px){
+  .m-lockup .ml-row{grid-template-columns:1fr 52px;row-gap:14px}
+  .m-lockup .ml-row p{grid-column:1/2;grid-row:2}
+  .m-lockup .ml-go{grid-column:2;grid-row:1/3;width:48px;height:48px}
+}
+
+/* ---------- Video card carousel (Modules.videos): a headline over a row of tall video cards ---------- */
+.m-videos{position:relative;z-index:2;padding-block:var(--sec-pad)}
+.m-videos h2.big{margin-bottom:clamp(48px,6vw,110px)}
+.m-videos .mv-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,44px)}
+.m-videos .mv-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:4/5;border-radius:clamp(22px,2.4vw,40px);overflow:hidden;padding:clamp(22px,2.4vw,40px);isolation:isolate;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.m-videos .mv-art{position:absolute;inset:0;z-index:-1;transition:transform 1.4s var(--ease)}
+.m-videos .mv-tile:hover .mv-art{transform:scale(1.07)}
+.m-videos .mv-stripes .mv-art{background:repeating-linear-gradient(90deg,#0a1a66 0 14px,#1647DB 14px 18px,#0a1a66 18px 40px,#7fa0ff 40px 41px),linear-gradient(#000,#000);animation:m-slide 14s linear infinite;background-size:auto}
+.m-videos .mv-rings .mv-art{background:repeating-radial-gradient(circle at 70% 30%,#0b1f7a 0 22px,#1647DB 22px 25px,#06103f 25px 60px)}
+.m-videos .mv-rays .mv-art{background:conic-gradient(from 200deg at 30% 85%,#03071a 0deg,#1647DB 40deg,#03071a 70deg,#4d78ff 110deg,#03071a 150deg,#0b2a99 200deg,#03071a 260deg)}
+.m-videos .mv-tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#03071a 6%,rgba(3,7,26,0) 70%)}
+@keyframes m-slide{to{background-position:41px 0}}
+.m-videos .mv-play{position:absolute;top:clamp(20px,2vw,32px);right:clamp(20px,2vw,32px);width:72px;height:72px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;transition:transform .6s var(--ease),background .4s,color .4s}
+.m-videos .mv-tile:hover .mv-play{transform:scale(1.14);background:var(--blue);color:#fff}
+.m-videos .mv-tile h3{font-family:var(--display);font-weight:500;font-size:clamp(24px,2.3vw,42px);line-height:1.04;letter-spacing:-.028em;max-width:15ch}
+@media (max-width:900px){.m-videos .mv-tiles{grid-template-columns:1fr}.m-videos .mv-tile{aspect-ratio:5/4}}
+@media (prefers-reduced-motion:reduce){.m-videos .mv-stripes .mv-art{animation:none}}
+
+/* ---------- Product-page modules (2026-11-17 night): section, textlist, fineprint, faq note ---------- */
+.m-section,.m-textlist{position:relative;padding-block:var(--sec-pad)}
+.m-section .m-headline{margin-bottom:0}
+.m-section .ms-cta{display:flex;justify-content:center;margin-top:clamp(28px,3vw,44px)}
+/* text list: the FAQ's grid, rows ruled like the FAQ list */
+.m-textlist .tl-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,140px);align-items:start}
+.m-textlist.rows-left .tl-side{order:2}
+.m-textlist .tl-side{position:sticky;top:120px}
+.m-textlist .tl-side .lead{margin-top:clamp(18px,2vw,28px);max-width:36ch}
+.m-textlist .tl-rows{border-top:1px solid rgba(255,255,255,.12)}
+.m-textlist .tl-row{display:flex;gap:clamp(18px,2vw,32px);padding:clamp(24px,2.4vw,38px) 0;border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.m-textlist .tl-n{flex:none;width:2.4em;padding-top:.3em;font-family:var(--display);font-size:15px;font-weight:500;color:var(--tx3);font-variant-numeric:tabular-nums}
+.m-textlist .tl-row h3{font-family:var(--display);font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1.15;letter-spacing:-.018em;color:#fff}
+.m-textlist .tl-row p{margin-top:10px;color:var(--tx2);font-size:clamp(17px,1.25vw,20px);font-weight:450;line-height:1.5;max-width:56ch}
+@media (max-width:900px){.m-textlist .tl-grid{grid-template-columns:1fr}.m-textlist .tl-side{position:static;order:0}}
+/* stats: figures divided by hairlines */
+
+/* card grid: a ruled spec sheet; cells fill with glass on hover */
+
+/* fine print */
+.m-fineprint{position:relative;padding-block:clamp(24px,3vw,48px)}
+.m-fineprint p{max-width:70ch;margin:0 auto;text-align:center;font-size:14px;line-height:1.6;color:var(--tx2)}
+.m-fineprint a{color:var(--tx2);text-decoration:underline;text-underline-offset:3px}
+/* faq note (the disclosure line under the title) */
+.m-faq .faq-note{margin-top:clamp(18px,2vw,28px);max-width:34ch;font-size:15px;line-height:1.55;color:var(--tx2)}
+
+/* logos, grid option: a ruled grid like the card grid; logos at full strength (never dimmed) */
+
+/* ---------- second set: list with image (textlist visual), accordion, quote, prose ---------- */
+.m-accordion,.m-quote,.m-prose{position:relative;padding-block:var(--sec-pad)}
+/* list with image */
+
+/* accordion: numbered chapters, ruled like the FAQ */
+.m-accordion .ac-list{border-top:1px solid rgba(255,255,255,.12)}
+.m-accordion details{border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.m-accordion summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(18px,3vw,56px);padding:clamp(24px,2.6vw,42px) 0}
+.m-accordion summary::-webkit-details-marker{display:none}
+.m-accordion .ac-n{font-family:var(--display);font-size:15px;font-weight:500;color:var(--tx2);font-variant-numeric:tabular-nums;width:2.4em}
+.m-accordion summary h3{font-family:var(--display);font-weight:500;font-size:clamp(26px,2.8vw,50px);line-height:1.05;letter-spacing:-.024em;color:var(--tx2);transition:color .35s}
+.m-accordion summary:hover h3,.m-accordion details[open] h3{color:#fff}
+.m-accordion .pm{flex:none;position:relative;width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);transition:background .4s,transform .6s var(--ease)}
+.m-accordion .pm::before,.m-accordion .pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:currentColor;transform:translate(-50%,-50%)}
+.m-accordion .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .5s var(--ease)}
+.m-accordion details[open] .pm{background:var(--blue);box-shadow:none;transform:rotate(180deg)}
+.m-accordion details[open] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.m-accordion .ac-body{padding:0 0 clamp(28px,3vw,48px) calc(2.4em + clamp(18px,3vw,56px));max-width:calc(62ch + 6em)}
+.m-accordion .ac-sub{font-family:var(--display);font-size:clamp(19px,1.5vw,25px);font-weight:500;color:#fff;letter-spacing:-.01em}
+.m-accordion .ac-t{margin-top:12px;color:var(--tx2);font-size:clamp(17px,1.25vw,20px);font-weight:450;line-height:1.5;max-width:62ch}
+.m-accordion .ac-body .btn{margin-top:26px}
+.m-accordion details[open] .ac-body{animation:m-ans .6s var(--ease)}
+@media (max-width:700px){.m-accordion .ac-body{padding-left:0}}
+/* quote */
+.m-quote .qt-stage{position:relative;max-width:1180px;margin-inline:auto}
+.m-quote .qt{position:absolute;inset:0 0 auto 0;margin:0;text-align:center;opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform 1.1s var(--ease);pointer-events:none}
+.m-quote .qt.on{position:relative;opacity:1;transform:none;pointer-events:auto}
+.m-quote blockquote{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(26px,3vw,54px);line-height:1.14;letter-spacing:-.022em;color:#fff;text-wrap:balance}
+.m-quote figcaption{margin-top:clamp(22px,2.4vw,36px);color:var(--tx2);font-size:clamp(16px,1.2vw,19px)}
+.m-quote .qt-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:clamp(32px,3.4vw,56px)}
+.m-quote .qt-i{font-family:var(--display);font-size:15px;color:var(--tx2);font-variant-numeric:tabular-nums;margin-right:8px}
+.m-quote .qt-b{width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);display:grid;place-items:center;color:#fff;transition:background .35s}
+.m-quote .qt-b:hover{background:rgba(255,255,255,.1)}
+.m-quote .qt-b svg{width:18px;height:18px}
+.m-quote .qt-b.prev svg{transform:scaleX(-1)}
+@media (prefers-reduced-motion:reduce){.m-quote .qt{transition:none}}
+/* prose */
+.m-prose .pr-in{max-width:960px;margin-inline:auto;text-align:center}
+.m-prose h2.big{text-wrap:balance}
+.m-prose p{margin:clamp(18px,2vw,28px) auto 0;font-family:var(--display);font-size:clamp(22px,2vw,36px);font-weight:450;line-height:1.3;letter-spacing:-.012em;color:#fff;max-width:40ch;text-wrap:pretty}
+.m-prose .pr-in > p:first-child{margin-top:0}
+
+/* card grid, visual option: headline and cards beside a model or UI art */
+
+/* faq: links inside answers */
+.m-faq .ans a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+/* card grid with a visual on the left: the copy keeps the wider column */
+
+/* card grid: whole-card links and label + text cards */
+
+/* logos, headline option: the shared section headline above the marquee */
+.m-logos.lg-head{padding-block:var(--sec-pad)}
+.m-logos.lg-head .m-headline{margin-bottom:clamp(40px,5vw,80px)}
+
+/* lockup, name rows: a row's name in the logo column (segments, not clients) */
+.m-lockup .ml-name{font-family:var(--display);font-weight:500;font-size:clamp(20px,1.8vw,30px);line-height:1.15;letter-spacing:-.02em;color:#fff}
+.m-lockup .ml-row.no-link p{color:var(--tx2)}
+.m-lockup .ml-row.no-link:hover p{color:#fff}
+/* pinned list on product pages: the visual is a model slot (drawn by the shared stage) that fills the pinned stack */
+.m-pin .mp-stack{position:relative}
+.m-pin .mp-stack .slot,.m-pin .mp-vis>.slot{position:absolute;inset:0}
+.m-pin.mp-swap .mp-vis{position:relative}   /* swap only: the scroll mode's visual is sticky, which already holds its slot */
+/* lockup: balanced headline (as every section headline); rows without a link drop the arrow column */
+.m-lockup .ml-top h2.big{text-wrap:balance}
+.m-lockup .ml-row.no-link{grid-template-columns:minmax(150px,280px) 1fr}
+@media (max-width:900px){.m-lockup .ml-row.no-link{grid-template-columns:1fr}.m-lockup .ml-row.no-link p{grid-column:1}}
+
+/* pinned list, scroll mode: an optional lead under the centred title */
+.mp-scroll .mp-lead{text-align:center;margin:clamp(14px,1.6vw,24px) auto 0;max-width:48ch;color:rgba(255,255,255,.9)}
+
+/* multicard: a button under the head; whole-card links */
+.m-multi .mc-head .mc-cta{margin-top:clamp(24px,2.6vw,40px)}
+.m-multi .bcard .bc-link{position:absolute;inset:0;z-index:3;border-radius:inherit}
+.m-multi .bcard .bc-link:focus-visible{outline:2px solid #fff;outline-offset:4px}
+/* lockup, wrap option: a long lead wraps at reading width */
+.m-lockup.ml-wrap .ml-top .lead{white-space:normal;max-width:56ch;text-wrap:balance}
+
+/* goNetwork inside the 50/50: its own classes only (mirrored from the multicard rules) */
+.m-split .mc-ui .ep.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.m-split .mc-ui .ep>*{position:absolute}
+.m-split .mc-ui .gn-ar{fill:none;stroke:#1647DB;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.m-split .mc-ui .gn-clip{overflow:hidden}
+.m-split .mc-ui .gn-ok{height:20px;padding:0 9px;border-radius:10px;background:rgba(77,120,255,.22);color:#cfdcff;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:5px;line-height:1}
+.m-split .mc-ui .gn-ok .tk{stroke:#9db6ff}
+
+/* lockup rows: a small live label above the name */
+.m-lockup .ml-row .ml-label{font-family:var(--display);font-size:13px;font-weight:600;line-height:1.3;letter-spacing:.06em;color:var(--tx2);margin-bottom:6px}   /* outranks the row text size (.ml-row p) */
+/* pinned swap opener: an eyebrow and a lead with the title */
+.mp-swap .mp-head .mp-lead{margin-top:clamp(16px,1.8vw,26px);max-width:52ch}
+
+/* section: two buttons side by side */
+.m-section .ms-cta{gap:12px;flex-wrap:wrap}
+/* faq answers of several paragraphs */
+.m-faq .ans p+p{margin-top:-12px}
+/* multicard: a small label above a card title */
+.m-multi .bc-label{font-family:var(--display);font-size:13px;font-weight:600;line-height:1.3;letter-spacing:.06em;margin:0 0 10px;opacity:.85;max-width:none}
+/* pinned scroll: an eyebrow centred over the title */
+.mp-scroll .mp-eb{display:flex;justify-content:center}
+
+/* lockup: an eyebrow over the headline */
+.m-lockup .ml-top .eyebrow{margin-bottom:18px}
+/* statement: a live link inside a sentence */
+.m-statement .stmt a{color:inherit;text-decoration:underline;text-decoration-thickness:.06em;text-underline-offset:.12em}
+/* swap: an item's sub-points (label + sentence) */
+.mp-swap .mp-pts{margin-top:22px;display:grid;gap:14px}
+.mp-swap .mp-pts dt{font-family:var(--display);font-weight:600;font-size:15px;line-height:1.3;color:#fff}
+.mp-swap .mp-pts dd{margin:3px 0 0;font-size:15px;line-height:1.4;color:var(--tx2);max-width:46ch}
+@media (max-width:900px){.mp-swap .mp-pts{margin-top:14px;gap:8px}.mp-swap .mp-pts dt,.mp-swap .mp-pts dd{font-size:13px}}
+
+/* 2D scenes (scenes.js) in a 50/50 or a multicard card: the canvas fills the visual box */
+.m-split .m-vis .m-scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bcard canvas.m-scene{display:block;width:100%;height:100%;min-height:320px}
+/* a real mark (issuer or partner logo) in a 50/50: centred, large, on the open ground; a scene may sit behind it */
+.m-split .m-vis .m-logo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:clamp(24px,4vw,64px);pointer-events:none}
+.m-split .m-vis .m-logo img{width:min(64%,440px);height:auto;max-height:56%;object-fit:contain;filter:drop-shadow(0 18px 60px rgba(0,20,120,.45))}
+/* the live section's own picture in a 50/50 (report cover, real product screen) */
+.m-split .m-vis .m-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.m-split .m-vis .m-img img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 30px 80px rgba(0,10,80,.5))}
+/* a scene in a pinned slot fills the stack */
+.m-pin .mp-stack canvas.m-scene,.m-pin .mp-vis>canvas.m-scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* quote: the speaker's company mark above the quote (live quotes carry it) */
+.m-quote .qt-logo{display:block;height:clamp(44px,4.6vw,72px);width:auto;max-width:300px;object-fit:contain;margin:0 auto clamp(20px,2.4vw,36px)}
+/* logoAt: 'top': the mark above its scene */
+.m-split .m-vis.logo-top .m-logo{bottom:auto;height:30%}
+.m-split .m-vis.logo-top .m-logo img{max-height:70%;width:min(48%,300px)}
+.m-split .m-vis.logo-top .m-scene{top:34%;height:66%}
+/* a live product loop in a 50/50 (same box as an image) */
+.m-split .m-vis .m-img video{max-width:100%;max-height:100%;object-fit:contain;border-radius:16px;filter:drop-shadow(0 30px 80px rgba(0,10,80,.5))}
+/* a multicard card's own live picture or product loop */
+.bcard .mc-media{position:relative;width:100%;height:100%;min-height:320px;display:flex;align-items:center;justify-content:center;padding:clamp(18px,2.4vw,40px);overflow:hidden}
+.bcard .mc-media img,.bcard .mc-media video{max-width:100%;max-height:100%;object-fit:contain;border-radius:14px}
+/* text list rows: inline links read as links */
+.m-textlist a:not(.btn){color:inherit;text-decoration:underline;text-decoration-thickness:.06em;text-underline-offset:.15em}
+
+/* ---------- 50/50 composition options (2026-11-18: "great design, but it's just floating") ---------- */
+/* frames: the visual sits on a surface */
+.m-split .m-vis.frame-panel,.m-split .m-vis.frame-glass{border-radius:clamp(24px,2.6vw,40px);overflow:hidden;isolation:isolate}
+.m-split .m-vis.frame-panel{background:radial-gradient(110% 80% at 72% 18%,rgba(40,96,255,.38),transparent 62%),radial-gradient(80% 60% at 10% 100%,rgba(14,59,208,.35),transparent 70%),linear-gradient(180deg,#0a1640,#030a26);box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),inset 0 1px 0 rgba(255,255,255,.14),0 50px 140px -50px rgba(0,8,60,.85)}
+.m-split .m-vis.frame-glass{background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03));backdrop-filter:blur(20px) saturate(1.25);-webkit-backdrop-filter:blur(20px) saturate(1.25);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 1px 0 rgba(255,255,255,.3),0 40px 110px -40px rgba(0,10,80,.6)}
+.m-split .m-vis.frame-panel .mc-ui,.m-split .m-vis.frame-glass .mc-ui{background:transparent}
+/* a scene behind the main visual */
+.m-split .m-vis .m-backdrop{opacity:.6;z-index:0}
+.m-split .m-vis .m-backdrop~*{position:relative;z-index:1}
+.m-split .m-vis .m-backdrop~.m-logo,.m-split .m-vis .m-backdrop~.m-cover{position:absolute}
+/* a typographic report cover, set from the section's copy */
+.m-split .m-vis .m-cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1400px}
+.m-split .m-vis .mcv-in{position:relative;width:min(62%,380px);aspect-ratio:3/4;padding:clamp(22px,2.4vw,36px);border-radius:10px 18px 18px 10px;display:flex;flex-direction:column;
+  background:linear-gradient(150deg,#f4f7ff 0%,#dfe7ff 55%,#c9d6ff 100%);color:#061038;transform:rotateY(-18deg) rotateX(6deg);transform-style:preserve-3d;
+  box-shadow:-14px 0 0 -6px #9fb3ee,-14px 0 30px -6px rgba(0,0,0,.35),30px 50px 90px -30px rgba(0,8,60,.75);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.m-split .m-vis:hover .mcv-in{transform:rotateY(-10deg) rotateX(3deg)}
+.m-split .m-vis .mcv-eb{margin-top:auto;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#1647db}
+.m-split .m-vis .mcv-title{margin-top:10px;font-family:var(--display);font-weight:500;font-size:clamp(22px,2.1vw,34px);line-height:1.04;letter-spacing:-.02em}
+.m-split .m-vis .mcv-rule{display:block;margin-top:clamp(18px,2vw,28px);height:6px;width:46%;border-radius:3px;background:linear-gradient(90deg,#1647db,#5f8bff)}
+/* layout 'wide': the copy centred over a full-width stage */
+.m-split.m-wide .m-in,.m-split.m-wide.left .m-in{grid-template-columns:minmax(0,1fr);justify-items:center;gap:clamp(32px,3.6vw,64px)}
+.m-split.m-wide .m-copy{order:0;text-align:center;max-width:860px;display:flex;flex-direction:column;align-items:center}
+.m-split.m-wide .m-copy .lead{margin-inline:auto}
+.m-split.m-wide .m-vis{order:1;width:100%;max-width:1360px;justify-self:center;height:clamp(360px,40vw,700px)}
+
+/* ---------- Report (Modules.report): every report / guide / white paper section ---------- */
+.m-report{position:relative;padding:clamp(56px,6vw,110px) 0}
+.m-report .rp-panel{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(24px,4vw,72px);padding:clamp(32px,4.4vw,80px);border-radius:clamp(28px,3vw,48px);overflow:hidden;isolation:isolate;
+  background:radial-gradient(90% 120% at 78% 40%,rgba(46,104,255,.42),transparent 60%),radial-gradient(70% 90% at 0% 100%,rgba(14,59,208,.3),transparent 70%),linear-gradient(180deg,#0a1640,#030a26);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),inset 0 1px 0 rgba(255,255,255,.14),0 60px 160px -60px rgba(0,8,60,.9)}
+.m-report.left .rp-copy{order:2}
+.m-report .rp-copy{max-width:620px}
+.m-report .rp-copy .eyebrow{margin-bottom:clamp(16px,1.8vw,24px)}
+.m-report .rp-title{font-family:var(--display);font-weight:500;font-size:clamp(36px,3.5vw,67px);line-height:1;letter-spacing:-.012em;text-wrap:balance}
+.m-report .rp-copy .lead{margin-top:clamp(16px,1.6vw,22px);max-width:44ch}
+.m-report .rp-copy .btn{margin-top:clamp(24px,2.6vw,36px)}
+.m-report .rp-stage{position:relative;height:clamp(360px,36vw,600px);perspective:1600px;display:flex;align-items:center;justify-content:center}
+.m-report .rp-stage::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(90,140,255,.5),rgba(40,90,255,.12) 60%,transparent);filter:blur(12px)}
+.m-report .rp-book{--p:1;position:relative;width:min(56%,340px);aspect-ratio:3/4;transform-style:preserve-3d;
+  transform:translateY(calc(40px - 40px*var(--p))) rotateY(calc(-38deg + 22deg*var(--p))) rotateX(calc(14deg - 8deg*var(--p))) rotateZ(calc(-4deg + 3deg*var(--p)))}
+.m-report .rp-sheet{position:absolute;inset:0;transform-origin:left center;border-radius:6px 14px 14px 6px;background:linear-gradient(90deg,#c9d4f4,#eef2ff 12%,#f7f9ff);box-shadow:inset 0 0 0 1px rgba(10,30,90,.1)}
+.m-report .rp-sheet.s1{transform:translateZ(-3px) rotateY(calc(4deg + 8deg*var(--p)))}
+.m-report .rp-sheet.s2{transform:translateZ(-7px) rotateY(calc(8deg + 16deg*var(--p)));background:linear-gradient(90deg,#b9c6ee,#e4eaff 12%,#eef2ff)}
+.m-report .rp-sheet.s3{transform:translateZ(-11px) rotateY(calc(12deg + 24deg*var(--p)));background:linear-gradient(90deg,#a9b8e6,#d8e1ff 12%,#e4eaff)}
+.m-report .rp-cover{position:absolute;inset:0;transform:translateZ(2px);border-radius:8px 16px 16px 8px;padding:clamp(22px,2.4vw,36px);display:flex;flex-direction:column;overflow:hidden;color:#061038;
+  background:linear-gradient(150deg,#f6f8ff 0%,#dfe7ff 52%,#c6d4ff 100%);box-shadow:-12px 0 0 -6px #8fa5ea,-14px 0 34px -8px rgba(0,0,0,.35),30px 60px 100px -36px rgba(0,8,60,.8)}
+.m-report .rp-mark,.m-split .m-vis .mcv-mark{display:block;width:clamp(76px,6.4vw,104px);aspect-ratio:542/184;background:#1647db;-webkit-mask:url(../assets/bitgo-logo.svg) no-repeat left center/contain;mask:url(../assets/bitgo-logo.svg) no-repeat left center/contain}   /* the BitGo mark in BitGo blue */
+.m-report .rp-ed{margin-top:auto;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#1647db}
+.m-report .rp-name{margin-top:10px;font-family:var(--display);font-weight:500;font-size:clamp(20px,2vw,32px);line-height:1.04;letter-spacing:-.02em}
+.m-report .rp-rule{display:block;margin-top:clamp(16px,1.8vw,26px);height:6px;width:46%;border-radius:3px;background:linear-gradient(90deg,#1647db,#5f8bff)}
+.m-report .rp-glint{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.65) 47%,transparent 58%);background-size:260% 100%;background-position:calc(110% - 120%*var(--p)) 0;mix-blend-mode:soft-light}
+@media (max-width:900px){.m-report .rp-panel{grid-template-columns:1fr;padding:28px}.m-report.left .rp-copy{order:0}.m-report .rp-stage{height:340px}}
+/* a product screen inside a frame keeps clear of the panel edge; on the wide stage it is centred at its own width */
+.m-split .m-vis.frame-panel .mc-ui,.m-split .m-vis.frame-glass .mc-ui{transform:scale(.86);transform-origin:center}
+.m-split.m-wide .m-vis .mc-ui{max-width:880px;margin-inline:auto}
+/* a multicard card with no visual: the text spans the card (no empty half) */
+.bcard.no-vis{grid-template-columns:1fr;min-height:0}
+.bcard.no-vis .bt{max-width:62ch}
+/* a 50/50 with no visual: the copy centres in a single column instead of leaving an empty half */
+.m-split.m-novis .m-in,.m-split.m-novis.left .m-in{grid-template-columns:minmax(0,1fr);justify-items:center;min-height:0}
+.m-split.m-novis .m-copy{order:0;text-align:center;max-width:820px;display:flex;flex-direction:column;align-items:center}
+.m-split.m-novis .m-copy .lead{margin-inline:auto}
+.m-split.m-novis .m-vis{display:none}
+/* report: the living backdrop (a dot ribbon drifting through the panel, behind the copy and the book) */
+.m-report .rp-bg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.5;mix-blend-mode:screen;pointer-events:none}
+.m-report .rp-panel::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(3,10,38,.85) 0%,rgba(3,10,38,.35) 45%,transparent 70%)}
+.m-report.left .rp-panel::after{background:linear-gradient(270deg,rgba(3,10,38,.85) 0%,rgba(3,10,38,.35) 45%,transparent 70%)}

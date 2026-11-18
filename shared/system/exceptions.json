@@ -1,0 +1,19 @@
+{
+  "_readme": "Approved exceptions to modulecheck.py. Keyed by page folder, then section id. 'covers' says which checks the exception waives: 'module' (check 1, section is not a module) and 'ground' (check 3, section paints its own ground). Default is both. Every entry needs a reason and the date approved.",
+  "qc-refokus": {
+    "keys": {
+      "reason": "QC special page, approved by user 2026-11-17",
+      "approved": "2026-11-17"
+    },
+    "eco": {
+      "reason": "QC special page, approved by user 2026-11-17 (its cards; the headline inside is the shared Headline)",
+      "approved": "2026-11-17"
+    },
+    "since": {
+      "reason": "QC special page, approved by user 2026-11-17",
+      "approved": "2026-11-17"
+    }
+  },
+  "sc-refokus": {},
+  "v3-refokus": {}
+}

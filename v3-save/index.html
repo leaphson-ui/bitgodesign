@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo | Digital asset infrastructure</title>
+<meta name="description" content="BitGo is the digital asset infrastructure company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+</head>
+<body>
+<canvas id="terrain" class="tcanvas" aria-hidden="true"></canvas>
+<a class="skip" id="skip" href="#main"></a>
+
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="BitGo"><img src="../shared/assets/bitgo-logo.svg" alt="BitGo" width="108" height="37"></a>
+  <nav class="nav-menus" id="navMenus" aria-label="Primary"></nav>
+  <div class="nav-actions" id="navActions"></div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="mega" id="mega" hidden></div>
+</header>
+<div class="mobile-menu" id="mobileMenu" hidden></div>
+
+<main id="main">
+
+<!-- 1. HERO -->
+<section class="hero" id="top">
+  <div class="hero-stick" id="heroStick">
+    <div class="sky" aria-hidden="true"><div class="sun"></div></div>
+    <div class="hero-head" id="heroHead">
+      <h1 class="h1"><span class="rot" id="rot" aria-live="off"></span><span class="rest" id="heroRest"></span></h1>
+      <div class="hero-side">
+        <p id="heroSub"></p>
+        <a class="btn btn-light" id="heroCta" href="#cta"></a>
+      </div>
+    </div>
+    <div class="win-frame" id="winFrame" aria-hidden="true"></div>
+    <div class="win" id="win">
+      <div class="win-bg" id="winBg"></div>
+      <div class="win-chrome" id="winChrome">
+        <img src="../shared/assets/bitgo-logo.svg" alt="" width="70" height="24">
+        <div class="win-tabs" id="winTabs"></div>
+      </div>
+      <div class="win-content" id="winContent">
+        <p class="idle" id="idle"></p>
+        <div class="stages" id="stages"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TRUST: a horizon strip, then the blue window carries the logos -->
+<section class="trust" id="trust">
+  <div class="tview trust-view" id="trustView" style="--bg:var(--ink)">
+    <div class="sky-bg" aria-hidden="true"></div>
+    <h2 class="trust-title fg" id="trustTitle"></h2>
+  </div>
+  <div class="bwin fg">
+    <div class="bwin-chrome"><img src="../shared/assets/bitgo-logo.svg" alt="" width="70" height="24"><span class="bwin-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+    <div class="reel">
+      <div class="reel-row" id="reelA"></div>
+      <div class="reel-row" id="reelB"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. BADGES: survey markers on a plan view of the terrain -->
+<section class="badges" id="badges">
+  <div class="tview plan-view" id="planView" style="--bg:var(--ink)">
+    <div class="sky-bg" aria-hidden="true"></div>
+    <svg class="plan-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline id="planLine" fill="none"/></svg>
+    <ul class="pins fg" id="badgeList"></ul>
+  </div>
+</section>
+
+<!-- 4. CORE: strata -->
+<section class="core" id="core">
+  <h2 class="core-title" id="coreTitle"></h2>
+  <div class="strata" id="strata"></div>
+</section>
+
+<!-- 5. ESTABLISHED: stations on a panorama -->
+<section class="est" id="est">
+  <div class="est-head">
+    <h2 class="rv" id="estTitle"></h2>
+    <div class="est-side rv">
+      <p id="estText"></p>
+      <a class="btn btn-line" id="estCta" href="#"></a>
+    </div>
+  </div>
+  <div class="tview est-map" id="estView" style="--bg:var(--ink2)">
+    <div class="sky-bg" aria-hidden="true"></div>
+    <svg class="est-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline id="estLine" fill="none"/></svg>
+    <div class="stations fg" id="stations"></div>
+  </div>
+</section>
+
+<!-- 6. BUILD: three windows, three views -->
+<section class="build" id="build">
+  <h2 class="build-title rv" id="buildTitle"></h2>
+  <div class="tri" id="tri"></div>
+</section>
+
+<!-- 7. SUPPORT: the sun goes round, 24/7 -->
+<section class="support" id="support">
+  <div class="support-inner">
+    <div class="tview sup-win" id="supView" style="--bg:var(--ink)">
+      <div class="sky-bg" aria-hidden="true"></div>
+      <div class="night" id="night" aria-hidden="true"></div>
+      <div class="sup-num fg" aria-hidden="true">24/7</div>
+    </div>
+    <div class="support-copy">
+      <h2 class="rv" id="supTitle"></h2>
+      <ul id="supList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 8. OWN -->
+<section class="own" id="own">
+  <div class="own-stick" id="ownStick">
+    <canvas id="matter" aria-hidden="true"></canvas>
+    <div class="own-text">
+      <h2 class="own-head" id="ownHead"></h2>
+      <div class="own-item" id="ownItem">
+        <p class="own-word" id="ownWord"></p>
+        <p class="own-desc" id="ownDesc"></p>
+      </div>
+    </div>
+    <ol class="own-ticks" id="ownTicks" aria-hidden="true"></ol>
+  </div>
+  <ul class="own-fallback" id="ownFallback"></ul>
+</section>
+
+<!-- 9. SPOTLIGHT: three windows -->
+<section class="spot" id="spot">
+  <h2 class="rv" id="spotTitle"></h2>
+  <div class="spot-wall" id="spotList"></div>
+</section>
+
+<!-- 10. LATEST -->
+<section class="latest" id="latest">
+  <div class="latest-grid">
+    <div class="latest-copy">
+      <div class="latest-head">
+        <h2 class="rv" id="latestTitle"></h2>
+        <a class="btn btn-line" id="latestAll" href="#"></a>
+      </div>
+      <div class="posts" id="posts"></div>
+    </div>
+    <div class="tview latest-view" id="latestView" style="--bg:var(--ink2)"><div class="sky-bg" aria-hidden="true"></div></div>
+  </div>
+</section>
+
+<!-- 11. CTA -->
+<section class="cta tview" id="cta" style="--bg:transparent;--r:0px">
+  <div class="sky-bg" aria-hidden="true"></div>
+  <div class="cta-scrim" aria-hidden="true"></div>
+  <h2 class="cta-title fg" id="ctaTitle"></h2>
+  <a class="btn btn-light btn-lg fg" id="ctaBtn" href="#"></a>
+</section>
+
+</main>
+
+<!-- 12. FOOTER -->
+<footer class="foot" id="foot">
+  <div class="foot-top">
+    <div class="foot-news">
+      <img src="../shared/assets/bitgo-logo.svg" alt="BitGo" width="150" height="51">
+      <p id="footNews"></p>
+      <form id="footForm" class="foot-form" onsubmit="return false">
+        <label class="sr" for="footEmail" id="footEmailLabel"></label>
+        <input id="footEmail" type="email" autocomplete="email">
+        <button class="btn btn-light" type="submit" id="footSub"></button>
+      </form>
+      <ul class="socials" id="socials"></ul>
+    </div>
+    <div class="foot-links" id="footLinks"></div>
+  </div>
+  <div class="legal" id="legal"></div>
+  <div class="foot-bottom" id="footBottom"></div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="module" src="main.js"></script>
+</body>
+</html>

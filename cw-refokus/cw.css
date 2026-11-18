@@ -1,0 +1,60 @@
+/* Custody Wallets: the sections this page adds on top of the shared QC/homepage styles. */
+.hero h1{max-width:8.6em}
+
+/* key management: copy on the left, three keys in cold storage on the right (fixed scene) */
+.keyman{min-height:110vh;display:flex;align-items:center;padding:clamp(80px,10vw,160px) 0;background:var(--ink)}
+.gl .keyman{background:transparent}
+.keyman::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,7,26,.88),rgba(3,7,26,.55) 40%,rgba(3,7,26,0) 64%);pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
+.km-copy{position:relative;max-width:min(46%,660px)}
+.km-copy .lead{margin-top:clamp(18px,2vw,28px);max-width:40ch}
+
+/* wallets designed for your business: heading above the homepage Core module */
+.list-head{position:relative;padding-top:clamp(64px,8vw,140px);padding-bottom:clamp(8px,2vw,24px)}
+.list-head::before{content:none}
+.list-head h2.big{max-width:13ch}
+.list-head .lead{margin-top:clamp(18px,2vw,28px);max-width:42ch}
+
+/* numbers: the homepage credentials statement */
+.stats .stmt{font-size:clamp(24px,5.4vw,104px)}
+.stats .stmt span{white-space:nowrap}
+.stats .stmt span b{font-weight:500;color:var(--blue-hi)}
+@media (max-width:600px){.stats .stmt{font-size:6.2vw}}
+
+/* features: six controls on the blue band */
+.fcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,28px)}
+.fcrd{position:relative;min-height:clamp(240px,20vw,340px);border-radius:clamp(22px,2.4vw,40px);padding:clamp(24px,2.6vw,44px);display:flex;flex-direction:column;justify-content:space-between;gap:28px;overflow:hidden;isolation:isolate;transition:transform .8s var(--ease)}
+.fcrd:hover{transform:translateY(-4px)}
+.fcrd.c0{background:var(--ink);color:#fff}
+.fcrd.c1{background:var(--paper);color:var(--ink)}
+.fcrd .eyebrow.sm{margin:0;align-self:flex-start}
+.fcrd .ico-lg{width:clamp(38px,3.2vw,56px);height:clamp(38px,3.2vw,56px)}
+.fcrd .fb{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.fcrd h3{font-family:var(--display);font-weight:500;font-size:clamp(20px,1.7vw,30px);line-height:1.15;letter-spacing:-.02em;max-width:22ch}
+.fglow{position:absolute;right:-22%;top:-34%;width:72%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(77,120,255,.42),rgba(77,120,255,0) 65%);z-index:-1}
+.fcrd.c1 .fglow{background:radial-gradient(circle,rgba(22,71,219,.16),rgba(22,71,219,0) 65%)}
+
+/* clients: the live page's logo grid on black */
+.clients{background:#02030a;z-index:2;padding:clamp(96px,12vw,200px) 0 clamp(64px,7vw,120px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0}
+.clients h2.big{max-width:16ch}
+.cl-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,24px);margin-top:clamp(40px,5vw,80px)}
+.cl{display:grid;place-items:center;height:clamp(110px,10vw,160px);border-radius:clamp(18px,2vw,28px);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.cl img{height:clamp(20px,1.9vw,30px);width:auto;max-width:72%;filter:brightness(0) invert(1);opacity:.88}
+.clients + .faq{border-radius:0}
+
+/* entities note above the call to action */
+.entities{background:#02030a;z-index:2;padding:0 0 clamp(80px,9vw,140px)}
+.ent{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-top:clamp(32px,3vw,48px);border-top:1px solid rgba(255,255,255,.1)}
+.ent p{font-size:15px;line-height:1.6;color:var(--tx2);max-width:84ch}
+
+@media (max-width:900px){
+  .km-copy{max-width:100%}
+  .keyman{align-items:flex-end}
+  .keyman::before{background:linear-gradient(0deg,rgba(3,7,26,.92) 10%,rgba(3,7,26,.4) 60%,rgba(3,7,26,0) 85%)}
+  .fcards{grid-template-columns:1fr}
+  .cl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ---- sections blend: every opaque black section fades into the 3D scene above and below it (no hard edges, no card tops) ---- */
+.clients,.faq,.entities,.foot{border-radius:0}
+.clients::before,.faq::before,.entities::before,.foot::before{content:"";position:absolute;left:0;right:0;top:-200px;height:200px;background:linear-gradient(180deg,rgba(2,3,10,0),rgba(2,3,10,.7) 55%,#02030a);pointer-events:none;z-index:0}
+.clients::after,.faq::after,.entities::after,.foot::after{content:"";position:absolute;left:0;right:0;bottom:-200px;height:200px;background:linear-gradient(180deg,#02030a,rgba(2,3,10,.7) 45%,rgba(2,3,10,0));pointer-events:none;z-index:0}

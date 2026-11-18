@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo Design System</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap" rel="stylesheet">
+<!-- the library loads the same shared files the pages load, so what it shows is what the pages get -->
+<link rel="stylesheet" href="../shared/system/base.css">
+<link rel="stylesheet" href="../shared/system/modules.css">
+<link rel="stylesheet" href="../shared/icons/icons-2.css">
+<link rel="stylesheet" href="lib.css">
+</head>
+<body>
+<div class="lib">
+  <aside class="side">
+    <div class="mark"><svg viewBox="0 0 157 184" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9ccff"/><stop offset="1" stop-color="#4d78ff"/></linearGradient></defs><path fill="url(#g)" d="M156.282 104.257C156.282 146.692 78.3938 183.634 78.3938 183.634C78.3938 183.634 0.50478 146.692 0.50478 104.257C0.50478 93.2381 0.509268 83.5104 0.513558 74.2098C0.522088 55.7192 0.52984 38.9167 0.5 17.0094C49.9579 -5.62206 106.836 -5.59857 156.282 17.0588V104.257Z"/></svg><span>Design system</span></div>
+    <nav id="toc">
+      <a href="#models">3D models</a><a href="#icons">Icons</a><a href="#color">Color</a><a href="#type">Type</a><a href="#parts">Parts</a><a href="#modules">Modules</a>
+      <a href="#inventory">Module list</a><a href="#rules">Rules</a><a href="#pages">Pages and libraries</a><a href="#check">Drift check</a>
+    </nav>
+    <p class="upd" id="upd"></p>
+  </aside>
+
+  <main class="doc">
+    <section class="sec intro" id="top">
+      <h1>BitGo design system</h1>
+      <p class="sub">Everything the rebuilt bitgo.com pages share. This page loads the same files the pages load, so every color, part and module here is the real one.</p>
+      <div class="facts" id="facts"></div>
+    </section>
+
+    <section class="sec" id="models">
+      <h2>3D models</h2>
+      <p class="sub">The glass objects, drawn live from <code>shared/models/</code>. These are the ones on pages now: the key (Self-Custody hero, Custody Wallets), the partner logo in glass (WalletConnect), the globe (Qualified Custody) and the custody safe (Custody Wallets).</p>
+      <div class="frame3d"><iframe src="../shared/models/gallery.html?only=key,logo3d,globe,custody-safe" title="3D models in use" loading="lazy"></iframe></div>
+      <a class="more" href="models.html">All 3D models →</a>
+    </section>
+
+    <section class="sec" id="icons">
+      <h2>Icons</h2>
+      <p class="sub">Icon set 2: layered glass-blue icons. <code>&lt;i class="ico2 ico2-vault"&gt;&lt;/i&gt;</code>, plus <code>.light</code> on white grounds.</p>
+      <div class="icg" id="icg"></div>
+      <a class="more" href="icons.html">All icons, dark and light →</a>
+    </section>
+
+    <section class="sec" id="color">
+      <h2>Color</h2>
+      <p class="sub">Read live from <code>base.css</code>. BitGo blue is the surface, not an accent. No navy section grounds: the deep blues are for cards and the curtain only.</p>
+      <div class="sw" id="sw"></div>
+    </section>
+
+    <section class="sec" id="type">
+      <h2>Type</h2>
+      <p class="sub">Inter Tight stands in for BitGo's Söhne. Sizes are measured from the real modules at your current window width.</p>
+      <div class="tt" id="tt"></div>
+    </section>
+
+    <section class="sec" id="parts">
+      <h2>Parts</h2>
+      <p class="sub">The small pieces every module uses. Styles live in <code>base.css</code>, markup in <code>parts.js</code>. Modules place them but never restyle them.</p>
+      <div class="parts" id="partsGrid"></div>
+    </section>
+
+    <section class="sec" id="modules">
+      <h2>Modules</h2>
+      <p class="sub">One page per module: live versions, usage, where it's used, rules and what BitGo's handoff asks of it.</p>
+      <div class="links" id="modGrid"></div>
+      <div class="measure" aria-hidden="true"><div id="libSplit"></div><div id="libMulti"></div></div>
+    </section>
+
+    <section class="sec" id="inventory">
+      <h2>Module list</h2>
+      <p class="sub">Every section type on the live site, from BitGo's handoff, and where each one stands here. Live variations show what a module has to cover; we build the fewest that cover them.</p>
+      <div class="filt" id="filt"></div>
+      <div id="inv"></div>
+    </section>
+
+    <section class="sec" id="rules">
+      <h2>Rules</h2>
+      <p class="sub">Set during review. Every page and module follows them.</p>
+      <div class="rules" id="rulesGrid"></div>
+    </section>
+
+    <section class="sec" id="pages">
+      <h2>Pages and libraries</h2>
+      <p class="sub">Only pages on <code>base.css</code> are guaranteed to match this system.</p>
+      <div class="links" id="pageLinks"></div>
+      <div class="links" id="libLinks"></div>
+    </section>
+
+    <section class="sec" id="check">
+      <h2>Drift check</h2>
+      <p class="sub">Run after every change. It compares every eyebrow and button on a page with the shared definition, at 1920, 1536 and 390 wide.</p>
+<pre>cd bitgo-versions/shared/system
+python partcheck.py sc-refokus                  # parts that differ from base.css
+python partcheck.py sc-refokus --snap before.json  # save every part before a change
+python partcheck.py sc-refokus --diff before.json  # list everything the change moved or restyled</pre>
+    </section>
+  </main>
+</div>
+
+<script src="../sc-refokus/content-sc.js"></script>
+<script src="../shared/system/system-data.js"></script>
+<script src="../shared/system/parts.js"></script>
+<script src="../shared/system/modules.js"></script>
+<script>
+(function () {
+  const $ = s => document.querySelector(s), D = window.SYSTEM, Q = window.SC;
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  $('#upd').textContent = 'Updated ' + D.updated;
+
+  /* live modules first, so the type table can measure them */
+  const K = Q.keys[1];
+  Modules.split($('#libSplit'), { eyebrow: K.label, title: K.title, text: K.text, cta: K.cta, side: 'right', visual: { ui: 'scCold' } });
+  const W = Q.why;
+  Modules.multicard($('#libMulti'), { eyebrow: W.label, title: W.title, text: W.text, cards: W.cards.map((c, i) => ({ title: c.title, text: c.text, art: ['scSecurity', 'scCompliance', 'scConfig'][i] })) });
+
+
+  /* facts */
+  const all = D.modules.flatMap(g => g.items), n = s => all.filter(m => m.status === s).length;
+  $('#facts').innerHTML = [[n('approved'), 'modules approved'], [n('review'), 'in review'], [n('page'), 'on a page, not shared yet'], [n('none'), 'not built'], [D.pages.filter(p => p.base).length + ' of ' + D.pages.length, 'pages on base.css']]
+    .map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
+
+  /* colour, read live from the tokens */
+  const root = getComputedStyle(document.documentElement);
+  const C = [['--blue', 'BitGo blue', 'The surface: curtain, buttons on white, links'], ['--blue-hi', 'Light blue', 'Glows, focus, the shield mark'], ['--blue-lo', 'Deep blue', 'Curtain shadows'],
+    ['--black', 'Black', 'Page ground and footer'], ['--ink', 'Ink', 'Dark cards, button hover'], ['--ink2', 'Ink 2', 'Card grounds only, never a section'], ['--ink3', 'Ink 3', 'Dark card grounds'],
+    ['--paper', 'Paper', 'Light cards'], ['--ice', 'Ice', 'Light tints'], ['--tx', 'Text', 'Headings and body on dark'], ['--tx2', 'Text 2', 'Body copy and leads'], ['--tx3', 'Text 3', 'Quiet labels']];
+  $('#sw').innerHTML = C.map(([v, nm, use]) => { const val = root.getPropertyValue(v).trim(); return `<div><i style="background:${val}"></i><p><b>${nm}</b><code>${v} ${val}</code><br>${use}</p></div>`; }).join('');
+
+  /* module pages: cards in the Modules section and a group in the sidebar */
+  const STN = { approved: 'Approved', review: 'In review', page: 'On a page' };
+  const pages = D.modules.map(g => ({ group: g.group, items: g.items.filter(m => m.slug) })).filter(g => g.items.length);
+  $('#modGrid').innerHTML = pages.flatMap(g => g.items).map(m => `<a href="m/${m.slug}.html"><b>${esc(m.title || m.name)}<em class="${m.status === 'approved' ? 'on' : ''}">${STN[m.status] || ''}</em></b><span>${esc(m.desc || m.ours || '')}</span></a>`).join('');
+  $('#toc').insertAdjacentHTML('beforeend', `<div class="gh">Module pages</div>` + pages.flatMap(g => g.items).map(m => `<a class="mp" href="m/${m.slug}.html">${esc(m.title || m.name)}</a>`).join(''));
+
+  /* type, measured from the real modules (hidden measuring box) */
+  const T = [['Section headline', '#libMulti .mc-head h2', 'base.css'], ['50/50 title', '#libSplit .m-copy h2', 'modules.css'], ['Card title', '#libMulti .bcard h3', 'modules.css'],
+    ['Lead', '#libMulti .mc-head .lead', 'base.css'], ['Card body', '#libMulti .bcard p', 'modules.css'], ['50/50 body', '#libSplit .m-copy > p', 'modules.css'], ['Button', '#libSplit .btn', 'base.css'], ['Eyebrow', '#libSplit .eyebrow', 'base.css']];
+  const typeRows = () => { $('#tt').innerHTML = T.map(([nm, sel, file]) => { const e = document.querySelector(sel); if (!e) return ''; const s = getComputedStyle(e);
+      return `<div class="r"><div class="smp" style="font-family:${s.fontFamily.replace(/"/g, "'")};font-size:${s.fontSize};font-weight:${s.fontWeight};line-height:${s.lineHeight};letter-spacing:${s.letterSpacing}">${esc(e.textContent.trim())}</div>
+        <div class="meta"><b>${nm}</b><br>${parseFloat(s.fontSize).toFixed(1)}px · weight ${s.fontWeight} · line ${parseFloat(s.lineHeight) ? (parseFloat(s.lineHeight) / parseFloat(s.fontSize)).toFixed(2) : s.lineHeight} · tracking ${(parseFloat(s.letterSpacing) / parseFloat(s.fontSize) || 0).toFixed(3)}em<br><code>${file}</code></div></div>`; }).join('')
+      + `<div class="r"><div class="smp" style="font-size:clamp(46px,5.8vw,112px);font-weight:500;line-height:.97;letter-spacing:-.03em;color:var(--tx3)">Hero title</div><div class="meta"><b>Hero title</b><br>Still defined in the Self-Custody page CSS. Moves into the system when the hero becomes a shared module.<br><code>sc-refokus/sc.css</code></div></div>`; };
+  typeRows(); let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(typeRows, 150); });
+
+  /* parts */
+  const P = [
+    [Parts.eyebrow('Self-Custody', { rv: false }), 'Eyebrow', 'Glass pill with the BitGo shield. One style everywhere.', 'Parts.eyebrow(label)'],
+    [Parts.eyebrow('Recent News', { sm: true, rv: false }), 'Eyebrow, small', 'Only inside the nav\'s featured cards.', 'Parts.eyebrow(label, { sm: true })'],
+    [`<a class="btn white" href="#parts">Connect With us${arrow}</a>`, 'Button, white', 'The page button on blue grounds.', '.btn.white'],
+    [`<a class="btn white sm" href="#parts">Connect With Us</a>`, 'Button, nav', 'White, nav size.', '.btn.white.sm'],
+    [`<a class="btn ghost" href="#parts">Wallet-as-a-Service${arrow}</a>`, 'Button, ghost', 'Quiet action next to a main one.', '.btn.ghost'],
+    [`<p class="lead">${esc(Q.why.text)}</p>`, 'Lead', 'All supporting copy under a heading, in every module.', '.lead'],
+    [`<a class="btn" href="#parts">Read More${arrow}</a>`, 'Button, blue', 'Only on white or light grounds.', '.btn', true],
+    [Parts.eyebrow('Self-Custody', { light: true, rv: false }), 'Eyebrow, light', 'On white or light grounds.', '.eyebrow.light', true]
+  ];
+  $('#partsGrid').innerHTML = P.map(([html, nm, use, code, lt]) => `<div class="part${lt ? ' lt' : ''}"><div class="stage">${html}</div><p class="cap"><b>${nm}</b>${use} <code>${code}</code></p></div>`).join('');
+
+  /* module list */
+  const ST = { approved: 'Approved', review: 'In review', page: 'On a page', none: 'Not built' };
+  const row = m => `<div class="mrow" data-st="${m.status}"><div class="nm">${m.slug ? `<a href="m/${m.slug}.html">${esc(m.name)}</a>` : esc(m.name)}${m.ours ? `<small>Ours: ${esc(m.ours)}</small>` : ''}</div>
+    <div><span class="st ${m.status}"><i></i>${ST[m.status]}</span></div>
+    <dl><dt>Used on</dt><dd>${esc(m.where)}</dd>${m.live ? `<dt>Live variations</dt><dd>${esc(m.live)}</dd>` : ''}<dt>Our call</dt><dd class="${m.call ? 'call' : ''}">${esc(m.call || 'Not decided yet')}</dd></dl></div>`;
+  $('#inv').innerHTML = D.modules.map(g => `<div class="mg"><h3>${esc(g.group)}</h3>${g.items.map(row).join('')}</div>`).join('');
+  const F = [['all', 'All'], ...Object.entries(ST)];
+  $('#filt').innerHTML = F.map(([k, l], i) => `<button type="button" data-f="${k}" aria-pressed="${i === 0}">${l}${k === 'all' ? '' : ' · ' + n(k)}</button>`).join('');
+  $('#filt').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+    document.querySelectorAll('#filt button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    document.querySelectorAll('.mrow').forEach(r => r.hidden = b.dataset.f !== 'all' && r.dataset.st !== b.dataset.f);
+    document.querySelectorAll('.mg').forEach(g => g.hidden = ![...g.querySelectorAll('.mrow')].some(r => !r.hidden)); });
+
+  /* rules, pages, libraries */
+  $('#rulesGrid').innerHTML = D.rules.map(g => `<div><h3>${esc(g.group)}</h3><ul>${g.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`).join('');
+  $('#pageLinks').innerHTML = D.pages.map(p => `<a href="${p.href}"><b>${esc(p.name)}<em class="${p.base ? 'on' : ''}">${p.base ? 'On base.css' : 'Not on base.css'}</em></b><span>${esc(p.note)}</span></a>`).join('');
+  $('#libLinks').innerHTML = D.libraries.map(p => `<a href="${p.href}"><b>${esc(p.name)}</b><span>${esc(p.note)}</span></a>`).join('');
+
+  /* table of contents highlight */
+  const links = [...document.querySelectorAll('#toc a:not(.mp)')];
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('.sec[id]').forEach(s => io.observe(s));
+})();
+</script>
+<script type="module">
+import { ICONS2 } from '../shared/icons/icons-2.js';
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+document.getElementById('icg').innerHTML = Object.entries(ICONS2).slice(0, 18).map(([k, v]) => `<div><i class="ico2 ico2-xl ico2-${k}"></i><span>${esc(v.title || k)}</span></div>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/* Styles for the arts in electronic-trading.js (status: review). Every rule is scoped to its own arts:
+   .mc-ui[data-mc-ui=<name>]. The base kit (.u-p, .ut, .pill, .ck, .bar, .hl, .av, .cl, .resp, .wr) comes from modules.css in
+   both hosts (50/50 and 3x multicard); everything else is defined here, so the arts look the same in either host. */
+.mc-ui[data-mc-ui=etLiquidity]::before{background:radial-gradient(closest-side at 45% 50%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=etFunding]::before{background:radial-gradient(closest-side at 40% 40%,rgba(22,71,219,.3),transparent)}
+
+/* shared by the electronic-trading arts */
+.mc-ui[data-mc-ui=etLiquidity] .et-r{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=etLiquidity] .et-r.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui[data-mc-ui=etLiquidity] .et-r>*{position:absolute}
+.mc-ui[data-mc-ui=etLiquidity] .et-ln{left:0;top:0;overflow:visible;filter:drop-shadow(0 0 5px rgba(77,120,255,.95)) drop-shadow(0 0 14px rgba(77,120,255,.55))}
+.mc-ui[data-mc-ui=etLiquidity] .et-ln path{fill:none;stroke-linecap:round}
+.mc-ui[data-mc-ui=etLiquidity] .et-ln .bs{stroke:rgba(205,218,255,.6);stroke-width:2.5}
+.mc-ui[data-mc-ui=etLiquidity] .et-ln .pg{stroke:#a9c1ff;stroke-width:3.5;stroke-dasharray:1 1;stroke-dashoffset:1}
+.mc-ui[data-mc-ui=etFunding] .et-btn{background:#1647DB;border-radius:20px;box-shadow:0 8px 20px -6px rgba(22,71,219,.6)}
+.mc-ui[data-mc-ui=etFunding] .et-btn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:13.5px;font-weight:600;line-height:1}
+.mc-ui[data-mc-ui=etFunding] .et-btn span+span{opacity:0}
+.mc-ui[data-mc-ui=etFunding] .et-btn svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* etLiquidity */
+.mc-ui[data-mc-ui=etLiquidity] .et-dbar{background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
+.mc-ui[data-mc-ui=etLiquidity] .et-dbar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#4d78ff;border-radius:3px}
+
+/* etFunding */
+.mc-ui[data-mc-ui=etFunding] .et-ok{border-radius:50%;background:#1647DB;display:flex;align-items:center;justify-content:center}
+.mc-ui[data-mc-ui=etFunding] .et-ok svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}

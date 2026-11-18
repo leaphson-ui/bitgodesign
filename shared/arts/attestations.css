@@ -1,0 +1,15 @@
+/* Styles for the arts in attestations.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>].
+   The base kit (.u-p, .ut, .hr, .pill, .ck, .resp) comes from modules.css in both hosts (50/50 and 3x multicard).
+   Values follow ui-arts.css and settlement.css: the same blue, greys, radii and shadows. */
+
+/* the soft light behind the art */
+.mc-ui[data-mc-ui=atReport]::before{background:radial-gradient(closest-side at 55% 50%,rgba(22,71,219,.3),transparent)}
+
+/* text and dividers on the dark panel */
+.mc-ui[data-mc-ui=atReport] .wt{color:#fff}
+.mc-ui[data-mc-ui=atReport] .at-hrd{background:rgba(190,205,255,.12)}
+
+/* the tokens and reserves bars on the dark panel: tokens pale, reserves in blue, counted together and always equal */
+.mc-ui[data-mc-ui=atReport] .at-bar{border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden}
+.mc-ui[data-mc-ui=atReport] .at-bar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:4px;background:#4d78ff}
+.mc-ui[data-mc-ui=atReport] .at-bar.tk i{background:rgba(205,218,255,.55)}

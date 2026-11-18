@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BitGo website rebuild</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#02030a;--card:#0a0e1c;--line:rgba(255,255,255,.08);--tx:#f2f5ff;--tx2:rgba(225,232,255,.66);--tx3:rgba(225,232,255,.42);--blue:#1647DB;--blue-hi:#4d78ff;--pad:clamp(20px,4vw,72px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--black);color:var(--tx);font:400 16px/1.5 "Inter Tight","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:auto;background:#060a1a}
+.wrap{max-width:1680px;margin:0 auto;padding:0 var(--pad)}
+header.top{padding:clamp(56px,7vw,112px) 0 clamp(40px,5vw,72px)}
+.mark{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--tx2)}
+.mark svg{width:16px;height:19px}
+h1{margin-top:28px;font-size:clamp(40px,5.4vw,92px);font-weight:500;letter-spacing:-.03em;line-height:.98;max-width:14ch}
+.lede{margin-top:22px;max-width:58ch;font-size:clamp(17px,1.3vw,20px);color:var(--tx2)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.facts div{padding:14px 18px;border-radius:14px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.facts b{display:block;font-size:26px;font-weight:500;letter-spacing:-.02em}
+.facts span{font-size:13.5px;color:var(--tx2)}
+nav.jump{position:sticky;top:0;z-index:5;background:rgba(2,3,10,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav.jump .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:12px;scrollbar-width:none}
+nav.jump a{flex:none;padding:8px 14px;border-radius:999px;font-size:14px;color:var(--tx2)}
+nav.jump a:hover{background:rgba(255,255,255,.06);color:#fff}
+section{padding:clamp(56px,6vw,104px) 0;border-bottom:1px solid var(--line)}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,40px)}
+.sh h2{font-size:clamp(28px,2.6vw,44px);font-weight:500;letter-spacing:-.02em;line-height:1.05}
+.sh p{max-width:60ch;color:var(--tx2)}
+.grid2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.pg{display:block;border-radius:22px;overflow:hidden;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.pg:hover,.sys:hover,.bg:hover,.ar a:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(77,120,255,.55),0 24px 60px -30px rgba(22,71,219,.8)}
+.pg .shots{position:relative;aspect-ratio:16/10;overflow:hidden}
+.pg .shots img{position:absolute;inset:0;height:100%;object-fit:cover;transition:opacity .5s}
+.pg .shots img+img{opacity:0}
+.pg:hover .shots img+img{opacity:1}
+.pg .meta{padding:14px 16px 18px;display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:baseline}
+.pg h3{font-size:19px;font-weight:500;letter-spacing:-.015em}
+.pg em{font-style:normal;font-size:13px;color:#9db6ff}
+.pg.off em{color:var(--tx3)}
+.pg p{grid-column:1/-1;color:var(--tx2);font-size:13.5px}
+.grid5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.sys,.bg{display:block;border-radius:18px;overflow:hidden;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .3s;padding-bottom:16px}
+.sys img{aspect-ratio:16/10;object-fit:cover}
+.sys h3,.bg h3{padding:14px 16px 0;font-size:17px;font-weight:500}
+.sys p,.bg p{padding:4px 16px 0;font-size:14px;color:var(--tx2)}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1400px}
+.bg .pair{display:grid;grid-template-columns:1fr 1fr}
+.bg .pair img{aspect-ratio:16/10;object-fit:cover}
+.cap{margin-top:14px;font-size:13.5px;color:var(--tx3)}
+.ag{padding:22px 0;border-top:1px solid var(--line)}
+.ag:first-child{border-top:0;padding-top:0}
+.ag h3{display:flex;gap:10px;align-items:baseline;font-size:17px;font-weight:500;margin-bottom:14px}
+.ag h3 span{font-size:13px;color:var(--tx3)}
+.ag h3 em{font-style:normal;font-size:13px;color:#9db6ff;margin-left:auto}
+.ag.pick{padding:20px;margin:0 -20px 10px;border-radius:18px;background:rgba(22,71,219,.12);box-shadow:inset 0 0 0 1px rgba(77,120,255,.35);border-top:0}
+.ar{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;max-width:1100px}
+.ar a{display:block;border-radius:12px;overflow:hidden;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .3s;padding-bottom:10px}
+.ar img{aspect-ratio:16/10;object-fit:cover}
+.ar b{display:block;padding:9px 11px 0;font-size:14px;font-weight:500}
+.ar span{display:block;padding:2px 11px 0;font-size:12.5px;color:var(--tx3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+footer{padding:40px 0 64px;color:var(--tx3);font-size:13.5px}
+@media (max-width:1100px){.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid5{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}.grid5{grid-template-columns:repeat(2,minmax(0,1fr))}.grid4{grid-template-columns:1fr}.pg .shots img+img{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header class="top"><div class="wrap">
+  <div class="mark"><svg viewBox="0 0 157 184" aria-hidden="true"><path fill="#4d78ff" d="M156.282 104.257C156.282 146.692 78.3938 183.634 78.3938 183.634C78.3938 183.634 0.50478 146.692 0.50478 104.257C0.50478 93.2381 0.509268 83.5104 0.513558 74.2098C0.522088 55.7192 0.52984 38.9167 0.5 17.0094C49.9579 -5.62206 106.836 -5.59857 156.282 17.0588V104.257Z"/></svg>BitGo website rebuild</div>
+  <h1>bitgo.com, rebuilt page by page</h1>
+  <p class="lede">Live copy word for word, one design system, glass 3D objects over the light curtain. Every page below is built from the same shared parts and modules.</p>
+  <div class="facts"><div><b>4</b><span>pages rebuilt</span></div><div><b>14</b><span>module pages</span></div><div><b>27</b><span>3D models</span></div><div><b>48</b><span>icons</span></div><div><b>8</b><span>background versions</span></div><div><b>45</b><span>earlier explorations</span></div></div>
+</div></header>
+<nav class="jump"><div class="wrap"><a href="#pages">Pages</a><a href="#system">Design system</a><a href="#background">Background versions</a><a href="#archive">Explorations</a></div></nav>
+
+<section id="pages"><div class="wrap">
+  <div class="sh"><h2>The rebuilt pages</h2><p>Hover a page to see a second section. Each opens the full page.</p></div>
+  <div class="grid2">
+      <a class="pg" href="v3-refokus/index.html">
+        <div class="shots"><img src="showcase/img/page-v3-refokus.jpg" alt="" loading="lazy"><img src="showcase/img/page-v3-refokus-2.jpg" alt="" loading="lazy"></div>
+        <div class="meta"><h3>Home</h3><em>On the system</em><p>On the design system. Glass BitGo shield over the light curtain, the five Core services, shared modules.</p></div>
+      </a>
+      <a class="pg" href="home-dark/index.html">
+        <div class="shots"><img src="showcase/img/page-home-dark.jpg" alt="" loading="lazy"><img src="showcase/img/page-home-dark-2.jpg" alt="" loading="lazy"></div>
+        <div class="meta"><h3>Home (dark)</h3><em>Exploring</em><p>The homepage on black like bitgo.com: a black curtain in the hero, the bitgo.com starfield, an interactive shield with an ASCII outline, the live Client Spotlight and The Latest, upgraded.</p></div>
+      </a>
+      <a class="pg" href="sc-refokus/index.html">
+        <div class="shots"><img src="showcase/img/page-sc-refokus.jpg" alt="" loading="lazy"><img src="showcase/img/page-sc-refokus-2.jpg" alt="" loading="lazy"></div>
+        <div class="meta"><h3>Self-Custody</h3><em>On the system</em><p>Built section by section with approval: hero, WalletConnect 50/50, 3x multicard, Key Management.</p></div>
+      </a>
+      <a class="pg" href="qc-refokus/index.html">
+        <div class="shots"><img src="showcase/img/page-qc-refokus.jpg" alt="" loading="lazy"><img src="showcase/img/page-qc-refokus-2.jpg" alt="" loading="lazy"></div>
+        <div class="meta"><h3>Qualified Custody</h3><em>On the system</em><p>On the design system: shared parts, chrome, logo strip and CTA banner. Key, globe and shield in glass.</p></div>
+      </a>
+      <a class="pg off" href="cw-refokus/index.html">
+        <div class="shots"><img src="showcase/img/page-cw-refokus.jpg" alt="" loading="lazy"><img src="showcase/img/page-cw-refokus-2.jpg" alt="" loading="lazy"></div>
+        <div class="meta"><h3>Custody Wallets</h3><em>Not yet on the system</em><p>Live copy with the glass custody safe. Built before the system; next to normalize.</p></div>
+      </a>
+  </div>
+</div></section>
+
+<section id="system"><div class="wrap">
+  <div class="sh"><h2>Design system</h2><p>The library loads the same files the pages load, so everything in it is the real thing.</p></div>
+  <div class="grid5">
+      <a class="sys" href="library/index.html"><img src="showcase/img/lib-index.jpg" alt="" loading="lazy"><h3>Overview</h3><p>Colours, type, parts, rules, every module</p></a>
+      <a class="sys" href="library/models.html"><img src="showcase/img/lib-models.jpg" alt="" loading="lazy"><h3>3D models</h3><p>27 glass objects, drawn live</p></a>
+      <a class="sys" href="library/icons.html"><img src="showcase/img/lib-icons.jpg" alt="" loading="lazy"><h3>Icons</h3><p>48 layered glass-blue icons, dark and light</p></a>
+      <a class="sys" href="library/m/50-50.html"><img src="showcase/img/lib-split.jpg" alt="" loading="lazy"><h3>Module pages</h3><p>One page per module: live, usage, rules</p></a>
+      <a class="sys" href="library/m/code-animation.html"><img src="showcase/img/lib-codeanim.jpg" alt="" loading="lazy"><h3>Product-UI diagrams</h3><p>The Stripe-style animated cards</p></a>
+  </div>
+</div></section>
+
+<section id="background"><div class="wrap">
+  <div class="sh"><h2>Background versions: calm the blue</h2><p>Feedback: the blue is too vibrant and shiny. Each version changes the curtain on every page. Left: hero. Right: below the hero.</p></div>
+  <div class="grid4">
+      <a class="bg" href="sc-refokus/index.html"><div class="pair"><img src="showcase/img/bg-current-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-current-below.jpg" alt="" loading="lazy"></div><h3>Current</h3><p>As built: vivid blue, sharp streaks</p></a>
+      <a class="bg" href="sc-refokus/index.html?calm=1"><div class="pair"><img src="showcase/img/bg-calm-1-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-calm-1-below.jpg" alt="" loading="lazy"></div><h3>Calm 1</h3><p>Muted blue, softer streaks</p></a>
+      <a class="bg" href="sc-refokus/index.html?calm=2"><div class="pair"><img src="showcase/img/bg-calm-2-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-calm-2-below.jpg" alt="" loading="lazy"></div><h3>Calm 2</h3><p>Greyer blue</p></a>
+      <a class="bg" href="sc-refokus/index.html?calm=3"><div class="pair"><img src="showcase/img/bg-calm-3-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-calm-3-below.jpg" alt="" loading="lazy"></div><h3>Calm 3</h3><p>Greyest, softest streaks</p></a>
+      <a class="bg" href="sc-refokus/index.html?calm=3&amp;hue=royal"><div class="pair"><img src="showcase/img/bg-calm-3-royal-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-calm-3-royal-below.jpg" alt="" loading="lazy"></div><h3>Calm 3, royal</h3><p>Closer to BitGo blue</p></a>
+      <a class="bg" href="sc-refokus/index.html?calm=3&amp;hue=indigo"><div class="pair"><img src="showcase/img/bg-calm-3-indigo-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-calm-3-indigo-below.jpg" alt="" loading="lazy"></div><h3>Calm 3, indigo</h3><p>Toward violet</p></a>
+      <a class="bg" href="sc-refokus/index.html?calm=3&amp;hue=steel"><div class="pair"><img src="showcase/img/bg-calm-3-steel-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-calm-3-steel-below.jpg" alt="" loading="lazy"></div><h3>Calm 3, steel</h3><p>Cooler, a touch of cyan</p></a>
+      <a class="bg" href="sc-refokus/index.html?calm=3&amp;hue=navy"><div class="pair"><img src="showcase/img/bg-calm-3-navy-hero.jpg" alt="" loading="lazy"><img src="showcase/img/bg-calm-3-navy-below.jpg" alt="" loading="lazy"></div><h3>Calm 3, navy</h3><p>Deeper and darker</p></a>
+  </div>
+  <p class="cap">Shown on Self-Custody. Add the same ending (for example ?calm=3&amp;hue=steel) to any page URL.</p>
+</div></section>
+
+<section id="archive"><div class="wrap">
+  <div class="sh"><h2>Earlier explorations</h2><p>Every style tried, grouped by family, each in build order: v1, v1 + fixes, v1 again, v2, v3. Refokus v3 became the rebuild.</p></div>
+      <div class="ag pick"><h3>Refokus<span>refokus.com · 4 versions</span><em>Chosen direction: v3 became the rebuild</em></h3><div class="ar"><a href="v-refokus/index.html"><img src="showcase/img/arc-v-refokus.jpg" alt="" loading="lazy"><b>v1</b><span>refokus.com</span></a><a href="v1r-refokus/index.html"><img src="showcase/img/arc-v1r-refokus.jpg" alt="" loading="lazy"><b>v1 again</b><span>refokus.com</span></a><a href="v2-refokus/index.html"><img src="showcase/img/arc-v2-refokus.jpg" alt="" loading="lazy"><b>v2</b><span>refokus.com</span></a><a href="v3-refokus/index.html"><img src="showcase/img/arc-v3-refokus.jpg" alt="" loading="lazy"><b>v3</b><span>True BitGo blue, no violet</span></a></div></div>
+      <div class="ag"><h3>Cantor8<span>cantor8.io · 5 versions</span></h3><div class="ar"><a href="v-cantor8/index.html"><img src="showcase/img/arc-v-cantor8.jpg" alt="" loading="lazy"><b>v1</b><span>cantor8.io · original not recoverable, same as v1 + fixes</span></a><a href="v1b-cantor8/index.html"><img src="showcase/img/arc-v1b-cantor8.jpg" alt="" loading="lazy"><b>v1 + fixes</b><span>cantor8.io</span></a><a href="v1r-cantor8/index.html"><img src="showcase/img/arc-v1r-cantor8.jpg" alt="" loading="lazy"><b>v1 again</b><span>cantor8.io</span></a><a href="v2-cantor8/index.html"><img src="showcase/img/arc-v2-cantor8.jpg" alt="" loading="lazy"><b>v2</b><span>cantor8.io</span></a><a href="v3-cantor8/index.html"><img src="showcase/img/arc-v3-cantor8.jpg" alt="" loading="lazy"><b>v3</b><span>Polished favourite</span></a></div></div>
+      <div class="ag"><h3>Davide<span>davidecattaneo.it · 5 versions</span></h3><div class="ar"><a href="v-davide/index.html"><img src="showcase/img/arc-v-davide.jpg" alt="" loading="lazy"><b>v1</b><span>davidecattaneo.it · original not recoverable, same as v1 + fixes</span></a><a href="v1b-davide/index.html"><img src="showcase/img/arc-v1b-davide.jpg" alt="" loading="lazy"><b>v1 + fixes</b><span>davidecattaneo.it (fix pass stopped partway)</span></a><a href="v1r-davide/index.html"><img src="showcase/img/arc-v1r-davide.jpg" alt="" loading="lazy"><b>v1 again</b><span>davidecattaneo.it</span></a><a href="v2-davide/index.html"><img src="showcase/img/arc-v2-davide.jpg" alt="" loading="lazy"><b>v2</b><span>davidecattaneo.it</span></a><a href="v3-davide/index.html"><img src="showcase/img/arc-v3-davide.jpg" alt="" loading="lazy"><b>v3</b><span>Opener kept, quiet after Core</span></a></div></div>
+      <div class="ag"><h3>Dobre<span>dobre.agency · 5 versions</span></h3><div class="ar"><a href="v-dobre/index.html"><img src="showcase/img/arc-v-dobre.jpg" alt="" loading="lazy"><b>v1</b><span>dobre.agency · original not recoverable, same as v1 + fixes</span></a><a href="v1b-dobre/index.html"><img src="showcase/img/arc-v1b-dobre.jpg" alt="" loading="lazy"><b>v1 + fixes</b><span>dobre.agency</span></a><a href="v1r-dobre/index.html"><img src="showcase/img/arc-v1r-dobre.jpg" alt="" loading="lazy"><b>v1 again</b><span>dobre.agency</span></a><a href="v2-dobre/index.html"><img src="showcase/img/arc-v2-dobre.jpg" alt="" loading="lazy"><b>v2</b><span>dobre.agency</span></a><a href="v3-dobre/index.html"><img src="showcase/img/arc-v3-dobre.jpg" alt="" loading="lazy"><b>v3</b><span>Forms settle sooner, quieter logos</span></a></div></div>
+      <div class="ag"><h3>Maze<span>mazehq.com · 5 versions</span></h3><div class="ar"><a href="v-maze/index.html"><img src="showcase/img/arc-v-maze.jpg" alt="" loading="lazy"><b>v1</b><span>mazehq.com · original not recoverable, same as v1 + fixes</span></a><a href="v1b-maze/index.html"><img src="showcase/img/arc-v1b-maze.jpg" alt="" loading="lazy"><b>v1 + fixes</b><span>mazehq.com</span></a><a href="v1r-maze/index.html"><img src="showcase/img/arc-v1r-maze.jpg" alt="" loading="lazy"><b>v1 again</b><span>mazehq.com</span></a><a href="v2-maze/index.html"><img src="showcase/img/arc-v2-maze.jpg" alt="" loading="lazy"><b>v2</b><span>mazehq.com</span></a><a href="v3-maze/index.html"><img src="showcase/img/arc-v3-maze.jpg" alt="" loading="lazy"><b>v3</b><span>Denser, brighter field</span></a></div></div>
+      <div class="ag"><h3>noexit<span>noexit.framer.ai · 5 versions</span></h3><div class="ar"><a href="v-noexit/index.html"><img src="showcase/img/arc-v-noexit.jpg" alt="" loading="lazy"><b>v1</b><span>noexit.framer.ai · original restored</span></a><a href="v1b-noexit/index.html"><img src="showcase/img/arc-v1b-noexit.jpg" alt="" loading="lazy"><b>v1 + fixes</b><span>noexit.framer.ai</span></a><a href="v1r-noexit/index.html"><img src="showcase/img/arc-v1r-noexit.jpg" alt="" loading="lazy"><b>v1 again</b><span>noexit.framer.ai</span></a><a href="v2-noexit/index.html"><img src="showcase/img/arc-v2-noexit.jpg" alt="" loading="lazy"><b>v2</b><span>noexit.framer.ai</span></a><a href="v3-noexit/index.html"><img src="showcase/img/arc-v3-noexit.jpg" alt="" loading="lazy"><b>v3</b><span>Cleaner stone, less sparkle</span></a></div></div>
+      <div class="ag"><h3>save.design<span>save.design · 5 versions</span></h3><div class="ar"><a href="v-save/index.html"><img src="showcase/img/arc-v-save.jpg" alt="" loading="lazy"><b>v1</b><span>save.design · original not recoverable, same as v1 + fixes</span></a><a href="v1b-save/index.html"><img src="showcase/img/arc-v1b-save.jpg" alt="" loading="lazy"><b>v1 + fixes</b><span>save.design</span></a><a href="v1r-save/index.html"><img src="showcase/img/arc-v1r-save.jpg" alt="" loading="lazy"><b>v1 again</b><span>save.design</span></a><a href="v2-save/index.html"><img src="showcase/img/arc-v2-save.jpg" alt="" loading="lazy"><b>v2</b><span>save.design</span></a><a href="v3-save/index.html"><img src="showcase/img/arc-v3-save.jpg" alt="" loading="lazy"><b>v3</b><span>Hero kept, no scroll locks, calmer terrain</span></a></div></div>
+      <div class="ag"><h3>North<span>north.cloud · 4 versions</span></h3><div class="ar"><a href="v-north/index.html"><img src="showcase/img/arc-v-north.jpg" alt="" loading="lazy"><b>v1</b><span>north.cloud</span></a><a href="v1r-north/index.html"><img src="showcase/img/arc-v1r-north.jpg" alt="" loading="lazy"><b>v1 again</b><span>north.cloud</span></a><a href="v2-north/index.html"><img src="showcase/img/arc-v2-north.jpg" alt="" loading="lazy"><b>v2</b><span>north.cloud</span></a><a href="v3-north/index.html"><img src="showcase/img/arc-v3-north.jpg" alt="" loading="lazy"><b>v3</b><span>Polished</span></a></div></div>
+      <div class="ag"><h3>Matter<span>from save.design&#x27;s Own section · 2 versions</span></h3><div class="ar"><a href="v3-matter/index.html"><img src="showcase/img/arc-v3-matter.jpg" alt="" loading="lazy"><b>v3</b><span>Varied compositions, type over form</span></a><a href="n-matter/index.html"><img src="showcase/img/arc-n-matter.jpg" alt="" loading="lazy"><b>New page</b><span>The point morph from save.design&#x27;s Own section</span></a></div></div>
+      <div class="ag"><h3>Rail<span>from Davide&#x27;s opener · 2 versions</span></h3><div class="ar"><a href="v3-rail/index.html"><img src="showcase/img/arc-v3-rail.jpg" alt="" loading="lazy"><b>v3</b><span>Slower, calmer ride</span></a><a href="n-rail/index.html"><img src="showcase/img/arc-n-rail.jpg" alt="" loading="lazy"><b>New page</b><span>One camera ride along the rail, from Davide&#x27;s opener</span></a></div></div>
+      <div class="ag"><h3>Towers<span>from Cantor8&#x27;s pillars · 2 versions</span></h3><div class="ar"><a href="v3-towers/index.html"><img src="showcase/img/arc-v3-towers.jpg" alt="" loading="lazy"><b>v3</b><span>Photographed architecture, props removed</span></a><a href="n-towers/index.html"><img src="showcase/img/arc-n-towers.jpg" alt="" loading="lazy"><b>New page</b><span>Financial-district architecture, from Cantor8&#x27;s pillars</span></a></div></div>
+      <div class="ag"><h3>Greenlock<span>greenlock.io · 1 version</span></h3><div class="ar"><a href="s2-greenlock/index.html"><img src="showcase/img/arc-s2-greenlock.jpg" alt="" loading="lazy"><b>Calmer type</b><span>greenlock.io</span></a></div></div>
+</div></section>
+
+<footer><div class="wrap">BitGo website rebuild · design reference, not affiliated with the live site</div></footer>
+</body></html>

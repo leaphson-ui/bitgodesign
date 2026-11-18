@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo | Digital asset infrastructure</title>
+<meta name="description" content="BitGo is the digital asset infrastructure company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+</head>
+<body>
+<a class="skip" id="skip" href="#main"></a>
+<canvas id="matter" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="BitGo"><img src="../shared/assets/bitgo-logo.svg" alt="BitGo" width="108" height="37"></a>
+  <nav class="nav-menus" id="navMenus" aria-label="Primary"></nav>
+  <div class="nav-actions" id="navActions"></div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="mega" id="mega" hidden></div>
+</header>
+<div class="mobile-menu" id="mobileMenu" hidden></div>
+<ol class="ticks" id="ticks" aria-hidden="true"></ol>
+
+<main id="main"></main>
+<footer class="foot" id="foot"></footer>
+
+<script src="../shared/content.js"></script>
+<script type="module" src="main.js"></script>
+</body>
+</html>

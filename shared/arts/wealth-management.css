@@ -1,0 +1,44 @@
+/* Styles for the arts in wealth-management.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>].
+   The base kit (.u-p, .ut, .hr, .pill, .ck, .bar, .av, .tabs, .resp) comes from modules.css in both hosts (50/50 and 3x multicard).
+   Values follow ui-arts.css: the same blue, greys, radii, shadows and connector glow. */
+
+/* the soft light behind each art: strong on the dark cards and the 50/50, faint on the paper card */
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmBilling])::before{background:radial-gradient(closest-side at 55% 45%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=wmReporting]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+.mc-ui[data-mc-ui=wmIntegrations]::before{background:radial-gradient(closest-side at 40% 35%,rgba(22,71,219,.3),transparent)}
+
+/* shared: text and dividers on the dark panels, inset rows, icon tiles */
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmBilling],[data-mc-ui=wmReporting],[data-mc-ui=wmIntegrations]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmBilling],[data-mc-ui=wmReporting],[data-mc-ui=wmIntegrations]) .wm-hrd{background:rgba(190,205,255,.12)}
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmReporting],[data-mc-ui=wmIntegrations]) .wm-ok{color:#9db6ff}
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmIntegrations]) .wm-row{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmIntegrations]) .wm-row.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmIntegrations]) .wm-row>*{position:absolute}
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmIntegrations],[data-mc-ui=wmReporting]) :is(.wm-ki,.wm-fi){border-radius:9px;display:flex;align-items:center;justify-content:center;color:#1647DB;background:#e4ecff}
+.mc-ui:is([data-mc-ui=wmInKind],[data-mc-ui=wmIntegrations],[data-mc-ui=wmReporting]) :is(.wm-ki,.wm-fi) svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* wmInKind: tokens on the dark panel, the glowing connectors (as the key diagrams), the moving amounts */
+.mc-ui[data-mc-ui=wmInKind] .wm-tok{border-radius:50%;background:rgba(255,255,255,.1);color:#dfe8ff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mc-ui[data-mc-ui=wmInKind] .wm-ln{left:0;top:0;overflow:visible;filter:drop-shadow(0 0 5px rgba(77,120,255,.95)) drop-shadow(0 0 14px rgba(77,120,255,.55))}
+.mc-ui[data-mc-ui=wmInKind] .wm-ln path{fill:none;stroke-linecap:round}
+.mc-ui[data-mc-ui=wmInKind] .wm-ln .bs{stroke:rgba(205,218,255,.6);stroke-width:2.5}
+.mc-ui[data-mc-ui=wmInKind] .wm-ln .pg{stroke:#a9c1ff;stroke-width:3.5;stroke-dasharray:1 1;stroke-dashoffset:1}
+.mc-ui[data-mc-ui=wmInKind] .wm-mv{left:0;top:0;height:26px;padding:0 12px;border-radius:13px;background:#fff;box-shadow:0 0 0 1.5px #1647DB,0 6px 14px rgba(0,0,10,.35);opacity:0;display:flex;align-items:center;white-space:nowrap;z-index:3}
+.mc-ui[data-mc-ui=wmInKind] .wm-mv span{position:static;font-size:12px;font-weight:600;color:#1647DB;line-height:1}
+
+/* wmReporting: the P&L chart and the report file row on the dark panel */
+.mc-ui[data-mc-ui=wmReporting] .wm-ch{overflow:visible}
+.mc-ui[data-mc-ui=wmReporting] .wm-ch .gl{stroke:rgba(20,40,110,.07);stroke-width:1}
+.mc-ui[data-mc-ui=wmReporting] .wm-ch .ar{fill:url(#wmg)}
+.mc-ui[data-mc-ui=wmReporting] .wm-ch .ln{fill:none;stroke:#1647DB;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+.mc-ui[data-mc-ui=wmReporting] .wm-ch .pt{fill:#fff;stroke:#1647DB;stroke-width:2.5}
+.mc-ui[data-mc-ui=wmReporting] .wm-file{border-radius:10px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=wmReporting] .wm-file.act{background:rgba(77,120,255,.22);box-shadow:inset 0 0 0 1.5px #7ea2ff}
+.mc-ui[data-mc-ui=wmReporting] .wm-file>*{position:absolute}
+.mc-ui[data-mc-ui=wmReporting] .wm-fi{background:rgba(77,120,255,.22);color:#cfdcff}
+
+/* wmIntegrations: the on/off switch of each connection */
+.mc-ui[data-mc-ui=wmIntegrations] .wm-tg{width:38px;height:20px;border-radius:10px;background:#c9d0e2}
+.mc-ui[data-mc-ui=wmIntegrations] .wm-tg>*{position:absolute}
+.mc-ui[data-mc-ui=wmIntegrations] .wm-tg i{inset:0;border-radius:10px;background:#1647DB;opacity:0}
+.mc-ui[data-mc-ui=wmIntegrations] .wm-tg b{left:3.5px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,30,.25)}

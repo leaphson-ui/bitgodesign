@@ -1,0 +1,36 @@
+/* DeFi UI arts (shared/arts/defi.js). Every rule is scoped to its own art (or the list of DeFi arts that share it). The shared
+   panel, type, pill, avatar, check, highlight and radio styles come from modules.css; these add only what the DeFi arts have of
+   their own, in the same blue, greys, radii and shadows. */
+.mc-ui:is([data-mc-ui=dfPolicy],[data-mc-ui=dfAudit],[data-mc-ui=dfStrategy])::before{background:radial-gradient(closest-side at 60% 45%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=dfDeposit]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+.mc-ui:is([data-mc-ui=dfPolicy],[data-mc-ui=dfAudit],[data-mc-ui=dfStrategy]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=dfPolicy],[data-mc-ui=dfAudit],[data-mc-ui=dfStrategy]) .df-hrd{background:rgba(190,205,255,.12)}
+.mc-ui:is([data-mc-ui=dfStrategy]) .df-ok{color:#9db6ff}
+.mc-ui:is([data-mc-ui=dfStrategy]) .u-p.dk .ck .rg{border-color:rgba(190,205,255,.3)}
+
+/* dfPolicy: rule switches, the allowed / blocked results */
+.mc-ui[data-mc-ui=dfPolicy] .df-sw{width:38px;height:20px;border-radius:10px;background:#c9d0e2}
+.mc-ui[data-mc-ui=dfPolicy] .df-sw i{position:absolute;inset:0;border-radius:10px;background:#1647DB;opacity:0}
+.mc-ui[data-mc-ui=dfPolicy] .df-sw b{position:absolute;left:3.5px;top:3px;width:15px;height:15px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,20,.25)}
+.mc-ui[data-mc-ui=dfPolicy] .df-res{height:24px;padding:0 10px;border-radius:12px;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;opacity:0}
+.mc-ui[data-mc-ui=dfPolicy] .df-res.ok{background:rgba(77,120,255,.25);color:#dfe8ff}
+.mc-ui[data-mc-ui=dfPolicy] .df-res.no{background:rgba(255,255,255,.1);color:rgba(205,218,255,.75)}
+.mc-ui[data-mc-ui=dfPolicy] .df-res svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* dfAudit: the trail (rows slide in under a clip), the newest row's marker, the live tag, exposure bars on the dark panel */
+.mc-ui[data-mc-ui=dfAudit] .df-clip{overflow:hidden}
+.mc-ui[data-mc-ui=dfAudit] .df-dot{width:8px;height:8px;border-radius:50%;background:#c9d0e2;transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=dfAudit] .wr.new .df-dot{background:#1647DB;box-shadow:0 0 0 4px rgba(22,71,219,.15)}
+.mc-ui[data-mc-ui=dfAudit] .df-live{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#1647DB;line-height:1}
+.mc-ui[data-mc-ui=dfAudit] .df-live i{position:static;width:7px;height:7px;border-radius:50%;background:#1647DB;box-shadow:0 0 0 3px rgba(22,71,219,.18)}
+.mc-ui[data-mc-ui=dfAudit] .df-bar{border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.mc-ui[data-mc-ui=dfAudit] .df-bar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:#4d78ff}
+
+/* dfDeposit: inset step rows and the deposit button (the paper card's rows, as cwSoftware / gmVoice) */
+.mc-ui[data-mc-ui=dfDeposit] .df-row{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=dfDeposit] .df-row.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui[data-mc-ui=dfDeposit] .df-row>*{position:absolute}
+.mc-ui[data-mc-ui=dfDeposit] .df-btn{background:#1647DB;border-radius:22px;box-shadow:0 8px 20px -6px rgba(22,71,219,.6)}
+.mc-ui[data-mc-ui=dfDeposit] .df-btn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:13.5px;font-weight:600;line-height:1;white-space:nowrap}
+.mc-ui[data-mc-ui=dfDeposit] .df-btn .l1{opacity:0}
+.mc-ui[data-mc-ui=dfDeposit] .df-btn svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}

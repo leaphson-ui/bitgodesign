@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo | Digital asset infrastructure</title>
+<meta name="description" content="The digital asset infrastructure company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/" } }
+</script>
+<script src="../shared/content.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+</head>
+<body>
+<a class="skip" href="#main" id="skip">Skip to content</a>
+
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="BitGo"><img src="../shared/assets/bitgo-logo.svg" alt="BitGo" width="108" height="37"></a>
+  <nav class="nav-links" id="navLinks" aria-label="Primary"></nav>
+  <div class="nav-actions" id="navActions"></div>
+  <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+</header>
+
+<main id="main">
+
+<!-- 2. HERO -->
+<section class="hero dark" id="hero" data-nav="dark">
+  <canvas class="hero-gl" id="heroGL" aria-hidden="true"></canvas>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-inner wrap">
+    <h1 class="giant hero-h1" id="heroH1">
+      <span class="ln l1"><span class="rot" id="rot"></span></span>
+      <span class="ln l2">Your Digital</span>
+      <span class="ln l3">Asset</span>
+      <span class="ln l4">Strategy</span>
+    </h1>
+    <div class="hero-foot">
+      <div class="frame hero-cta">
+        <p id="heroSub"></p>
+        <a class="pill pill-blue" id="heroCta" href="#cta"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. TRUST -->
+<section class="trust dark" id="trust" data-nav="dark">
+  <div class="wrap">
+    <h2 class="giant mid rv" id="trustTitle"></h2>
+  </div>
+  <div class="marquee" id="marquee" aria-label="Client logos"><div class="marquee-track" id="marqueeTrack"></div></div>
+</section>
+
+<!-- 4. BADGES -->
+<section class="badges dark" id="badges" data-nav="dark">
+  <div class="wrap badges-row" id="badgesRow"></div>
+</section>
+
+<!-- 5. CORE -->
+<section class="core pale" id="core" data-nav="light">
+  <div class="wrap">
+    <h2 class="giant core-h rv" id="coreTitle"></h2>
+    <div class="core-grid">
+      <div class="core-stage"><div class="core-sticky"><canvas id="stackGL" aria-hidden="true"></canvas></div></div>
+      <div class="core-list" id="coreList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ESTABLISHED -->
+<section class="est blue" id="est" data-nav="dark">
+  <canvas class="est-gl" id="estGL" aria-hidden="true"></canvas>
+  <div class="wrap est-inner">
+    <h2 class="giant est-h" id="estTitle"></h2>
+    <div class="est-meta">
+      <p id="estText"></p>
+      <a class="pill pill-white" id="estCta"></a>
+    </div>
+    <div class="est-logos" id="estLogos"></div>
+  </div>
+</section>
+
+<!-- 7. BUILD -->
+<section class="build pale" id="build" data-nav="light">
+  <div class="wrap">
+    <h2 class="giant build-h rv" id="buildTitle"></h2>
+    <div class="layers" id="layers"></div>
+  </div>
+</section>
+
+<!-- 8. SUPPORT -->
+<section class="support dark" id="support" data-nav="dark">
+  <div class="wrap support-grid">
+    <div class="clock-wrap">
+      <svg class="clock" id="clock" viewBox="0 0 600 600" aria-hidden="true"></svg>
+      <div class="clock-label"><span class="giant" id="supLabel"></span></div>
+    </div>
+    <div class="support-copy">
+      <h2 class="support-h rv" id="supTitle"></h2>
+      <ul class="support-list" id="supList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 9. OWN -->
+<section class="own paper" id="own" data-nav="light">
+  <div class="wrap">
+    <h2 class="giant own-h rv" id="ownTitle"></h2>
+    <div class="own-list" id="ownList"></div>
+  </div>
+</section>
+
+<!-- 10. SPOTLIGHT -->
+<section class="spot dark" id="spot" data-nav="dark">
+  <div class="wrap">
+    <h2 class="giant mid rv" id="spotTitle"></h2>
+    <div class="spot-grid" id="spotGrid"></div>
+  </div>
+</section>
+
+<!-- 11. LATEST -->
+<section class="latest pale" id="latest" data-nav="light">
+  <div class="wrap">
+    <div class="latest-head">
+      <h2 class="giant mid rv" id="latestTitle"></h2>
+      <a class="pill pill-ink" id="latestAll"></a>
+    </div>
+    <ol class="posts" id="posts"></ol>
+  </div>
+</section>
+
+<!-- 12. CTA -->
+<section class="cta dark" id="cta" data-nav="dark">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="wrap cta-inner">
+    <h2 class="giant cta-h" id="ctaTitle"></h2>
+    <a class="pill pill-blue big" id="ctaBtn" href="#"></a>
+  </div>
+</section>
+</main>
+
+<!-- 13. FOOTER -->
+<footer class="foot dark" id="foot" data-nav="dark">
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="../shared/assets/bitgo-logo.svg" alt="BitGo" width="140" height="48">
+      <form class="news" id="news">
+        <label for="email" id="newsLabel"></label>
+        <div class="news-row"><input id="email" type="email" autocomplete="email"><button class="pill pill-blue" type="submit" id="newsBtn"></button></div>
+      </form>
+      <ul class="socials" id="socials"></ul>
+    </div>
+    <div class="legal" id="legal"></div>
+    <div class="foot-links" id="footLinks"></div>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

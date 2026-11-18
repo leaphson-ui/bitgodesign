@@ -1,0 +1,14 @@
+/* Styles for the arts in otc-trading.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>].
+   The base kit (.u-p, .ut, .hr) comes from modules.css in both hosts (50/50 and 3x multicard). */
+.mc-ui[data-mc-ui=otcResearch]::before{background:radial-gradient(closest-side at 45% 45%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=otcResearch] .oc-chip{height:24px;padding:0 10px;border-radius:12px;background:#eef1f9;color:#39425f;font-size:12px;font-weight:600;line-height:24px;white-space:nowrap}
+.mc-ui[data-mc-ui=otcResearch] .oc-ch{overflow:visible}
+.mc-ui[data-mc-ui=otcResearch] .oc-ch .gl{stroke:rgba(20,40,110,.07);stroke-width:1}
+.mc-ui[data-mc-ui=otcResearch] .oc-ch .ar{fill:url(#ocg)}
+.mc-ui[data-mc-ui=otcResearch] .oc-ch .ln{fill:none;stroke:#1647DB;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.mc-ui[data-mc-ui=otcResearch] .oc-ch .pt{fill:#fff;stroke:#1647DB;stroke-width:2.5}
+.mc-ui[data-mc-ui=otcResearch] .oc-tag{height:24px;padding:0 11px;border-radius:12px;background:#1647DB;color:#fff;font-size:12px;font-weight:600;line-height:24px;white-space:nowrap;box-shadow:0 6px 14px -4px rgba(22,71,219,.6)}
+.mc-ui[data-mc-ui=otcResearch] .oc-sk{height:7px;border-radius:4px;background:#eef1f9}
+.mc-ui[data-mc-ui=otcResearch] .oc-sk.dk{background:rgba(255,255,255,.14)}
+.mc-ui[data-mc-ui=otcResearch] .oc-row>*{position:absolute}
+.mc-ui[data-mc-ui=otcResearch] .oc-lb{left:0;top:0;height:24px;padding:0 10px;border-radius:12px;background:rgba(77,120,255,.22);color:#cfdcff;font-size:11.5px;font-weight:600;line-height:24px;white-space:nowrap}

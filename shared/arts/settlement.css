@@ -1,0 +1,46 @@
+/* Styles for the arts in settlement.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>].
+   The base kit (.u-p, .ut, .hr, .pill, .ck, .bar, .resp) comes from modules.css in both hosts (50/50 and 3x multicard).
+   Values follow ui-arts.css: the same blue, greys, radii, shadows and connector glow. */
+
+/* the soft light behind each art: strong on the dark cards and the 50/50, faint on the paper card */
+.mc-ui[data-mc-ui=stDvp]::before{background:radial-gradient(closest-side at 50% 62%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=stSecure]::before{background:radial-gradient(closest-side at 62% 38%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=stRisk]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+.mc-ui[data-mc-ui=stCapital]::before{background:radial-gradient(closest-side at 38% 32%,rgba(22,71,219,.3),transparent)}
+
+/* shared: text and dividers on the dark panels */
+.mc-ui:is([data-mc-ui=stDvp],[data-mc-ui=stSecure],[data-mc-ui=stRisk],[data-mc-ui=stCapital]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=stDvp],[data-mc-ui=stSecure],[data-mc-ui=stRisk],[data-mc-ui=stCapital]) .st-hrd{background:rgba(190,205,255,.12)}
+.mc-ui[data-mc-ui=stDvp] .st-ok{color:#9db6ff}
+
+/* stDvp: the counterparty panels light while their leg moves; connectors glow like the key diagrams; the moving legs */
+.mc-ui[data-mc-ui=stDvp] .u-p{transition:box-shadow .35s}
+.mc-ui[data-mc-ui=stDvp] .u-p.act{box-shadow:0 0 0 1.5px #1647DB,0 20px 40px -8px rgba(20,45,130,.3)}
+.mc-ui[data-mc-ui=stDvp] .st-ln{left:0;top:0;overflow:visible;filter:drop-shadow(0 0 5px rgba(77,120,255,.95)) drop-shadow(0 0 14px rgba(77,120,255,.55))}
+.mc-ui[data-mc-ui=stDvp] .st-ln path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui[data-mc-ui=stDvp] .st-ln .bs{stroke:rgba(205,218,255,.6);stroke-width:2.5}
+.mc-ui[data-mc-ui=stDvp] .st-ln .pg{stroke:#a9c1ff;stroke-width:3.5;stroke-dasharray:1 1;stroke-dashoffset:1}
+.mc-ui[data-mc-ui=stDvp] .st-mv{left:0;top:0;height:26px;padding:0 12px;border-radius:13px;background:#fff;box-shadow:0 0 0 1.5px #1647DB,0 6px 14px rgba(0,0,10,.35);opacity:0;display:flex;align-items:center;white-space:nowrap;z-index:3}
+.mc-ui[data-mc-ui=stDvp] .st-mv span{position:static;font-size:12px;font-weight:600;color:#1647DB;line-height:1}
+
+/* stSecure: the custody chip on each line of the dark panel */
+.mc-ui[data-mc-ui=stSecure] .st-lk{height:22px;padding:0 9px;border-radius:11px;background:rgba(77,120,255,.22);color:#cfdcff;font-size:12px;font-weight:600;line-height:1;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.mc-ui[data-mc-ui=stSecure] .st-lk svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* stRisk: exposure meters (grey, coming down) and the three covered segments on the dark panel */
+.mc-ui[data-mc-ui=stRisk] .st-rb i{background:#9aa3bd;width:100%}
+.mc-ui[data-mc-ui=stRisk] .st-seg3{border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.mc-ui[data-mc-ui=stRisk] .st-seg3 i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:#7ea2ff}
+
+/* stCapital: the mode switch, the stacked allocation bar and its legend swatches */
+.mc-ui[data-mc-ui=stCapital] .st-tabs{height:32px;width:226px;padding:3px;border-radius:16px;background:#eef1f9;display:flex}
+.mc-ui[data-mc-ui=stCapital] .st-tabs i{position:absolute;left:3px;top:3px;width:110px;height:26px;border-radius:13px;background:#fff;box-shadow:0 1px 3px rgba(20,40,110,.18)}
+.mc-ui[data-mc-ui=stCapital] .st-tabs span{position:relative;width:110px;text-align:center;line-height:26px;font-size:12.5px;font-weight:500;color:#6c7694;white-space:nowrap}
+.mc-ui[data-mc-ui=stCapital] .st-tabs span.sel{color:#0b1230;font-weight:600}
+.mc-ui[data-mc-ui=stCapital] .st-stack{display:flex;gap:0;border-radius:7px;overflow:hidden;background:#e8ecf6}
+.mc-ui[data-mc-ui=stCapital] .st-stack i{position:static;display:block;height:100%;flex:none}
+.mc-ui[data-mc-ui=stCapital] :is(.st-stack,.st-sw).v0,.mc-ui[data-mc-ui=stCapital] .st-stack .v0{background:#8d99b8}
+.mc-ui[data-mc-ui=stCapital] .v1{background:#aab4cf}
+.mc-ui[data-mc-ui=stCapital] .v2{background:#c9d0e2}
+.mc-ui[data-mc-ui=stCapital] .cu{background:#1647DB}
+.mc-ui[data-mc-ui=stCapital] .st-sw{width:9px;height:9px;border-radius:3px}

@@ -1,0 +1,67 @@
+/* Styles for the arts in platform.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>]. The base kit
+   (.u-p, .ut, .hr, .pill, .ck, .resp, .av, .chip) comes from modules.css in both hosts (50/50 and 3x multicard). Values follow
+   ui-arts.css, link.css and settlement.css: the same blue, greys, radii, shadows and glow. */
+.mc-ui:is([data-mc-ui=pfAdmin],[data-mc-ui=pfPolicy])::before{background:radial-gradient(closest-side at 62% 45%,rgba(22,71,219,.32),transparent)}
+.mc-ui:is([data-mc-ui=pfPortfolio],[data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn])::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=pfOrder]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+
+/* shared: dark-panel text, dividers, status; nested groups keep the kit's absolute placement */
+.mc-ui:is([data-mc-ui=pfAdmin],[data-mc-ui=pfPolicy],[data-mc-ui=pfAsk]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=pfAdmin],[data-mc-ui=pfPolicy],[data-mc-ui=pfAsk]) .pf-hrd{background:rgba(190,205,255,.12)}
+.mc-ui:is([data-mc-ui=pfAsk]) .pf-ok{color:#9db6ff}
+.mc-ui:is([data-mc-ui=pfAdmin],[data-mc-ui=pfPortfolio],[data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfOrder],[data-mc-ui=pfLearn]) :is(.pf-row,.pf-tile,.pf-field,.pf-prompt,.pf-btn)>*{position:absolute}
+
+/* the BitGo Assist prompt (pfAssist, pfAsk, pfLearn): dark glass bar, spark mark, typed question, caret, send button */
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-prompt{border-radius:26px;background:#050b2b;box-shadow:0 0 0 1px rgba(160,185,255,.35),0 0 26px rgba(77,120,255,.35),0 18px 36px rgba(0,0,10,.5)}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-spk{left:18px;top:15px;width:22px;height:22px;color:#9db6ff}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) :is(.pf-spk,.pf-mk) svg{width:100%;height:100%;fill:currentColor}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-prompt{display:flex;align-items:center}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-prompt>:is(.pf-q,.pf-cr){position:static}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-q{margin-left:52px;font-size:15px;font-weight:500;line-height:1;color:#fff;white-space:pre}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-cr{display:inline-block;width:2px;height:18px;margin-left:2px;background:#9db6ff}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-send{right:10px;top:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);color:#cfdcff;display:flex;align-items:center;justify-content:center;transition:background .3s}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-send.on{background:#4d78ff;color:#fff}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-send svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-mk{width:20px;height:20px;color:#1647DB}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .u-p[data-k=ans]{opacity:0}
+
+/* the blue action button (pfAssist, pfAsk, pfOrder): label, then a tick and the done label */
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfOrder]) .pf-btn{background:#1647DB;border-radius:19px;box-shadow:0 8px 20px -6px rgba(22,71,219,.6)}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfOrder]) .pf-btn span{inset:0;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:13.5px;font-weight:600;line-height:1;white-space:nowrap}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfOrder]) .pf-btn span+span{opacity:0}
+.mc-ui:is([data-mc-ui=pfAssist],[data-mc-ui=pfAsk],[data-mc-ui=pfOrder]) .pf-btn svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* path and topic chips (pfAsk, pfLearn) */
+.mc-ui:is([data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-crumb{border-radius:15px;background:#eef1f9;color:#39425f;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.mc-ui:is([data-mc-ui=pfAsk],[data-mc-ui=pfLearn]) .pf-crumb.on{background:#e4ecff;color:#1647DB;box-shadow:inset 0 0 0 1.4px #1647DB}
+.mc-ui[data-mc-ui=pfAsk] .pf-sep{font-style:normal;font-size:14px;font-weight:600;color:#9aa3bd;line-height:14px}
+.mc-ui[data-mc-ui=pfAsk] .pf-sk{border-radius:4px;background:rgba(255,255,255,.1)}
+.mc-ui[data-mc-ui=pfAsk] .u-p[data-k=dest]{opacity:0}
+.mc-ui[data-mc-ui=pfLearn] .pf-crumb{opacity:0}
+
+/* pfAdmin: the role selection on the dark panel (live: a blue pill), the member rows */
+.mc-ui[data-mc-ui=pfAdmin] .pf-row{left:0;top:0;width:100%;height:100%;pointer-events:none;transition:opacity .3s}
+.mc-ui[data-mc-ui=pfAdmin] .pf-sel{width:226px;height:28px;border-radius:14px;background:linear-gradient(90deg,#1647DB,#4d78ff);box-shadow:0 0 18px rgba(77,120,255,.6)}
+.mc-ui[data-mc-ui=pfAdmin] .pf-ro{color:rgba(190,205,255,.55);transition:color .3s}
+.mc-ui[data-mc-ui=pfAdmin] .pf-ro.on{color:#fff}
+
+/* pfPolicy: the step rail with its nodes (live: a vertical timeline, the active node blue) */
+.mc-ui[data-mc-ui=pfPolicy] .pf-rail{width:2px;background:#e8ecf6}
+.mc-ui[data-mc-ui=pfPolicy] .pf-rail b{position:absolute;left:0;top:0;width:100%;height:0;background:#1647DB}
+.mc-ui[data-mc-ui=pfPolicy] .pf-node{width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1.6px rgba(20,40,110,.22);transition:background .3s,box-shadow .3s}
+.mc-ui[data-mc-ui=pfPolicy] .pf-node.on{background:#1647DB;box-shadow:0 0 0 4px rgba(22,71,219,.18)}
+.mc-ui[data-mc-ui=pfPolicy] .pf-cap{letter-spacing:.08em}
+
+/* pfPortfolio: the Go Account chip, the allocation bar segments and the wallet tiles (the active one outlined, as live) */
+.mc-ui[data-mc-ui=pfPortfolio] .pf-chip{border-radius:15px;background:#eef1f9;color:#0b1230;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.mc-ui[data-mc-ui=pfPortfolio] .pf-seg{height:6px;border-radius:3px;background:#e8ecf6;overflow:hidden}
+.mc-ui[data-mc-ui=pfPortfolio] .pf-seg b{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:#1647DB}
+.mc-ui[data-mc-ui=pfPortfolio] .pf-tile{border-radius:12px;background:#f3f5fb;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=pfPortfolio] .pf-tile.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+
+/* pfOrder: the BTC / USD switch and the amount field */
+.mc-ui[data-mc-ui=pfOrder] .pf-tabs{height:32px;width:132px;padding:3px;border-radius:16px;background:#eef1f9;display:flex}
+.mc-ui[data-mc-ui=pfOrder] .pf-tabs i{position:absolute;left:3px;top:3px;width:63px;height:26px;border-radius:13px;background:#fff;box-shadow:0 1px 3px rgba(20,40,110,.18)}
+.mc-ui[data-mc-ui=pfOrder] .pf-tabs span{position:relative;width:63px;text-align:center;line-height:26px;font-size:12.5px;font-weight:500;color:#6c7694}
+.mc-ui[data-mc-ui=pfOrder] .pf-tabs span.sel{color:#0b1230;font-weight:600}
+.mc-ui[data-mc-ui=pfOrder] .pf-field{border-radius:12px;background:#f3f5fb;box-shadow:inset 0 0 0 1.5px #1647DB}

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo | Digital Asset Infrastructure</title>
+<meta name="description" content="BitGo is the digital asset infrastructure company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#main" id="skip">Skip to content</a>
+
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="BitGo home"><img src="../shared/assets/bitgo-logo.svg" alt="BitGo" width="108" height="37"></a>
+  <nav class="nav-menus" id="navMenus" aria-label="Primary"></nav>
+  <div class="nav-actions" id="navActions"></div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="nav-panel" id="navPanel"></div>
+</header>
+
+<svg class="vline" id="vline" aria-hidden="true">
+  <path class="v-track" id="vTrack"/>
+  <g id="vBranchTracks"></g>
+  <path class="v-glow" id="vGlow"/>
+  <path class="v-live" id="vLive"/>
+  <g id="vBranches"></g>
+  <g id="vPackets"></g>
+  <circle class="v-halo" id="vHalo" r="16"/>
+  <circle class="v-head" id="vHead" r="5"/>
+</svg>
+
+<main id="main">
+  <!-- 1 hero -->
+  <section class="hero" id="top">
+    <div class="hero-bg" data-scene="hero"><canvas></canvas></div>
+    <div class="hero-shade"></div>
+    <div class="wrap hero-inner">
+      <h1 class="hero-h1" id="heroH1"></h1>
+      <p class="hero-sub" id="heroSub"></p>
+      <a class="btn" id="heroCta" href="#cta"><span></span><i aria-hidden="true">&#8599;</i></a>
+    </div>
+  </section>
+
+  <!-- 2 trust -->
+  <section class="trust" id="trust">
+    <div class="wrap">
+      <h2 class="h2 trust-title reveal" id="trustTitle"></h2>
+      <div class="trust-grid" id="trustGrid"></div>
+    </div>
+  </section>
+
+  <!-- 3 badges -->
+  <section class="badges" id="badges">
+    <div class="wrap"><ul class="badge-row" id="badgeRow"></ul></div>
+  </section>
+
+  <div class="wipe" data-from="#1647DB" data-to="#090b12" data-seed="3"><canvas></canvas></div>
+
+  <!-- 4 core -->
+  <section class="core dark" id="core">
+    <div class="wrap">
+      <h2 class="h1 core-title reveal" id="coreTitle"></h2>
+      <div class="core-rows" id="coreRows"></div>
+    </div>
+  </section>
+
+  <div class="wipe" data-from="#090b12" data-to="#1647DB" data-seed="11"><canvas></canvas></div>
+
+  <!-- 5 established -->
+  <section class="estab" id="estab">
+    <div class="wrap estab-grid">
+      <div class="estab-copy">
+        <h2 class="h1 reveal" id="estabTitle"></h2>
+        <p class="lead reveal" id="estabText"></p>
+        <a class="btn" id="estabCta" href="#"><span></span><i aria-hidden="true">&#8599;</i></a>
+      </div>
+      <div class="estab-tiles" id="estabTiles"></div>
+    </div>
+  </section>
+
+  <!-- 7 build -->
+  <section class="build" id="build">
+    <div class="wrap">
+      <h2 class="h1 build-title reveal" id="buildTitle"></h2>
+      <div class="build-cards" id="buildCards"></div>
+    </div>
+  </section>
+
+  <div class="wipe" data-from="#1647DB" data-to="#090b12" data-seed="7"><canvas></canvas></div>
+
+  <!-- 8 support -->
+  <section class="support dark" id="support">
+    <div class="wrap support-grid">
+      <div class="support-viz"><canvas id="supportCanvas"></canvas></div>
+      <div class="support-copy">
+        <h2 class="h1 reveal" id="supportLabel"></h2>
+        <p class="lead reveal" id="supportTitle"></p>
+        <ul class="support-list" id="supportList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 own -->
+  <section class="own dark" id="own">
+    <div class="own-bg" data-scene="night"><canvas></canvas></div>
+    <div class="own-shade"></div>
+    <div class="wrap own-inner">
+      <h2 class="h1 own-title reveal" id="ownTitle"></h2>
+      <ul class="own-list" id="ownList"></ul>
+    </div>
+  </section>
+
+  <!-- 10 spotlight -->
+  <section class="spot dark" id="spot">
+    <div class="wrap">
+      <h2 class="h2 reveal" id="spotTitle"></h2>
+      <div class="spot-row" id="spotRow"></div>
+    </div>
+  </section>
+
+  <div class="wipe" data-from="#090b12" data-to="#1647DB" data-seed="19"><canvas></canvas></div>
+
+  <!-- 11 latest -->
+  <section class="latest" id="latest">
+    <div class="wrap">
+      <div class="latest-head">
+        <h2 class="h1 reveal" id="latestTitle"></h2>
+        <a class="btn" id="latestAll" href="#"><span></span><i aria-hidden="true">&#8599;</i></a>
+      </div>
+      <ul class="latest-list" id="latestList"></ul>
+    </div>
+  </section>
+
+  <!-- 12 cta -->
+  <section class="cta" id="cta">
+    <div class="wrap cta-inner">
+      <h2 class="h0 reveal" id="ctaTitle"></h2>
+      <a class="btn btn-lg node" id="ctaBtn" href="#" data-hit><span></span><i aria-hidden="true">&#8599;</i></a>
+    </div>
+  </section>
+
+  <div class="wipe" data-from="#1647DB" data-to="#090b12" data-seed="29"><canvas></canvas></div>
+</main>
+
+<!-- 13 footer -->
+<footer class="footer dark" id="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <img class="foot-logo" src="../shared/assets/bitgo-logo.svg" alt="BitGo" width="217" height="74">
+      <form class="news" id="newsForm" onsubmit="return false">
+        <label for="newsEmail" id="newsLabel"></label>
+        <div class="news-field"><input id="newsEmail" type="email" autocomplete="email"><button type="submit" id="newsBtn"></button></div>
+      </form>
+      <ul class="socials" id="socials"></ul>
+    </div>
+    <div class="legal" id="legal"></div>
+    <div class="foot-links" id="footLinks"></div>
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="main.js"></script>
+<script type="module" src="scene.js"></script>
+</body>
+</html>

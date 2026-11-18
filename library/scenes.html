@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scenes · BitGo Design System</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/system/base.css">
+<link rel="stylesheet" href="../shared/system/scenes.css">
+<link rel="stylesheet" href="lib.css">
+<style>
+/* gallery chrome only: the frames stand in for the real surfaces (multicard ink and paper cards, the 50/50 visual on the blue page) */
+.side nav .grp{margin:18px 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3)}
+.side{overflow:auto}
+.sc-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.sc-head h2{font-family:ui-monospace,Consolas,monospace;font-size:clamp(26px,2.2vw,38px);font-weight:500;letter-spacing:-.01em}
+.kind{font-size:13px;font-weight:500;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);color:#cfdcff}
+.frames{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px}
+.fr{margin:0;position:relative;border-radius:clamp(20px,2.2vw,32px);overflow:hidden;flex:none}
+/* the multicard's canvas column at this window width: the card's 1.1fr of 2.1fr, as tall as the card's min-height */
+.fr.card{width:min(100%,calc((min(100vw,1760px) - 2 * clamp(20px,4vw,72px)) * 1.1 / 2.1));height:min(72vh,680px);min-height:360px}
+.fr.tone-ink{background:var(--ink);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.fr.tone-paper{background:var(--paper)}
+.fr.wide{width:min(100%,1296px);aspect-ratio:2.25;height:auto;min-height:300px;border-radius:24px;background:radial-gradient(90% 120% at 70% 0%,#1a3cb8 0%,#0b1a5c 45%,#050b2a 100%)}
+.fr.split{width:min(100%,820px);height:clamp(320px,34vw,620px);border-radius:18px;background-color:#1640cf;background-image:radial-gradient(120% 90% at 72% 0%,rgba(120,160,255,.5),rgba(22,71,219,0) 60%),linear-gradient(170deg,#1647DB,#0e2fa8)}
+.fr figcaption{position:absolute;left:14px;bottom:12px;font-size:12.5px;padding:4px 10px;border-radius:999px;background:rgba(3,7,26,.55);color:#dfe7ff;pointer-events:none}
+.fr.tone-paper figcaption{background:rgba(255,255,255,.8);color:#0b1230}
+.fr canvas{position:absolute;inset:0}
+.opts{margin-top:28px;width:100%;max-width:980px;border-collapse:collapse;font-size:15px}
+.opts th,.opts td{text-align:left;padding:10px 14px 10px 0;border-top:1px solid rgba(255,255,255,.08);vertical-align:top}
+.opts th{font-weight:500;color:var(--tx3);font-size:13px}
+.opts code,.ex code{font-family:ui-monospace,Consolas,monospace;font-size:13px;color:#cfdcff;word-break:break-word}
+.opts td:first-child{white-space:nowrap}
+.ex{margin-top:20px;max-width:980px;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);overflow-x:auto}
+.ex p{font-size:13px;color:var(--tx3);margin-bottom:6px}
+.mode{display:inline-flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.mode a{padding:8px 14px;border-radius:999px;font-size:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.mode a.on{background:#fff;color:var(--ink)}
+.layers{display:inline-flex;gap:8px;margin-top:22px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--tx3)}
+.layers button{font:inherit;padding:7px 13px;border-radius:999px;border:0;cursor:pointer;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);color:#dfe7ff}
+.layers button.on{background:#fff;color:var(--ink)}
+@media (max-width:900px){.lib{grid-template-columns:1fr}.side{position:static;height:auto}.fr.card{height:300px;min-height:0}}
+</style>
+</head>
+<body>
+<div class="lib">
+  <aside class="side">
+    <div class="mark"><svg viewBox="0 0 157 184" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9ccff"/><stop offset="1" stop-color="#4d78ff"/></linearGradient></defs><path fill="url(#g)" d="M156.282 104.257C156.282 146.692 78.3938 183.634 78.3938 183.634C78.3938 183.634 0.50478 146.692 0.50478 104.257C0.50478 93.2381 0.509268 83.5104 0.513558 74.2098C0.522088 55.7192 0.52984 38.9167 0.5 17.0094C49.9579 -5.62206 106.836 -5.59857 156.282 17.0588V104.257Z"/></svg><span><a href="index.html">Design system</a></span></div>
+    <nav id="toc"><a class="back" href="index.html">← Overview</a><a href="models.html">3D models</a><a href="icons.html">Icons</a><a href="scenes.html" class="on">Scenes</a></nav>
+  </aside>
+  <main class="doc">
+    <section class="sec intro">
+      <h1>Scenes</h1>
+      <p class="sub">The 2D canvas scenes from the Cantor8 homepage (line and grid), the Save homepage (dots) and the homepage ASCII (ascii), as one library. A page places one by name: <code>&lt;canvas data-scene="name" data-scene-opts='{…}'&gt;</code>, then <code>Scenes.mount(root)</code>. Files: <code>shared/system/scenes.js</code>, <code>scenes.css</code>.</p>
+      <p class="sub">Each scene is shown on the ink card and the paper card at multicard-card size, and as the 50/50 visual on the blue page. The ink and blue frames use the example options; the paper frame uses the defaults, with no labels. Tone follows the ground: a canvas inside <code>.tone-paper</code> draws navy and blue; anywhere else it draws white and blue. <code>tone: 'light' | 'dark'</code> names the ground and overrides that.</p>
+      <div class="mode" id="mode"></div>
+    </section>
+    <div id="list"></div>
+  </main>
+</div>
+<script src="../shared/system/scenes.js"></script>
+<script>
+(function () {
+  const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const still = /[?&]still\b/.test(location.search);
+  document.getElementById('mode').innerHTML = `<a href="scenes.html"${still ? '' : ' class="on"'}>In motion</a><a href="scenes.html?still"${still ? ' class="on"' : ''}>Still frames (reduced motion)</a>`;
+  // example options, as a page would pass them: labels are the live bitgo.com homepage copy (the library itself carries none)
+  const EXAMPLES = {
+    flowLanes: { ins: ['Cash', 'Crypto'], hub: 'Go Account', outs: ['Hold', 'Send', 'Trade', 'Finance'] },
+    barsNodes: { bars: 22 }, nodeMesh: { nodes: 10 }, lineArches: { count: 7 }, lineZigzag: { hops: 4 }, lineGlobe: { routes: 5 },
+    lineSteps: { steps: 7 }, lineSkyline: { lead: true },
+    springStrings: { labels: ['Hold', 'Trade', 'Move', 'Earn', 'Issue', 'Build'] },
+    grid247: { cols: 24, rows: 7, labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
+    dotFlow: { ins: ['Cash', 'Crypto'], hub: 'Go Account', outs: ['Hold', 'Send', 'Trade', 'Finance'] },
+    dotRings: { rings: 6 }, dotGlobe: { arcs: 17 }, dotRibbon: { grid: 230 },
+    asciiMark: { text: '$', theme: 'money' },
+    caasPlatform: { ins: ['Fast KYC', 'On/Off Ramps'], offers: ['Trading', 'Staking', 'Withdraw'], guards: ['Policy Engine', 'Insurance'] },   // live crypto-as-a-service copy (front.items)
+  };
+  // scenes that are also shown on the wide stage (the 1296 x 576 mechanism stage), and the ones that answer a pinned list
+  const WIDE = ['caasPlatform'];
+  const PINNED = { caasPlatform: ['Operate compliantly', 'Onboard users and funds', 'Offer crypto to your users', "Keep your clients' funds safe"] };
+  // more option sets shown under a scene (ink card each)
+  const EXTRA = {
+    asciiMark: [{ text: '01' }, { text: '1:1' }, { path: 'M6 10V7a6 6 0 0 1 12 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1zm2 0h8V7a4 4 0 0 0-8 0v3z' }, {}],
+  };
+  const KINDS = { line: 'Line (Cantor8)', grid: 'Grid (Cantor8 24/7)', dots: 'Dots (Save)', ascii: 'ASCII (homepage)' };
+  const names = Scenes.list(), toc = document.getElementById('toc');
+  Object.keys(KINDS).forEach(k => {
+    toc.insertAdjacentHTML('beforeend', `<p class="grp">${KINDS[k]}</p>`);
+    names.filter(n => Scenes.get(n).kind === k).forEach(n => toc.insertAdjacentHTML('beforeend', `<a href="#${n}">${n}</a>`));
+  });
+  const val = v => v === '' ? "''" : v === null ? 'null' : Array.isArray(v) && !v.length ? '[]' : JSON.stringify(v);
+  const cv = (n, opts) => `<canvas data-scene="${n}"${opts ? ` data-scene-opts='${esc(JSON.stringify(opts))}'` : ''} aria-hidden="true"></canvas>`;
+  document.getElementById('list').innerHTML = Object.keys(KINDS).flatMap(k => names.filter(n => Scenes.get(n).kind === k)).map(n => {
+    const d = Scenes.get(n), ex = EXAMPLES[n] || null;
+    const rows = Object.keys(d.opts).map(k => `<tr><td><code>${k}</code></td><td><code>${esc(val(d.opts[k]))}</code></td><td>${esc((d.docs || {})[k] || '')}</td></tr>`).join('')
+      + `<tr><td><code>tone</code></td><td><code>auto</code></td><td>'dark' or 'light': the ground. Auto: 'light' inside .tone-paper, else 'dark'.</td></tr>`;
+    return `<section class="sec scn" id="${n}">
+      <div class="sc-head"><h2>${n}</h2><span class="kind">${d.kind}</span></div>
+      <p class="sub">${esc(d.meaning)}</p>
+      ${PINNED[n] ? `<div class="layers" data-for="${n}">Pinned item: <button class="on" data-a="-1">None</button>${PINNED[n].map((x, i) => `<button data-a="${i}">${i} · ${esc(x)}</button>`).join('')}</div>` : ''}
+      <div class="frames">
+        <figure class="fr card tone-ink">${cv(n, ex)}<figcaption>Ink card · example options</figcaption></figure>
+        <figure class="fr card tone-paper">${cv(n, null)}<figcaption>Paper card · defaults</figcaption></figure>
+        <figure class="fr split">${cv(n, ex)}<figcaption>50/50 visual on the blue page · example options</figcaption></figure>
+        ${WIDE.includes(n) ? `<figure class="fr wide">${cv(n, ex)}<figcaption>Wide stage · example options</figcaption></figure>` : ''}
+        ${(EXTRA[n] || []).map(x => `<figure class="fr card tone-ink">${cv(n, x)}<figcaption>Ink card · ${esc(Object.keys(x).length ? JSON.stringify(x).slice(0, 40) : 'defaults')}</figcaption></figure>`).join('')}
+      </div>
+      <table class="opts"><thead><tr><th>Option</th><th>Default</th><th>What it does</th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="ex"><p>Example</p><code>${esc(`<canvas data-scene="${n}"${ex ? ` data-scene-opts='${JSON.stringify(ex)}'` : ''}></canvas>`)}</code></div>
+    </section>`;
+  }).join('');
+  Scenes.mount(document.getElementById('list'));
+  // stands in for a pinned list: sets s.active on the scene's canvases, as scenes.js does inside .m-pin
+  document.querySelectorAll('.layers').forEach(bar => bar.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    bar.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll(`#${bar.dataset.for} canvas`).forEach(c => { if (c.__scene) c.__scene.s.active = +b.dataset.a; });
+  }));
+})();
+</script>
+</body>
+</html>

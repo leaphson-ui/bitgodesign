@@ -1,0 +1,46 @@
+/* Styles for the arts in listing-services.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>], or the
+   list of these arts that share it. The base kit (.u-p, .ut, .hr, .pill, .ck, .bar, .resp, .av, .wr) comes from modules.css in both
+   hosts (50/50 and 3x multicard). Values follow ui-arts.css and ecosystem.css: the same blue, greys, radii, shadows and glow. */
+
+/* the soft light behind each art, by its host: faint on the paper card (lsGrow), strong on the dark cards and in the 50/50 */
+.mc-ui[data-mc-ui=lsGrow]::before{background:radial-gradient(closest-side at 50% 45%,rgba(22,71,219,.07),transparent)}
+.mc-ui[data-mc-ui=lsManage]::before{background:radial-gradient(closest-side at 38% 32%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=lsTreasury]::before{background:radial-gradient(closest-side at 62% 38%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=lsAssets]::before{background:radial-gradient(closest-side at 55% 50%,rgba(22,71,219,.32),transparent)}
+
+/* shared: dark-panel text, dividers, the blue-white status text, check rings on the dark panel, the inset rows' children */
+.mc-ui:is([data-mc-ui=lsGrow],[data-mc-ui=lsManage],[data-mc-ui=lsTreasury],[data-mc-ui=lsAssets]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=lsGrow],[data-mc-ui=lsManage],[data-mc-ui=lsTreasury],[data-mc-ui=lsAssets]) .ls-hrd{background:rgba(190,205,255,.12)}
+.mc-ui:is([data-mc-ui=lsGrow],[data-mc-ui=lsManage]) .ls-ok{color:#9db6ff}
+.mc-ui:is([data-mc-ui=lsManage]) .u-p.dk .ck .rg{border-color:rgba(190,205,255,.3)}
+.mc-ui:is([data-mc-ui=lsGrow],[data-mc-ui=lsManage],[data-mc-ui=lsTreasury],[data-mc-ui=lsAssets]) :is(.ls-tile,.ls-row,.ls-le,.ls-ar,.ls-srch,.ls-btn)>*{position:absolute}
+
+/* lsGrow: the asset's token mark, the four place tiles (light blue and ringed once on), the reach meters on the dark panel */
+.mc-ui[data-mc-ui=lsGrow] .ls-tk{border-radius:50%;background:linear-gradient(145deg,#4d78ff,#1647DB);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -6px rgba(22,71,219,.7)}
+.mc-ui[data-mc-ui=lsGrow] .ls-tile{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=lsGrow] .ls-tile.on{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui[data-mc-ui=lsGrow] .ls-db{border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.mc-ui[data-mc-ui=lsGrow] .ls-db i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:#7ea2ff}
+
+/* lsManage: inset operation rows (lit while running), the activity entries on the dark panel */
+.mc-ui[data-mc-ui=lsManage] .ls-row{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=lsManage] .ls-row.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui[data-mc-ui=lsManage] .ls-le{opacity:0}
+
+/* lsTreasury: the confirm button on the dark panel (as cwSoftware's) */
+.mc-ui[data-mc-ui=lsTreasury] .ls-btn{background:#1647DB;border-radius:22px;box-shadow:0 8px 20px -6px rgba(22,71,219,.6)}
+.mc-ui[data-mc-ui=lsTreasury] .ls-btn span{inset:0;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:13.5px;font-weight:600;line-height:1;white-space:nowrap}
+.mc-ui[data-mc-ui=lsTreasury] .ls-btn .l1{opacity:0}
+.mc-ui[data-mc-ui=lsTreasury] .ls-btn svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* lsAssets: the search field and its caret, the clipped list, the found row, the Supported tag, the asset grid on the dark panel */
+.mc-ui[data-mc-ui=lsAssets] .ls-srch{border-radius:11px;background:#f3f5fb;box-shadow:inset 0 0 0 1px rgba(20,40,110,.09)}
+.mc-ui[data-mc-ui=lsAssets] .ls-srch svg{left:12px;top:10px;width:19px;height:19px;fill:none;stroke:#6c7694;stroke-width:2;stroke-linecap:round}
+.mc-ui[data-mc-ui=lsAssets] .ls-srch b{font-weight:500}
+.mc-ui[data-mc-ui=lsAssets] .ls-cr{display:inline-block;width:1.5px;height:17px;margin-left:1px;vertical-align:-3px;background:#1647DB}
+.mc-ui[data-mc-ui=lsAssets] .ls-clip{overflow:hidden}
+.mc-ui[data-mc-ui=lsAssets] .ls-ar{border-radius:12px;transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=lsAssets] .ls-ar.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui[data-mc-ui=lsAssets] .ls-sup{height:22px;padding:0 9px;border-radius:11px;background:#e4ecff;color:#1647DB;font-size:12px;font-weight:600;line-height:1;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.mc-ui[data-mc-ui=lsAssets] .ls-gc{border-radius:50%;background:rgba(255,255,255,.1);color:#dfe8ff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .35s,box-shadow .35s,color .35s}
+.mc-ui[data-mc-ui=lsAssets] .ls-gc.on{background:#1647DB;color:#fff;box-shadow:0 0 0 1.5px #7ea2ff,0 0 18px rgba(77,120,255,.6)}

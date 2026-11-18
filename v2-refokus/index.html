@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BitGo | Digital asset infrastructure</title>
+<meta name="description" content="BitGo is the digital asset infrastructure company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<a class="skip" href="#main" id="skip"></a>
+<canvas id="gl" aria-hidden="true"></canvas>
+<header class="nav" id="nav"></header>
+<main id="main">
+  <section class="hero" id="hero"></section>
+  <section class="trust" id="trust"></section>
+  <section class="badges" id="badges"></section>
+  <section class="core" id="core"></section>
+  <section class="est" id="established"></section>
+  <section class="build" id="build"></section>
+  <section class="support" id="support"></section>
+  <section class="own" id="own"></section>
+  <section class="spot" id="spotlight"></section>
+  <section class="latest" id="latest"></section>
+  <section class="cta" id="cta"></section>
+</main>
+<footer class="foot" id="footer"></footer>
+<div class="grain" aria-hidden="true"></div>
+
+<script src="../shared/content.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="ui.js"></script>
+<script type="module" src="gl.js"></script>
+<script type="module" src="own3d.js"></script>
+</body>
+</html>

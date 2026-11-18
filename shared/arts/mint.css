@@ -1,0 +1,31 @@
+/* Styles for the arts in mint.js (status: review). Every rule is scoped to its own art: .mc-ui[data-mc-ui=<name>], or the list of
+   these arts that share it. The base kit (.u-p, .ut, .hr, .pill, .ck, .bar, .resp) comes from modules.css in both hosts (50/50 and
+   3x multicard). Values follow ui-arts.css: the same blue, greys, radii, shadows and glow. */
+
+/* the soft light behind each art (both sit in a 50/50 on the open scene) */
+.mc-ui[data-mc-ui=mnMint]::before{background:radial-gradient(closest-side at 45% 45%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=mnControls]::before{background:radial-gradient(closest-side at 62% 38%,rgba(22,71,219,.32),transparent)}
+
+/* shared: dark-panel text, dividers, the blue-white status text, check rings on the dark panel */
+.mc-ui:is([data-mc-ui=mnMint],[data-mc-ui=mnControls]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=mnMint],[data-mc-ui=mnControls]) .mn-hrd{background:rgba(190,205,255,.12)}
+.mc-ui[data-mc-ui=mnControls] .mn-ok{color:#9db6ff}
+.mc-ui[data-mc-ui=mnControls] .u-p.dk .ck .rg{border-color:rgba(190,205,255,.3)}
+
+/* mnMint: the Mint / Redeem switch, the two amount fields and their currency chips, the arrow between them, the Mint button */
+.mc-ui[data-mc-ui=mnMint] .mn-seg{padding:3px;border-radius:17px;background:#eef1f9;display:flex}
+.mc-ui[data-mc-ui=mnMint] .mn-seg span{position:relative;flex:1;border-radius:14px;text-align:center;line-height:28px;font-size:12.5px;font-weight:500;color:#6c7694;white-space:nowrap}
+.mc-ui[data-mc-ui=mnMint] .mn-seg span.sel{background:#fff;color:#0b1230;font-weight:600;box-shadow:0 1px 3px rgba(20,40,110,.18)}
+.mc-ui[data-mc-ui=mnMint] .mn-fld{border-radius:12px;background:#f3f5fb;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07)}
+.mc-ui[data-mc-ui=mnMint] :is(.mn-fld,.mn-btn)>*{position:absolute}
+.mc-ui[data-mc-ui=mnMint] .mn-cur{border-radius:14px;background:#fff;box-shadow:0 0 0 1px rgba(20,40,110,.1);color:#0b1230;font-size:12.5px;font-weight:600;line-height:28px;text-align:center;white-space:nowrap}
+.mc-ui[data-mc-ui=mnMint] .mn-sw{border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(20,40,110,.12),0 4px 10px rgba(20,45,130,.12);display:flex;align-items:center;justify-content:center;z-index:1}
+.mc-ui[data-mc-ui=mnMint] .mn-sw svg{width:16px;height:16px;fill:none;stroke:#1647DB;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mc-ui[data-mc-ui=mnMint] .mn-btn{background:#1647DB;border-radius:22px;box-shadow:0 8px 20px -6px rgba(22,71,219,.6)}
+.mc-ui[data-mc-ui=mnMint] .mn-btn span{inset:0;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:13.5px;font-weight:600;line-height:1;white-space:nowrap}
+.mc-ui[data-mc-ui=mnMint] .mn-btn .l1{opacity:0}
+.mc-ui[data-mc-ui=mnMint] .mn-btn svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* mnControls: the approver avatars on the dark panel */
+.mc-ui[data-mc-ui=mnControls] .mn-av{border-radius:50%;background:rgba(255,255,255,.1);color:#dfe8ff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.mc-ui[data-mc-ui=mnControls] .mn-av.on{background:rgba(77,120,255,.35);color:#fff}

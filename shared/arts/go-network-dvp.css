@@ -1,0 +1,14 @@
+/* Delivery vs. Payment UI art (shared/arts/go-network-dvp.js). Every rule is scoped to its own art. The shared panel, type,
+   pill, chip, check and bar styles come from modules.css; these add only what the art has of its own. */
+.mc-ui[data-mc-ui=dvpSettle]::before{background:radial-gradient(closest-side at 45% 45%,rgba(22,71,219,.3),transparent)}
+.mc-ui[data-mc-ui=dvpSettle] .dvp-leg{background:#f3f5fb;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(20,40,110,.07);transition:background .35s,box-shadow .35s}
+.mc-ui[data-mc-ui=dvpSettle] .dvp-leg.act{background:#eef3ff;box-shadow:inset 0 0 0 1.5px #1647DB}
+.mc-ui[data-mc-ui=dvpSettle] .dvp-leg>*{position:absolute}
+.mc-ui[data-mc-ui=dvpSettle] .chip{transition:background .3s,color .3s}
+.mc-ui[data-mc-ui=dvpSettle] .chip.on{background:#e4ecff;color:#1647DB}
+.mc-ui[data-mc-ui=dvpSettle] .ut .tk{display:inline-block;vertical-align:-1px}
+.mc-ui[data-mc-ui=dvpSettle] .dvp-hrd{background:rgba(190,205,255,.12)}
+.mc-ui[data-mc-ui=dvpSettle] .dvp-ok{color:#9db6ff}
+.mc-ui[data-mc-ui=dvpSettle] .dvp-ok .tk{stroke:#9db6ff}
+.mc-ui[data-mc-ui=dvpSettle] .wt{color:#fff}
+.mc-ui[data-mc-ui=dvpSettle] .dvp-dot{display:inline-block;width:6px;height:6px;margin-right:7px;border-radius:50%;background:#1647DB;vertical-align:1px}

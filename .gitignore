@@ -1,0 +1,20 @@
+# Working files: screenshots, GPU renders, review/capture runs, saved reference-site code, logs, notes
+_*
+!_template/
+!_artlab/
+!_stagetest/
+!shared/models/_kit.js
+!shared/models/_shieldgeo.js
+*.log
+__pycache__/
+.claude/
+.vercel/
+MORNING-REPORT-*.md
+# BitGo internal document: never commit
+handoff.txt
+# Notes, agent briefs and local tools: they carry local paths and review notes. Pages and code only.
+*.md
+!/README.md
+*.py
+*.sh
+v1r-noexit/sheet.png

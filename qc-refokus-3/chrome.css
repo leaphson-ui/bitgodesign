@@ -1,0 +1,75 @@
+/* Site chrome: the live bitgo.com menus and footer, drawn in the v3 Refokus style. Loads after style.css. */
+
+/* mega menus: one column per live column, groups with a title and their links, Products adds a featured column */
+.mega{grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:34px 40px;padding:38px 42px;max-width:1560px}
+.mc{display:flex;flex-direction:column;gap:22px;min-width:0}
+.mc-t{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-hi);display:flex;align-items:center;gap:8px}
+.mc-t .tag{font-size:11px;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:var(--blue);color:#fff}
+.mgp{display:flex;flex-direction:column;gap:6px}
+.mgp-t{font-family:var(--display);font-weight:500;font-size:17px;color:#fff;letter-spacing:-.01em}
+a.mgp-t{transition:color .25s}
+a.mgp-t:hover{color:var(--blue-hi)}
+.mgp ul{display:flex;flex-direction:column}
+.mgp li a{display:block;padding:4px 0;font-size:15px;color:var(--tx2);transition:color .25s,transform .35s var(--ease)}
+.mgp li a:hover{color:#fff;transform:translateX(5px)}
+.mc-feat{gap:14px}
+.fcard{position:relative;display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:18px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:background .3s,transform .5s var(--ease)}
+.fcard:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.fart{display:block;height:84px;border-radius:12px;background:repeating-linear-gradient(90deg,#0a1a66 0 10px,#1647DB 10px 13px,#0a1a66 13px 28px,#7fa0ff 28px 29px)}
+.fcard.f1 .fart{background:radial-gradient(circle at 70% 40%,#4d78ff 0,#1647DB 22%,#0a1a66 48%,#03071a 80%)}
+.fcard .eyebrow.sm{margin:0;align-self:flex-start}
+.ft{font-size:15px;line-height:1.35;color:#fff}
+@media (max-width:1400px){.mega{gap:28px 28px;padding:32px}.mgp-t{font-size:16px}.mgp li a{font-size:14px}}
+.mobile .mg-g{font-family:var(--display);font-size:18px;font-weight:500;margin:14px 0 4px}
+.mobile .mg-g a{color:#fff}
+
+/* footer: newsletter (when it is not a module), the live link columns, socials and AI links, legal */
+.foot{background:#02030a}
+.foot-news{display:flex;flex-direction:column;align-items:flex-start;gap:26px;padding-bottom:clamp(56px,6vw,96px);margin-bottom:clamp(56px,6vw,96px);border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-news h3{font-family:var(--display);font-weight:500;font-size:clamp(30px,3.4vw,60px);letter-spacing:-.03em;line-height:1.02;max-width:14em}
+.foot-cols{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:44px 32px}
+.fc h3{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:16px}
+.fc li a{display:block;padding:5px 0;font-size:15px;color:var(--tx2);transition:color .25s}
+.fc li a:hover{color:#fff}
+.foot-mid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;margin-top:clamp(56px,6vw,96px);padding-top:28px;border-top:1px solid rgba(255,255,255,.1)}
+.foot-mid .soc,.foot-mid .ai{display:flex;align-items:center;gap:10px}
+.foot-mid .ai span{font-size:14px;color:var(--tx2);margin-right:6px}
+.foot-mid a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--tx2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);transition:background .3s,color .3s,box-shadow .3s}
+.foot-mid a:hover{background:var(--blue);color:#fff;box-shadow:none}
+.foot-mid svg{width:18px;height:18px}
+.foot .legal .links a{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:1100px){.foot-cols{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.foot-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 20px}.foot-mid{flex-direction:column;align-items:flex-start}}
+
+/* newsletter form states: the live site's thank-you line replaces the field once someone signs up */
+.nl2-ok{display:none;flex:1;align-items:center;justify-content:center;font-family:var(--display);font-size:19px;font-weight:500;color:#fff}
+.nl2.done input,.nl2.done .btn{display:none}
+.nl2.done .nl2-ok{display:flex}
+.foot-news .nl2{margin-top:0}
+
+/* shared pieces the chrome needs on any page: eyebrow pills (featured cards) and the newsletter capsule */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 15px 0 12px;border-radius:999px;font-family:var(--display);font-size:14px;font-weight:500;letter-spacing:.01em;line-height:1;color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.035));box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),inset 0 1px 0 rgba(255,255,255,.26),0 12px 32px -14px rgba(22,71,219,.7);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);margin-bottom:clamp(18px,2vw,28px)}
+.eyebrow i{flex:none;width:11px;height:13px;background:linear-gradient(180deg,#b9ccff,var(--blue-hi));-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 157 184'%3E%3Cpath d='M156.282 104.257C156.282 146.692 78.3938 183.634 78.3938 183.634C78.3938 183.634 0.50478 146.692 0.50478 104.257C0.50478 93.2381 0.509268 83.5104 0.513558 74.2098C0.522088 55.7192 0.52984 38.9167 0.5 17.0094C49.9579 -5.62206 106.836 -5.59857 156.282 17.0588V104.257Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 157 184'%3E%3Cpath d='M156.282 104.257C156.282 146.692 78.3938 183.634 78.3938 183.634C78.3938 183.634 0.50478 146.692 0.50478 104.257C0.50478 93.2381 0.509268 83.5104 0.513558 74.2098C0.522088 55.7192 0.52984 38.9167 0.5 17.0094C49.9579 -5.62206 106.836 -5.59857 156.282 17.0588V104.257Z'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 0 5px rgba(77,120,255,.95))}
+.eyebrow.light{color:var(--ink);background:linear-gradient(180deg,#fff,rgba(234,240,255,.85));box-shadow:inset 0 0 0 1px rgba(22,71,219,.16),0 12px 30px -16px rgba(22,71,219,.45)}
+.eyebrow.light i{background:linear-gradient(180deg,#4d78ff,var(--blue));filter:none}
+.eyebrow.sm{height:30px;font-size:13px;padding:0 13px 0 10px;margin-bottom:16px}
+.nl2{position:relative;margin-top:clamp(36px,4vw,64px);width:min(100%,660px);height:76px;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 30px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.05));backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),inset 0 1px 0 rgba(255,255,255,.32),0 30px 80px -30px rgba(22,71,219,.9);transition:box-shadow .5s var(--ease)}
+.nl2:focus-within{box-shadow:inset 0 0 0 1.5px rgba(157,184,255,.85),inset 0 1px 0 rgba(255,255,255,.32),0 30px 90px -24px rgba(77,120,255,1)}
+.nl2 input{flex:1;min-width:0;height:100%;border:0;background:transparent;color:#fff;font:inherit;font-size:19px;outline:0}
+.nl2 input::placeholder{color:rgba(225,232,255,.55)}
+.nl2 .btn{flex:none;height:60px;padding:0 28px;background:#fff;color:var(--blue);font-weight:600}
+.nl2 .btn:hover{background:var(--blue-hi);color:#fff}
+.nl2 .btn b{display:inline-grid;place-items:center}
+.nl2 .btn .ok{display:none}
+.nl2.done .btn{background:var(--blue);color:#fff}
+.nl2.done .btn .ar{display:none}
+.nl2.done .btn .ok{display:inline-grid}
+.nl2.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@media (max-width:600px){.nl2{height:64px;padding-left:22px}.nl2 .btn{height:50px;padding:0 18px}.nl2 input{font-size:17px}}
+
+/* legal: one flowing text in two columns instead of a grid with uneven cells */
+.foot .legal{display:block;column-count:2;column-gap:56px}
+.foot .legal p{break-inside:avoid;margin:0 0 14px}
+.foot .legal .links{display:block;margin-top:8px}
+@media (max-width:900px){.foot .legal{column-count:1}}

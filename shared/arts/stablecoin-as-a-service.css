@@ -1,0 +1,16 @@
+/* Styles for the arts in stablecoin-as-a-service.js (status: review). Every rule is scoped to its own art:
+   .mc-ui[data-mc-ui=<name>]. The base kit (.u-p, .ut, .hr, .pill, .ck, .bar, .resp, .av) comes from modules.css in both hosts.
+   Values follow ui-arts.css, link.css and stablecoins.css: the same blue, greys, radii and shadows. */
+.mc-ui[data-mc-ui=saasReserve]::before{background:radial-gradient(closest-side at 62% 38%,rgba(22,71,219,.32),transparent)}
+.mc-ui[data-mc-ui=saasDeploy]::before{background:radial-gradient(closest-side at 55% 50%,rgba(22,71,219,.3),transparent)}
+
+/* shared: text, dividers and the blue-white status on the dark panels; avatars and check rings readable on navy */
+.mc-ui:is([data-mc-ui=saasReserve],[data-mc-ui=saasDeploy]) .wt{color:#fff}
+.mc-ui:is([data-mc-ui=saasReserve],[data-mc-ui=saasDeploy]) .saas-hrd{background:rgba(190,205,255,.12)}
+.mc-ui:is([data-mc-ui=saasReserve],[data-mc-ui=saasDeploy]) .saas-ok{color:#9db6ff}
+.mc-ui:is([data-mc-ui=saasReserve],[data-mc-ui=saasDeploy]) .u-p.dk .ck .rg{border-color:rgba(190,205,255,.3)}
+.mc-ui[data-mc-ui=saasDeploy] .u-p.dk .av{background:rgba(255,255,255,.1);color:#cfdcff}
+.mc-ui[data-mc-ui=saasDeploy] .u-p.dk .av.on{background:#4d78ff;color:#fff}
+
+/* saasReserve: the target notch on each allocation bar */
+.mc-ui[data-mc-ui=saasReserve] .saas-tg{width:2px;height:14px;border-radius:1px;background:#0b1230}

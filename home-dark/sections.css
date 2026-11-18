@@ -1,0 +1,67 @@
+/* home-dark sections: bitgo.com's structure, upgraded to this page's style (black, starfield, glass, blue light) */
+
+/* ---------- Trusted: logo tiles drifting in two rows around the headline ---------- */
+.hd-trusted{position:relative;padding:clamp(56px,6vw,110px) 0;overflow:hidden}
+.hd-row{position:relative;overflow:hidden;padding:6px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.hd-track{display:flex;gap:16px;width:max-content;will-change:transform}
+.hd-tile{--mx:50%;--my:0%;position:relative;flex:none;width:clamp(170px,15vw,224px);aspect-ratio:224/136;border-radius:18px;display:grid;place-items:center;overflow:hidden;isolation:isolate;
+  background:radial-gradient(120% 90% at 50% 0%,rgba(46,96,255,.10),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07),inset 0 1px 0 rgba(255,255,255,.08);transition:box-shadow .5s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.hd-tile::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .45s ease;background:radial-gradient(160px circle at var(--mx) var(--my),rgba(79,157,255,.28),transparent 70%)}
+.hd-tile img{max-width:58%;max-height:34%;object-fit:contain;filter:brightness(0) invert(1);opacity:.62;transition:opacity .45s ease}
+.hd-tile:hover{box-shadow:inset 0 0 0 1px rgba(79,157,255,.45),inset 0 1px 0 rgba(255,255,255,.14),0 18px 50px -20px rgba(46,96,255,.55);transform:translateY(-3px)}
+.hd-tile:hover::before{opacity:1}
+.hd-tile:hover img{opacity:1}
+.hd-tr-head{display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(48px,5vw,88px) 0}
+.hd-tr-head .eyebrow{margin-bottom:clamp(16px,1.8vw,24px)}
+.hd-tr-head .lead{margin-top:clamp(16px,1.6vw,22px);max-width:46ch;color:rgba(255,255,255,.72)}
+.hd-tr-head .btn{margin-top:clamp(26px,2.8vw,40px)}
+
+/* ---------- Client Spotlight: the 50/50 video carousel ---------- */
+.hd-spot{position:relative;padding:clamp(72px,8vw,140px) 0}
+.hd-sp{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,4vw,80px);align-items:center}
+.hd-sp-copy .eyebrow{margin-bottom:clamp(18px,2vw,28px)}
+.hd-sp-titles{display:grid}
+.hd-sp-t{grid-area:1/1;font-family:var(--display);font-weight:500;font-size:clamp(36px,3.5vw,67px);line-height:1;letter-spacing:-.012em;text-wrap:balance;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .8s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.hd-sp-t.on{opacity:1;transform:none;pointer-events:auto}
+.hd-sp-nav{display:flex;align-items:center;gap:16px;margin-top:clamp(28px,3vw,44px)}
+.hd-sp-b{width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.04);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);transition:background .3s,box-shadow .3s}
+.hd-sp-b svg{width:20px;height:20px}
+.hd-sp-b.prev svg{transform:rotate(180deg)}
+.hd-sp-b:hover{background:rgba(79,157,255,.16);box-shadow:inset 0 0 0 1px rgba(79,157,255,.6),0 12px 34px -12px rgba(46,96,255,.7)}
+.hd-sp-i{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.6);min-width:64px;text-align:center}
+.hd-sp-frame{position:relative;aspect-ratio:16/9;border-radius:clamp(18px,2vw,28px);overflow:hidden;isolation:isolate;
+  background:#05070f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 0 0 8px rgba(255,255,255,.025),0 50px 140px -40px rgba(30,80,255,.55)}
+.hd-sp-frame::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+.hd-sp-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;cursor:pointer}
+.hd-sp-slide.on{opacity:1}
+.hd-sp-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.85)}
+.hd-sp-play{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.hd-sp-play::after{content:"";position:absolute;left:29px;top:24px;border-left:18px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.hd-sp-slide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2}
+.hd-sp-dots{display:flex;justify-content:center;gap:10px;margin-top:20px}
+.hd-sp-dot{width:34px;height:20px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center}
+.hd-sp-dot i{display:block;width:100%;height:3px;border-radius:2px;background:rgba(255,255,255,.18);transition:background .4s}
+.hd-sp-dot.on i{background:linear-gradient(90deg,#4f9dff,#fff)}
+
+/* ---------- The Latest: four post cards ---------- */
+.hd-latest{position:relative;padding:clamp(72px,8vw,128px) 0}
+.hd-lt-top{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:clamp(28px,3vw,44px)}
+.hd-lt-top h2{font-family:var(--display);font-weight:500;font-size:clamp(28px,2.4vw,40px);letter-spacing:-.01em}
+.hd-lt-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.4vw,24px)}
+.hd-card{position:relative;display:flex;flex-direction:column;height:100%;padding:10px 10px 22px;border-radius:22px;color:#fff;text-decoration:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);transition:box-shadow .5s ease,transform .6s cubic-bezier(.2,.7,.2,1),background .5s}
+.hd-thumb{display:block;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#05070f}
+.hd-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.hd-card-t{display:block;margin:18px 10px 0;font-family:var(--display);font-weight:500;font-size:clamp(16px,1.2vw,19px);line-height:1.25;letter-spacing:-.005em;padding-right:34px}
+.hd-card-go{position:absolute;right:16px;bottom:18px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;opacity:0;transform:translateX(-6px);transition:opacity .4s,transform .5s;box-shadow:inset 0 0 0 1px rgba(79,157,255,.6);color:#9cc4ff}
+.hd-card-go svg{width:14px;height:14px}
+.hd-card:hover{transform:translateY(-4px);background:linear-gradient(180deg,rgba(79,157,255,.08),rgba(255,255,255,.015));box-shadow:inset 0 0 0 1px rgba(79,157,255,.35),0 30px 70px -30px rgba(46,96,255,.6)}
+.hd-card:hover .hd-thumb img{transform:scale(1.05)}
+.hd-card:hover .hd-card-go{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .hd-sp{grid-template-columns:1fr}
+  .hd-lt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){.hd-lt-grid{grid-template-columns:1fr}.hd-lt-top{flex-wrap:wrap}}

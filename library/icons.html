@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Icons · BitGo Design System</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/system/base.css">
+<link rel="stylesheet" href="../shared/icons/icons.css">
+<link rel="stylesheet" href="../shared/icons/icons-2.css">
+<link rel="stylesheet" href="lib.css">
+</head>
+<body>
+<div class="lib">
+  <aside class="side">
+    <div class="mark"><svg viewBox="0 0 157 184" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9ccff"/><stop offset="1" stop-color="#4d78ff"/></linearGradient></defs><path fill="url(#g)" d="M156.282 104.257C156.282 146.692 78.3938 183.634 78.3938 183.634C78.3938 183.634 0.50478 146.692 0.50478 104.257C0.50478 93.2381 0.509268 83.5104 0.513558 74.2098C0.522088 55.7192 0.52984 38.9167 0.5 17.0094C49.9579 -5.62206 106.836 -5.59857 156.282 17.0588V104.257Z"/></svg><span><a href="index.html">Design system</a></span></div>
+    <nav id="toc"><a class="back" href="index.html">← Overview</a><a href="models.html">3D models</a><a href="icons.html" class="on">Icons</a></nav>
+  </aside>
+  <main class="doc">
+    <section class="sec intro">
+      <h1>Icons</h1>
+      <p class="sub">Set 2 is the current set: layered glass-blue icons. <code>&lt;i class="ico2 ico2-name"&gt;&lt;/i&gt;</code>; add <code>.light</code> on white grounds; sizes <code>.ico2-sm</code> 13, <code>.ico2-md</code> 20, <code>.ico2-lg</code> 40, <code>.ico2-xl</code> 56.</p>
+    </section>
+    <section class="sec"><h2>Set 2 on dark</h2><div class="icg" id="d2"></div></section>
+    <section class="sec"><h2>Set 2 on white</h2><div class="icg lt" id="l2"></div></section>
+    <section class="sec"><h2>Set 1: single-colour outline</h2><p class="sub">The first set: one path per icon with the eyebrow's gradient and glow. <code>&lt;i class="ico ico-name"&gt;&lt;/i&gt;</code></p><div class="icg" id="d1"></div></section>
+  </main>
+</div>
+<script type="module">
+import { ICONS2 } from '../shared/icons/icons-2.js';
+import { ICONS } from '../shared/icons/icons.js';
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const cells = (set, cls, light) => Object.entries(set).map(([k, v]) => `<div><i class="${cls} ${cls}-${cls === 'ico2' ? 'xl' : 'lg'} ${cls}-${k}${light ? ' light' : ''}"></i><span>${esc(v.title || k)}</span><code>${k}</code></div>`).join('');
+document.getElementById('d2').innerHTML = cells(ICONS2, 'ico2');
+document.getElementById('l2').innerHTML = cells(ICONS2, 'ico2', true);
+document.getElementById('d1').innerHTML = cells(ICONS, 'ico');
+</script>
+</body>
+</html>
